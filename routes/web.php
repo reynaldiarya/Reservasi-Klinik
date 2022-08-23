@@ -14,9 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return "halod";
-});
-
-Route::get('/tes', function () {
-    return "halo";
+    return view('welcome');
 });
