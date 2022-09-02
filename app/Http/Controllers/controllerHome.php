@@ -8,13 +8,13 @@ class controllerHome extends Controller
 {
     public function home()
     {
-        return view("welcome", [
+        return view("home", [
             "halaman" => "welcome"
         ]);
     }
     public function reservasi()
     {
-        return view('reservasi',[
+        return view('reservasi', [
             "halaman" => "reservasi"
         ]);
     }
@@ -25,7 +25,9 @@ class controllerHome extends Controller
     }
     public function login()
     {
-        return view('login');
+        return view('login', [
+            "halaman" => "login"
+        ]);
     }
     public function register()
     {

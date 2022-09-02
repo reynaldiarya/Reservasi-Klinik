@@ -13,9 +13,14 @@
     </div>
  
     <div class="row mt-5  ">
-      <h4 class="row fontcusblue" id="cekJadwal">Cek Jadwal</h4>
-     <form action="" method="post">
-      
+      <h4 class=" fontcusblue" id="cekJadwal">Cek Jadwal</h4>
+     <form class="row" action="" method="post">
+      <div class="form-group col-4">
+        <input required="" type="text" class="form-control" placeholder="Date" onfocus="(this.type='date')"/>
+    </div>
+      <div class="col ">
+        <button class="btn border-dark" type="submit" name="submit" > <i class="fa fa-search "></i></button>
+      </div>
      </form>
       
 
@@ -24,4 +29,5 @@
    
   </div>
 </div>
+
 @endsection

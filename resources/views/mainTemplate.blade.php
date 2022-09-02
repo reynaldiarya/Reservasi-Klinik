@@ -16,7 +16,7 @@
 
 <body>
   <header>
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-transparent ">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="img/logo.png" alt="" width="30">
@@ -30,14 +30,14 @@
             <a class="nav-link " aria-current="page" href="/about">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#cekJadwal">Reservasi</a>
+            <a class="nav-link" href="/about#cekJadwal">Reservasi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#foott">Contact Us</a>
+            <a class="nav-link "  href="#foott">Contact Us</a>
           </li>
         
         </ul>
-          <button class="btn btn-outline-success" type="submit"><a class="nav-link" href="/login">Login</a> </button>
+          <button class="btn btn-outline-info bg-light" type="submit"><a class="nav-link" href="/login">Login</a> </button>
       </div>
     </div>
   </nav>
@@ -60,23 +60,26 @@
     <!-- Right -->
     <div>
       <a href="" class="me-4 text-reset">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
         <i class="fab fa-facebook-f"></i>
       </a>
       <a href="" class="me-4 text-reset">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="" class="me-4 text-reset">
+      {{-- <a href="" class="me-4 text-reset">
         <i class="fab fa-google"></i>
-      </a>
+      </a> --}}
       <a href="" class="me-4 text-reset">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="" class="me-4 text-reset">
+      {{-- <a href="" class="me-4 text-reset">
         <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
+      </a> --}}
+      {{-- <a href="" class="me-4 text-reset">
         <i class="fab fa-github"></i>
-      </a>
+      </a> --}}
     </div>
     <!-- Right -->
   </section>
@@ -156,7 +159,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
     integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
-  </script>
+        
+        </script>
+      
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   
