@@ -13,13 +13,10 @@
     </div>
  
     <div class="row mt-5  ">
-      <h4 class="row fontcusblue">Cek Jadwal</h4>
-      <div class="form-floating col">
-      <input type="time" name="" id="">
-      </div>
-      <div class="form-floating col">
-        <input type="date" name="tgljadwal" id="" placeholder="Tanggal">
-      </div>
+      <h4 class="row fontcusblue" id="cekJadwal">Cek Jadwal</h4>
+     <form action="" method="post">
+      
+     </form>
       
 
 

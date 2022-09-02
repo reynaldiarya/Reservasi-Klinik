@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>about</title>
+  <title>{{ $halaman }}</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,10 +28,10 @@
             <a class="nav-link " aria-current="page" href="/about">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Reservasi</a>
+            <a class="nav-link" href="#cekJadwal">Reservasi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" href="#foott">Contact Us</a>
           </li>
         
         </ul>
@@ -51,7 +51,7 @@
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <!-- Left -->
     <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
+      <span id="foott">Get connected with us on social networks:</span>
     </div>
     <!-- Left -->
 

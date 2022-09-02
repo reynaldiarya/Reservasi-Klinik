@@ -8,11 +8,15 @@ class controllerHome extends Controller
 {
     public function home()
     {
-        return view('welcome');
+        return view("welcome", [
+            "halaman" => "welcome"
+        ]);
     }
     public function reservasi()
     {
-        return view('reservasi');
+        return view('reservasi',[
+            "halaman" => "reservasi"
+        ]);
     }
 
     public function contactUs()
@@ -31,15 +35,14 @@ class controllerHome extends Controller
     {
         return view('dashboard');
     }
-    
+
     public function adminDash()
     {
         return view('adminDashboard');
     }
-    
+
     public function dashboardKlinik()
     {
         return view('dashboardKlinik');
     }
-    
 }
