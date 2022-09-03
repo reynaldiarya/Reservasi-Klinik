@@ -1,6 +1,6 @@
 @extends('mainTemplate')
 @section('content')
-<div class="container mt-5  ">
+<div class="container mt-5">
   <div class="row">
     <div class="col">
       <h1 class="fontcusblue">
@@ -27,6 +27,41 @@
 
     </div>
    
+  </div>
+  <div class="row mt-5" id="aboutUS">
+<div class="col-xl-6">
+
+  <div class="row content4-right-grids mb-lg-5 mb-4">
+    <div class="col-md-2 content4-right-icon">
+    </div>
+    <div  >
+      <h6><a class=" text-black text-decoration-underline">Annual Check-ups</a></h6>
+      <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio consectetur adipisicing elit.</p>
+    </div>
+  </div>
+  <div class="row content4-right-grids mb-lg-5 mb-4">
+    <div class="col-md-2 content4-right-icon">
+    </div>
+    <div  >
+      <h6><a class=" text-black text-decoration-underline">Annual Check-ups</a></h6>
+      <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio consectetur adipisicing elit.</p>
+    </div>
+  </div>
+  <div class="row content4-right-grids mb-lg-5 mb-4">
+    <div class="col-md-2 content4-right-icon">
+    </div>
+    <div  >
+      <h6><a class=" text-black text-decoration-underline">Annual Check-ups</a></h6>
+      <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio consectetur adipisicing elit.</p>
+    </div>
+  </div>
+ 
+</div>
+<div class="col-xl-5">
+  <h1>tes</h1>
+  <img src="https://identsoft.ambitiousit.net/assets/images/ab2.jpg" class="d-block m-sm-auto" width="500" alt="">
+
+</div>
   </div>
 </div>
 

@@ -41,9 +41,16 @@
             <button type="button" class="btn btn-primary btn-block mb-4">Masuk</button>
           
             <!-- Register buttons -->
-            <div class="text-center">
-              <p>Belum punya akun? <a href="/register">Daftar</a></p>
-              
+           <div class="row">
+
+             <div class="col">
+               <p>Belum punya akun? <a href="/register">Daftar</a></p>
+               
+              </div>
+              <div class="col">
+                <a class="text-decoration-none  fontcusgrey" href="#">Lupa Password ?</a>
+                
+              </div>
             </div>
           </form>
         </div>

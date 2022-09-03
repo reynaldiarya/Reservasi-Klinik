@@ -37,7 +37,7 @@
 
         </div>
         <div class="col"> 
-            <p>Sudah punya akun? <a href="/Login">Login</a></p>
+            <p>Sudah punya akun? <a href="/login">Login</a></p>
         </div>
       </div>
 

@@ -15,6 +15,9 @@
             <a class="nav-link" href="/about#cekJadwal">Reservasi</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link "  href="/about#aboutUS">About Us</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link "  href="#foott">Contact Us</a>
           </li>
         
