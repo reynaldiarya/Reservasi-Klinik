@@ -31,7 +31,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [controllerHome::class, 'home']);
 Route::get('/about', [controllerHome::class, 'home']);
 Route::get('/reservasi', [controllerHome::class, 'reservasi']);
-Route::get('/contact-us', [controllerHome::class, 'contactUs']);
 Route::get('/login', [controllerHome::class, 'login']);
 Route::get('/register',  [controllerHome::class, 'register']);
 Route::get('/dashboard', [controllerHome::class, 'dashboard']);

@@ -19,10 +19,7 @@ class controllerHome extends Controller
         ]);
     }
 
-    public function contactUs()
-    {
-        return view('contactUs');
-    }
+
     public function login()
     {
         return view('login', [
@@ -31,7 +28,9 @@ class controllerHome extends Controller
     }
     public function register()
     {
-        return view('register');
+        return view('register', [
+            "halaman" => "Register"
+        ]);
     }
     public function dashboard()
     {

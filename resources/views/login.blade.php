@@ -42,7 +42,7 @@
           
             <!-- Register buttons -->
             <div class="text-center">
-              <p>belum punya akun? <a href="#!">Daftar</a></p>
+              <p>belum punya akun? <a href="/register">Daftar</a></p>
               
             </div>
           </form>

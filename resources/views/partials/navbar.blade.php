@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="/about">Home</a>
+            <a class="nav-link "  href="/about">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/about#cekJadwal">Reservasi</a>
