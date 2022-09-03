@@ -5,7 +5,7 @@
     <div class="ms-5 col-sm-4">
       <div class="d-flex justify-content-center">
 
-       <img src="img/logo.png" class="mb-3" width="50">
+        <img src="img/logo.png" class="mb-3" width="50">
       </div>
       <div class="justify-content-center ">
         
@@ -42,7 +42,7 @@
           
             <!-- Register buttons -->
             <div class="text-center">
-              <p>belum punya akun? <a href="/register">Daftar</a></p>
+              <p>Belum punya akun? <a href="/register">Daftar</a></p>
               
             </div>
           </form>
