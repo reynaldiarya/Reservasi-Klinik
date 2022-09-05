@@ -1,53 +1,57 @@
 @extends('mainTemplate')
 @section('content')
-    <div class="container mt-auto">
-        <div class="row justify-content-lg-center">
-        <div class=" mt-5 col-sm-5">
-        <div class=" d-flex justify-content-center">
-
-            <img src="img/logo.png" class="mb-4 justify-content-sm-center" width="50">
-        </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="ms-5 col-sm-4">
+      <h2 class="text-center mb-4">Register</h2>
+      <form>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">Nama Pasien</label>
+            <input type="text" id="form2Example1" class="form-control" placeholder="Nama Pasien" />
+          </div>
         
-      <!-- Name input -->
-      <div class="form-outline mb-4 ">
-        <input type="text" id="registerName" placeholder="Email" class="form-control" />
-      </div>
-
-      <!-- Username input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerUsername" placeholder="Password" class="form-control" />
-      </div>
-    
-      <!-- Repeat Password input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerUsername" placeholder="Ulangi Password" class="form-control" />
-      </div>
-
- 
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">Tanggal Lahir Pasien</label>
+            <input type="date" id="form2Example1" class="form-control" />
+          </div>
+        
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">Alamat Pasien</label>
+            <input type="text" id="form2Example1" class="form-control" placeholder="Alamat Pasien" />
+          </div>
+        
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">No HP Pasien</label>
+            <input type="number" id="form2Example1" class="form-control" placeholder="No HP Pasien" />
+          </div>
+        
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">Email Address</label>
+            <input type="email" id="form2Example1" class="form-control" placeholder="Email Address" />
+        </div>
+      
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example2">Password</label>
+            <input type="password" id="form2Example2" class="form-control" placeholder="Password" />
+        </div>
+      
+        <!-- Submit button -->
+        <button type="button" class="btn btn-primary btn-block mb-4">Register</button>
+      
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>Sudah menjadi member? <a href="/login">Login</a></p>
+        </div>
+      </form>
+    </div>
 
    
-      <!-- Checkbox -->
-      <div class="form-check d-flex justify-content-center mb-4 row">
-        <div class="col">
-            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-              aria-describedby="registerCheckHelpText" />
-            <label class="form-check-label" for="registerCheck">
-              saya menyetujui syarat dan ketentuan yang berlaku
-            </label>
-
-        </div>
-        <div class="col"> 
-            <p>Sudah punya akun? <a href="/login">Login</a></p>
-        </div>
-      </div>
-
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-3">Daftar</button>
-    </form>
   </div>
 </div>
-<!-- Pills content -->
-        </div>
-        </div>
-    </div>
 @endsection
