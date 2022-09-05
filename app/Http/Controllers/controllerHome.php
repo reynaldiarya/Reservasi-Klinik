@@ -9,13 +9,7 @@ class controllerHome extends Controller
     public function home()
     {
         return view("home", [
-            "halaman" => "welcome"
-        ]);
-    }
-    public function reservasi()
-    {
-        return view('reservasi', [
-            "halaman" => "reservasi"
+            "halaman" => "dr Reynaldi - Masalah Cinta Kelar"
         ]);
     }
 
@@ -23,7 +17,7 @@ class controllerHome extends Controller
     public function login()
     {
         return view('login', [
-            "halaman" => "login"
+            "halaman" => "Login"
         ]);
     }
     public function register()

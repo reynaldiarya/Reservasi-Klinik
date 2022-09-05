@@ -19,7 +19,8 @@
           </li>
         
         </ul>
-          <button class="btn btn-outline-info bg-light" type="submit"><a class="nav-link" href="/login">Login</a> </button>
+          <button class="btn mx-1 btn-outline-info bg-light" type="submit"><a class="nav-link" href="/login">Login</a> </button>
+          <button class="btn mx-1 btn-outline-info bg-light" type="submit"><a class="nav-link" href="/register">Register</a> </button>
       </div>
     </div>
   </nav>
