@@ -7,22 +7,22 @@
       <form>
         <!-- Email input -->
         <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example1">Email Address</label>
-          <input type="email" id="formemail" class="form-control" placeholder="Email Address" />
+          <label class="form-label">Email</label>
+          <input type="email" id="formemail" class="form-control" placeholder="Email" />
         </div>
       
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example2">Password</label>
-          <input type="password" id="form2Example2" class="form-control" placeholder="Password" />
+          <label class="form-label">Password</label>
+          <input type="password" id="formpass" class="form-control" placeholder="Password" />
         </div>
       
         <!-- Submit button -->
-        <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+        <button type="button" class="btn btn-primary btn-block mb-4">Masuk</button>
       
         <!-- Register buttons -->
         <div class="text-center">
-          <p>Belum menjadi member? <a href="/register">Register</a></p>
+          <p>Belum menjadi member? <a href="/register">Daftar</a></p>
         </div>
       </form>
     </div>
