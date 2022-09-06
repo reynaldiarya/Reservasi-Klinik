@@ -1,53 +1,57 @@
 @extends('mainTemplate')
 @section('content')
-    <div class="container mt-auto">
-        <div class="row justify-content-lg-center">
-        <div class=" mt-5 col-sm-5">
-        <div class=" d-flex justify-content-center">
-
-            <img src="img/logo.png" class="mb-4 justify-content-sm-center" width="50">
-        </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="ms-5 col-sm-4">
+      <h2 class="text-center mb-4">Register</h2>
+      <form>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label">Nama Pasien</label>
+            <input type="text" id="formnama" class="form-control" placeholder="Nama Pasien" />
+          </div>
         
-      <!-- Name input -->
-      <div class="form-outline mb-4 ">
-        <input type="text" id="registerName" placeholder="Email" class="form-control" />
-      </div>
-
-      <!-- Username input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerUsername" placeholder="Password" class="form-control" />
-      </div>
-    
-      <!-- Repeat Password input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerUsername" placeholder="Ulangi Password" class="form-control" />
-      </div>
-
- 
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label">Tanggal Lahir Pasien</label>
+            <input type="date" id="formtgllahir" class="form-control" />
+          </div>
+        
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label">Alamat Pasien</label>
+            <input type="text" id="formalamat" class="form-control" placeholder="Alamat Pasien" />
+          </div>
+        
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label">No HP Pasien</label>
+            <input type="number" id="formnohp" class="form-control" placeholder="No HP Pasien" />
+          </div>
+        
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label">Email</label>
+            <input type="email" id="formemail" class="form-control" placeholder="Email" />
+        </div>
+      
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label class="form-label">Password</label>
+            <input type="password" id="formpass" class="form-control" placeholder="Password" />
+        </div>
+      
+        <!-- Submit button -->
+        <button type="button" class="btn btn-primary btn-block mb-4">Daftar</button>
+      
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>Sudah menjadi member? <a href="/login">Masuk</a></p>
+        </div>
+      </form>
+    </div>
 
    
-      <!-- Checkbox -->
-      <div class="form-check d-flex justify-content-center mb-4 row">
-        <div class="col">
-            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-              aria-describedby="registerCheckHelpText" />
-            <label class="form-check-label" for="registerCheck">
-              saya menyetujui syarat dan ketentuan yang berlaku
-            </label>
-
-        </div>
-        <div class="col"> 
-            <p>Sudah punya akun? <a href="/login">Login</a></p>
-        </div>
-      </div>
-
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-3">Daftar</button>
-    </form>
   </div>
 </div>
-<!-- Pills content -->
-        </div>
-        </div>
-    </div>
 @endsection
