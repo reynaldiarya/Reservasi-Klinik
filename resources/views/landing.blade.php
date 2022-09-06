@@ -16,7 +16,7 @@
 
   <div class="container d-flex justify-content-center my-5">
     <div class="row">
-    <h4 class="fontcusblue text-center" id="cekJadwal">Cek Jadwal</h4>
+    <h4 class="fontcusblue text-center" id="cekjadwal">Cek Jadwal</h4>
     
      <form class="row mt-lg-4" action="" method="post">
       <div class="form-group col-10  ">
@@ -33,7 +33,7 @@
     <div class="container mt-5">
 
       <div class="section-title">
-        <h2 id="aboutUS" class="text-center fontcusblue">About Us</h2>
+        <h2 id="aboutus" class="text-center fontcusblue">About Us</h2>
         <p class="text-black-50">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
       </div>
 

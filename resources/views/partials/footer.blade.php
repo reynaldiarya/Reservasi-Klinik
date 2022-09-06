@@ -4,7 +4,7 @@
     <section class="container d-flex justify-content-center justify-content-lg-between p-4 border-bottom px-4">
       <!-- Left -->
       <div class="me-5 d-none d-lg-block">
-        <span id="foott">Get connected with us on social networks:</span>
+        <span id="footer">Get connected with us on social networks:</span>
       </div>
       <!-- Left -->
   

@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
-        $user->last_name = $request->input('last_name');
+        // $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
 
         if (!is_null($request->input('current_password'))) {
