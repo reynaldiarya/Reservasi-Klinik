@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\controllerHome;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,26 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// /
-// /about
-// /reservasi
-// /contact-us
-// /login
-// /register
-// /dashboard
-// /dashboard-klink
-// /admin-dash
-// /dashboard/reservasi
-// /dashboard/edit-profile
-// /dashboard-klinik/jadwal
-// /dashboard-klinik/dokter
-// /dashboard-klinik/reservasi
 
-Route::get('/', [controllerHome::class, 'home']);
-Route::get('/about', [controllerHome::class, 'home']);
-Route::get('/reservasi', [controllerHome::class, 'reservasi']);
-Route::get('/login', [controllerHome::class, 'login']);
-Route::get('/register',  [controllerHome::class, 'register']);
-Route::get('/dashboard', [controllerHome::class, 'dashboard']);
-Route::get('/dashboard-klink', [controllerHome::class, 'dashboardKlink']);
-Route::get('/admin-dash',  [controllerHome::class, 'AdminDash']);
+Route::get('/', function () {
+    return view('landing');
+});
+
+Auth::routes();
+
+Route::get('/dashboard', 'HomeController@index')->name('home');
+
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::put('/profile', 'ProfileController@update')->name('profile.update');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
