@@ -18,11 +18,12 @@
     <div class="row">
     <h4 class="fontcusblue text-center" id="cekjadwal">Cek Jadwal</h4>
     
-     <form class="row mt-lg-4" action="" method="post">
-      <div class="form-group col-10  ">
-        <input required="" type="text" class="form-control" placeholder="Date" onfocus="(this.type='date')"/>
+     <form class="row mt-lg-4" action="/" method="post">
+      @csrf
+      <div class="form-group col-9 ">
+        <input required=""  name= "tgl" type="text" class="form-control" placeholder="Masukkan Tanggal" onclick="(this.type='date')" onmouseout="(this.type='text')"/>
       </div>
-      <div class="col ">
+      <div class="col">
         <button class="btn border-dark" type="submit" name="submit" > <i class="fa fa-search "></i></button>
       </div>
      </form>

@@ -11,4 +11,9 @@ class landing extends Controller
         # code...
         return view('landing');
     }
+    public function search()
+    {
+        
+        return view('landing');
+    }
 }
