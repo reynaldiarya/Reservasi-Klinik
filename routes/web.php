@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [landing::class, "index"]);
+Route::post('/', [landing::class, "catch"]);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

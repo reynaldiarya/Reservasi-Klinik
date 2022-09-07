@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jadwal;
 use Illuminate\Http\Request;
 
 class landing extends Controller
@@ -11,9 +12,12 @@ class landing extends Controller
         # code...
         return view('landing');
     }
-    public function search()
+    public function catch(Request $request)
     {
-        
-        return view('landing');
+        $isi = $request->tgl;
+        $jumlahjadwal = jadwal::where('tgl_jadwal', '=', $isi)->count();
+
+
+        return view('landing', ['jumlahjadwal' => $jumlahjadwal]);
     }
 }

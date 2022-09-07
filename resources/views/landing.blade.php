@@ -14,6 +14,7 @@
   </div>
 </div>    
 
+
   <div class="container d-flex justify-content-center my-5">
     <div class="row">
     <h4 class="fontcusblue text-center" id="cekjadwal">Cek Jadwal</h4>
@@ -21,12 +22,24 @@
      <form class="row mt-lg-4" action="/" method="post">
       @csrf
       <div class="form-group col-9 ">
-        <input required=""  name= "tgl" type="text" class="form-control" placeholder="Masukkan Tanggal" onclick="(this.type='date')" onmouseout="(this.type='text')"/>
+        <input required=""  name= "tgl" type="text" class="form-control" placeholder="Masukkan Tanggal" onclick="(this.type='date')" />
       </div>
       <div class="col">
         <button class="btn border-dark" type="submit" name="submit" > <i class="fa fa-search "></i></button>
       </div>
      </form>
+     @isset($jumlahjadwal)
+    @if ($jumlahjadwal > 0)
+    <div class="alert alert-success col-lg-9 mt-4 text-center" role="alert">
+     Jadwal ditemukan
+    </div>
+    @else
+    <div class="alert alert-danger ccol-lg-9 mt-4 text-center" role="alert">
+      jadwal tidak ditemukan
+    </div>
+    @endif
+ 
+@endisset
     </div>
   </div>
    
