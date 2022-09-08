@@ -18,8 +18,13 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group mb-4">
-            <label class="form-label">Nama Pasien</label>
-            <input type="text" class="form-control form-control-user" name="name" placeholder="{{ __('Nama Pasien') }}" value="{{ old('Nama Pasien') }}" required autofocus>
+            <label class="form-label">Nama Depan Pasien</label>
+            <input type="text" class="form-control form-control-user" name="name" placeholder="{{ __('Nama Depan Pasien') }}" value="{{ old('Nama Depan Pasien') }}" required autofocus>
+        </div>
+
+        <div class="form-group mb-4">
+            <label class="form-label">Nama Belakang Pasien</label>
+            <input type="text" class="form-control form-control-user" name="last_name" placeholder="{{ __('Nama Belakang Pasien') }}" value="{{ old('Nama Belakang Pasien') }}">
         </div>
 
         <div class="form-group mb-4">
@@ -34,7 +39,7 @@
 
         <div class="form-group mb-4">
             <label class="form-label">No Hp Pasien</label>
-            <input type="number" class="form-control form-control-user" name="telp" placeholder="{{ __('No Hp Pasien') }}" value="{{ old('No Hp Pasien') }}" required>
+            <input type="integer" class="form-control form-control-user" name="telp" placeholder="{{ __('No Hp Pasien') }}" value="{{ old('No Hp Pasien') }}" required>
         </div>
 
         <div class="form-group mb-4">

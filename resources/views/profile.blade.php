@@ -37,28 +37,7 @@
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <h5 class="font-weight-bold">{{  Auth::user()->fullName }}</h5>
-                                <p>Administrator</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">22</span>
-                                <span class="description">Friends</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">10</span>
-                                <span class="description">Photos</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">89</span>
-                                <span class="description">Comments</span>
+                                <p>Pasien</p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +67,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group focused">
-                                        <label class="form-control-label" for="name">Name<span class="small text-danger">*</span></label>
+                                        <label class="form-control-label" for="name">First name<span class="small text-danger">*</span></label>
                                         <input type="text" id="name" class="form-control" name="name" placeholder="Name" value="{{ old('name', Auth::user()->name) }}">
                                     </div>
                                 </div>
@@ -96,6 +75,33 @@
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="last_name">Last name</label>
                                         <input type="text" id="last_name" class="form-control" name="last_name" placeholder="Last name" value="{{ old('last_name', Auth::user()->last_name) }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="birthday">Birthday<span class="small text-danger">*</span></label>
+                                        <input type="date" id="birthday" class="form-control" name="birthday" placeholder="hh/bb/tttt" value="{{ old('birthday', Auth::user()->birthday) }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="address">Address<span class="small text-danger">*</span></label>
+                                        <input type="text" id="address" class="form-control" name="address" placeholder="Address" value="{{ old('address', Auth::user()->address) }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="telp">Phone number<span class="small text-danger">*</span></label>
+                                        <input type="integer" id="telp" class="form-control" name="telp" placeholder="08" value="{{ old('telp', Auth::user()->telp) }}">
                                     </div>
                                 </div>
                             </div>
