@@ -24,6 +24,9 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'nullable|string|max:255',
+            'birthday' => 'required|date',
+            'address' => 'required|string|max:255',
+            'telp' => 'required|string|max:15',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id,
             'current_password' => 'nullable|required_with:new_password',
             'new_password' => 'nullable|min:8|max:12|required_with:current_password',
@@ -33,7 +36,10 @@ class ProfileController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
-        // $user->last_name = $request->input('last_name');
+        $user->last_name = $request->input('last_name');
+        $user->birthday = $request->input('birthday');
+        $user->address = $request->input('address');
+        $user->telp = $request->input('telp');
         $user->email = $request->input('email');
 
         if (!is_null($request->input('current_password'))) {
