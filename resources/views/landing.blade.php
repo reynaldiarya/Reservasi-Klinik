@@ -32,7 +32,7 @@
      @isset($jumlahjadwal)
     @if ($jumlahjadwal > 0)
     <div class="alert alert-success mt-4 text-center" role="alert">
-     Jadwal ditemukan
+     Jadwal ditemukan. Ingin melakukan reservasi? <a href="/login">klik di sini</a>
     </div>
     @else
     <div class="alert alert-danger mt-4 text-center" role="alert">

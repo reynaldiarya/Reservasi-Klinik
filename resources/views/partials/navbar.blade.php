@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-transparent ">
+<nav class="navbar  navbar-expand-lg navbar-light bg-transparent ">
     <div class="container">
       <a class="navbar-brand" href="/">
         <img src="img/logo.png" alt="" width="50">
@@ -19,6 +19,7 @@
           </li>
         
         </ul>
+        
           <button class="btn mx-1 btn-outline-info bg-light" type="submit"><a class="nav-link" href="/login">Login</a> </button>
           <button class="btn mx-1 btn-outline-info bg-light" type="submit"><a class="nav-link" href="/register">Register</a> </button>
       </div>
