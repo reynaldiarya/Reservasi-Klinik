@@ -38,7 +38,6 @@
       jadwal tidak ditemukan
     </div>
     @endif
- 
 @endisset
     </div>
   </div>

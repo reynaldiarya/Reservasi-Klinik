@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use app\Models\rekam_medis;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+<<<<<<< Updated upstream
         'name', 'last_name', 'email', 'password',
+=======
+        'name', 'last_name', 'birthday', 'address', 'telp', 'email', 'password',
+>>>>>>> Stashed changes
     ];
 
     /**
@@ -61,5 +66,11 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function rekamMedis()
+    {
+        # code...
+        return $this->hasMany(rekam_medis::class);
     }
 }

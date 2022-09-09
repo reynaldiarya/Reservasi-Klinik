@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\landing;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [landing::class, "index"]);
 Route::post('/', [landing::class, "catch"]);
 Auth::routes();
+Route::get('/login', [LoginController::class, "index"]);
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
