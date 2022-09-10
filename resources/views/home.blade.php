@@ -19,7 +19,7 @@
             {{ session('status') }}
         </div>
     @endif
-
+{{-- 
     <div class="row">
 
         <!-- Earnings (Monthly) Card Example -->
@@ -216,5 +216,5 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 @endsection
