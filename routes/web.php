@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\landing;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +19,10 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [landing::class, "index"]);
 Route::post('/', [landing::class, "catch"]);
-Auth::routes();
 Route::get('/login', [LoginController::class, "index"]);
+Route::post('/login', [LoginController::class, "login"]);
+Route::post('/register', [RegisterController::class, "register"]);
+Route::get('/register', [RegisterController::class, "index"]);
 
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -18,11 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-<<<<<<< Updated upstream
-        'name', 'last_name', 'email', 'password',
-=======
         'name', 'last_name', 'birthday', 'address', 'telp', 'email', 'password',
->>>>>>> Stashed changes
     ];
 
     /**
@@ -63,10 +59,7 @@ class User extends Authenticatable
      * @param string $value
      * @return void
      */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+
 
     public function rekamMedis()
     {

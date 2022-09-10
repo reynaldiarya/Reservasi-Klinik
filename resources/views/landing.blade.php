@@ -31,11 +31,11 @@
      @isset($jumlahjadwal)
     @if ($jumlahjadwal > 0)
     <div class="alert alert-success col-lg-9 mt-4 text-center" role="alert">
-     Jadwal ditemukan
+     Jadwal {{ $tgl_jadwal }} ditemukan. ingin melakukan reservasi? <a href="/login">klik disini</a>
     </div>
     @else
     <div class="alert alert-danger ccol-lg-9 mt-4 text-center" role="alert">
-      jadwal tidak ditemukan
+      Jadwal {{ $tgl_jadwal }} tidak ditemukan
     </div>
     @endif
 @endisset
