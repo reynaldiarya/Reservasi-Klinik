@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class landing extends Controller
 {
+    const title = 'dr. Reynaldi - Specialist Penyakit Cinta';
     public function index()
     {
-        # code...
-        return view('landing');
+        return view('landing', [
+            'title' => self::title
+        ]);
     }
     public function catch(Request $request)
     {
@@ -20,7 +22,8 @@ class landing extends Controller
         $jumlahjadwal = jadwal::where('tgl_jadwal', '=', $isi)->where('jumlah_maxpasien', '>', 0)->count();
         return view('landing', [
             'tgl_jadwal' => $isi,
-            'jumlahjadwal' => $jumlahjadwal
+            'jumlahjadwal' => $jumlahjadwal,
+            'title' => self::title
         ]);
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>dr. Reynaldi - Specialist Penyakit Cinta</title>
+  <title>{{ $title }}</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,14 +15,24 @@
 
 <body>
   <header>
- @include('partials.navbar')
+    @if (!isset($pasien))
+    
+    @include('partials.navbar')
+        
+    @endif
+    
   </header>
   <main >
   @yield('content')
   </main>
   <footer>
     <!-- place footer here -->
-   @include('partials.footer')
+    @if (!isset($pasien))
+    
+    {{-- @include('layouts.dashboard-pasien') --}}
+    @include('partials.footer')
+        
+    @endif
 <!-- Footer -->
   </footer>
   <!-- Bootstrap JavaScript Libraries -->

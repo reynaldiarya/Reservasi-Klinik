@@ -29,7 +29,7 @@
 
         <div class="form-group mb-4">
             <label class="form-label">Tanggal Lahir Pasien</label>
-            <input type="text" class="form-control form-control-user @error('email') is-invalid @enderror" name="birthday" placeholder="{{ __('Tanggal Lahir Pasien') }}" value="{{ old('birthday') }}" onmouseover="(this.type='date')" >
+            <input type="text" class="form-control form-control-user @error('birthday') is-invalid @enderror" name="birthday" placeholder="{{ __('Tanggal Lahir Pasien') }}" value="{{ old('birthday') }}" onmouseover="(this.type='date')" >
             @error('birthday')
             <div class="invalid-feedback">
                 {{ $message }}
