@@ -29,10 +29,19 @@ class LoginController extends Controller
         $password = $data['password'];
 
         if (Auth::attempt(array('email' => $email, 'password' => $password))) {
-            // return Redirect::intended('dashboard');
-            return "Redirect::intended('dashboard')";
+            $req->session()->regenerate();
+            return redirect()->intended('/');
+        
         }
         
        return back()->with('salah','Silahkan cek kembali email atau password anda')->with('email',$email);
     }
+     public function logout(Request $req)
+     {
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect('/');
+        
+     }
 }
