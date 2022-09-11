@@ -1,4 +1,4 @@
-@extends('mainTemplate')
+@extends('maintemplate')
 @section('content')
 @include('partials.sidebar')
 
