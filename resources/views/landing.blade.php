@@ -50,7 +50,7 @@
         <h2 class="fontcusblue">Tentang Kami</h2>
       </div>
       <div class="row row-cols-1 row-cols-md-2">
-          <div class="col"><img class="rounded w-100" src="https://identsoft.ambitiousit.net/assets/images/ab2.jpg"></div>
+          <div class="col "><img class="rounded w-100 position-absolute top-50 start-50 translate-middle" src="https://identsoft.ambitiousit.net/assets/images/ab2.jpg"></div>
           <div class="col d-flex flex-column justify-content-center p-4">
               <div class="text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
                   <div>
@@ -66,7 +66,7 @@
                       <p>
                         <i class="fa-solid fa-check"></i> Pencarian hati yang cocok
                       </p>
-                      <p>Kami akan memberikan solusi mengenai permasalahan hati Anda, mulai dari ditinggal nikah, ditinggal kabur, punya pacar dua dan lain sebagainya. Bersama kami, hati Anda akan kami amankan dengan menyegel hati Anda agar tidak memikirkan mantan Anda.</p>
+                      <p>Kami akan memberikan solusi mengenai permasalahan hati Anda, mulai dari ditinggal nikah, ditinggal kabur, punya pacar dua, terjebak friendzone, doi tidak peka, gebetan sudah punya pacar dan lain sebagainya. Bersama kami, hati Anda akan kami amankan dengan menyegel hati Anda agar tidak memikirkan mantan Anda.</p>
                   </div>
               </div>
           </div>

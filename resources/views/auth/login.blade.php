@@ -59,7 +59,7 @@
 
         <div class="form-group mb-2">
             <button type="submit" class="btn btn-primary btn-user btn-block">
-                <i class="bi bi-box-arrow-right"></i>Login
+                <i class="bi bi-box-arrow-right"></i> Login
             </button>
         </div>
 
