@@ -1,4 +1,4 @@
-@extends('mainTemplate')
+@extends('maintemplate')
 @section('content')
 <body id="page-top">
 
