@@ -22,7 +22,7 @@
         @auth
             <ul class="navbar-nav ms-auto mb-1 mb-lg-0">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-fill"></i></a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-fill ms-1"> </i>{{ strtoupper(auth()->user()->name) }}</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                   <li><a class="dropdown-item" href="#">Setting</a></li>
