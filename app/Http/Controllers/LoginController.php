@@ -21,7 +21,7 @@ class LoginController extends Controller
     {
 
         $data = $req->validate([
-            'email' => 'email:dns|required',
+            'email' => 'email|required',
             'password' => 'required'
         ]);
 
@@ -31,17 +31,15 @@ class LoginController extends Controller
         if (Auth::attempt(array('email' => $email, 'password' => $password))) {
             $req->session()->regenerate();
             return redirect()->intended('/');
-        
         }
-        
-       return back()->with('salah','Silahkan cek kembali email atau password anda')->with('email',$email);
+
+        return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);
     }
-     public function logout(Request $req)
-     {
+    public function logout(Request $req)
+    {
         Auth::logout();
         $req->session()->invalidate();
         $req->session()->regenerateToken();
         return redirect('/');
-        
-     }
+    }
 }
