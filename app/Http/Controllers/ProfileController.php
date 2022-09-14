@@ -23,7 +23,6 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'last_name' => 'nullable|string|max:255',
             'birthday' => 'required|date',
             'address' => 'required|string|max:255',
             'telp' => 'required|string|max:15',
@@ -36,7 +35,6 @@ class ProfileController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
-        $user->last_name = $request->input('last_name');
         $user->birthday = $request->input('birthday');
         $user->address = $request->input('address');
         $user->telp = $request->input('telp');

@@ -17,11 +17,9 @@
 
 <body >
   <header>
-    @if (!isset($dashboard))
     
     @include('partials.navbar')
-        
-    @endif
+     
     
   </header>
   <main >
@@ -29,12 +27,10 @@
   </main>
   <footer>
     <!-- place footer here -->
-    @if (!isset($dashboard))
     
     {{-- @include('layouts.dashboard-pasien') --}}
     @include('partials.footer')
         
-    @endif
 <!-- Footer -->
   </footer>
   <!-- Bootstrap JavaScript Libraries -->

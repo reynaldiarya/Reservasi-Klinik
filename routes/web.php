@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +27,9 @@ Route::post('/logout', [LoginController::class, "logout"]);
 Route::post('/register', [RegisterController::class, "register"]);
 Route::get('/register', [RegisterController::class, "index"])->middleware('guest');
 Route::get('/dashboard', [dashboardController::class, "index"])->middleware('auth');
+Route::get('/reservasi', [dashboardController::class, "reservasi"])->middleware('auth');
+Route::get('/profile', [dashboardController::class, "profile"])->middleware('auth')->name('profile');
+Route::get('/rekam', [dashboardController::class, "rekammedis"])->middleware('auth');
+Route::post('/profile-update',[ProfileController::class,'update']);
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::put('/profile', 'ProfileController@update')->name('profile.update');

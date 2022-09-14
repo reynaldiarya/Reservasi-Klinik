@@ -25,7 +25,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-fill ms-1"> </i>{{ strtoupper(auth()->user()->name) }}</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-                  <li><a class="dropdown-item" href="#">Setting</a></li>
+                  {{-- <li><a class="dropdown-item" href="#">Setting</a></li> --}}
                   <form action="/logout" method="post">
                     @csrf
                     <button type="submit" class="dropdown-item">Logout</button>
