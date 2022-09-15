@@ -2,7 +2,7 @@
 @section('content')
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="ms-5 col-sm-4">
+    <div class="col-sm-6 col-lg-5 col-xl-4">
       <h2 class="text-center mb-4">Login</h2>
       @isset($registberhasil)
       <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,7 +16,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endif
-      
+
       {{-- @if ($errors->any())
       <div class="alert alert-danger border-left-danger" role="alert">
           <ul class="pl-4 my-2">
@@ -27,7 +27,7 @@
       </div>
       @endif --}}
       <form method="POST" action="/login" class="user">
-        @csrf 
+        @csrf
         <div class="form-group mb-4">
             <label class="form-label">Email</label>
             <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" placeholder="{{ __('Email') }}" value="
@@ -36,8 +36,8 @@
                 @endif
                 @if(session()->has('email'))
                 {{ session('email') }}
-                @else 
-        
+                @else
+
                 {{ old('email') }}
             @endif " autofocus>
             @error('email')

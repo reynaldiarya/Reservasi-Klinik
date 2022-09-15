@@ -30,7 +30,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(array('email' => $email, 'password' => $password))) {
             $req->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('dashboard');
         }
 
         return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);

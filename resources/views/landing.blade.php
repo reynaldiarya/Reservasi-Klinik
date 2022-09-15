@@ -12,13 +12,13 @@
       <img  class ="d-block rounded-circle" src="img/drRey.jpeg" width="300" alt="">
     </div>
   </div>
-</div>    
+</div>
 
 
   <div class="container d-flex justify-content-center align-items-center py-4 py-xl-5" id="cekjadwal" style="height: 300px">
     <div class="row d-flex justify-content-center">
     <h4 class="fontcusblue text-center my-3">Ingin Reservasi?</h4>
-    
+
      <form class="d-flex justify-content-center" style="width: 400px" action="/" method="post">
       @csrf
       <div class="form-group col-xl-12 col-8">
@@ -28,7 +28,7 @@
         <button class="btn border-dark" type="submit" name="submit" > <i class="fa fa-search "></i></button>
       </div>
      </form>
-    <div class="container col-9"> 
+    <div class="container col-9">
      @isset($jumlahjadwal)
     @if ($jumlahjadwal > 0)
     <div class="alert alert-success col-lg-9 mt-4 text-center" role="alert">
@@ -43,14 +43,14 @@
     </div>
     </div>
   </div>
-   
+
 
     <div class="container py-4 py-xl-5" id="aboutus">
       <div class="col-md-8 col-xl-6 text-center mx-auto my-4">
         <h2 class="fontcusblue">Tentang Kami</h2>
       </div>
       <div class="row row-cols-1 row-cols-md-2">
-          <div class="col "><img class="rounded" src="https://identsoft.ambitiousit.net/assets/images/ab2.jpg"></div>
+          <div class="col p-4"><img class="rounded img-fluid" src="https://identsoft.ambitiousit.net/assets/images/ab2.jpg"></div>
           <div class="col d-flex flex-column justify-content-center p-4">
               <div class="text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
                   <div>
@@ -82,7 +82,7 @@
               </div>
           </div>
           <div class="row d-flex justify-content-center">
-              <div class="col-md-6 col-lg-4 col-xl-4">
+              <div class="col-md-6 col-lg-6 col-xl-6">
                   <div class="d-flex flex-column justify-content-center align-items-start h-100">
                       <div class="d-flex align-items-center p-3">
                         <i class="fa-solid fa-phone"></i>
