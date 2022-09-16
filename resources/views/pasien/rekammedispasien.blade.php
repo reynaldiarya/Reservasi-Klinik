@@ -153,7 +153,7 @@
                                     <thead>
                                         <tr>
                                             <th>No Reservasi</th>
-                                            <th>Position</th>
+                                            <th>{{ $rekammedis->nama_penyakit }}</th>
                                             <th>Office</th>
                                             <th>Age</th>
                                             <th>Start date</th>

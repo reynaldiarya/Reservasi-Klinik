@@ -17,6 +17,7 @@ class RekamMedis extends Migration
             $table->id('id_rekam_medis');
             $table->foreignId('User_id');
             $table->string('nama_penyakit');
+            $table->string('nama_pasien');
             $table->date('tgl_periksa');
             $table->longText('keterangan');
             $table->timestamps();

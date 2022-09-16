@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\rekam_medis;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class dashboardController extends Controller
 {
@@ -27,6 +30,22 @@ class dashboardController extends Controller
     }
     public function rekammedis()
     {
-        return view('pasien.rekammedispasien');
+
+        $rekam = rekam_medis::where('user_id', Auth::user()->id)->get();
+        return view('layouts.rekam-medis', [
+            'title' => self::title . "Profile",
+            'rekam'  => $rekam
+
+        ]);
+    }
+    public function rekammedispost(Request $req)
+    {
+        $data = $req['id_rekam'];
+        $rekam = rekam_medis::where('id_rekam_medis', $data)->get();
+        return view('layouts.rekam-medis', [
+            'title' => self::title . "Profile",
+            'id_rekam'  => $rekam
+
+        ]);
     }
 }

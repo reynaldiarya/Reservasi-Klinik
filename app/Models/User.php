@@ -17,9 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'birthday', 'address', 'telp', 'email', 'password',
-    ];
+    protected $guard = 'id_rekam_medis';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -61,7 +59,7 @@ class User extends Authenticatable
      */
 
 
-    public function rekamMedis()
+    public function rekam_medis()
     {
         # code...
         return $this->hasMany(rekam_medis::class);

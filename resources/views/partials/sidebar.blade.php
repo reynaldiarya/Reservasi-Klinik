@@ -28,7 +28,7 @@
                     <span>Reservasi</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/rekam-medis">
                     <i class="bi bi-clipboard2-pulse text-white"></i>
                     <span>Rekam Medis</span></a>
             </li>
