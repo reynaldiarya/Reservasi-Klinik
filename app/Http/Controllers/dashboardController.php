@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\rekam_medis;
+use App\Models\reservasi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,13 @@ class dashboardController extends Controller
     }
     public function reservasi()
     {
-        return view();
+        $reservasi = reservasi::where('user_id', Auth::user()->id)->get();
+
+        
+        return view('layouts.reservasi',[
+            'title' => self::title.' Reservasi',
+            'reservasi' => $reservasi
+        ]);
     }
     public function profile()
     {
@@ -33,7 +40,7 @@ class dashboardController extends Controller
 
         $rekam = rekam_medis::where('user_id', Auth::user()->id)->get();
         return view('layouts.rekam-medis', [
-            'title' => self::title . "Profile",
+            'title' => self::title . " Rekam medis",
             'rekam'  => $rekam
 
         ]);

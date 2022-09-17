@@ -1,6 +1,6 @@
 @extends('maintemplatedashboard')
-@include('partials.sidebar')
 @section('content')
+@include('partials.sidebar')
 @isset($id_rekam)
 <div class="container-fluid">
     <div class="card">
@@ -23,9 +23,27 @@
         </div>
         <div class="row">
             <div class="col-sm-5"><strong>Tanggal Periksa</strong></div>
+            <div class="col-sm-5"><strong>Alergi Makanan</strong></div>
         </div>
         <div class="row">
             <p class="card-text col-sm-5">{{ date('d M Y', strtotime($item->tgl_periksa))}}</p>
+            <p class="card-text col-sm-5">{{ $item->alergi_makanan }}</p>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-5"><strong>Tekanan Darah</strong></div>
+            <div class="col-sm-5"><strong>Kadar Asam Urat</strong></div>
+        </div>
+        <div class="row">
+            <p class="card-text col-sm-5">{{ $item->tekanan_darah }}</p>
+            <p class="card-text col-sm-5">{{ $item->kadar_asam_urat }}</p>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-5"><strong>Kadar gula darah</strong></div>
+            <div class="col-sm-5"><strong>kadar kolesterol</strong></div>
+        </div>
+        <div class="row">
+            <p class="card-text col-sm-5">{{ $item->kadar_gula_darah }}</p>
+            <p class="card-text col-sm-5">{{ $item->kadar_kolesterol }}</p>
         </div>
         <div class="row mt-3">
             <div class="col-sm-5"><strong>Keterangan</strong></div>
@@ -40,10 +58,10 @@
 </div>
     @else
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Riwayat Reservasi</h3>
+    <h3 class="text-dark mb-4">Rekam Medis</h3>
     <div class="card shadow">
         <div class="card-header py-3">
-            <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
+            <p class="text-primary m-0 fw-bold">Daftar Rekam Medis</p>
         </div>
         <div class="card-body">
             <div class="row">
@@ -64,22 +82,22 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Penyakit</th>
                             <th>Nama Pasien</th>
-                            <th>tanggal periksa</th>
-                            <th>keterangan</th>
+                            <th>Nama Penyakit</th>
+                            <th>Tanggal Periksa</th>
+                            <th>Keterangan</th>
                            
                         </tr>@php $j = 0 @endphp
                         <tr>
                             @foreach ($rekam as $item)
                             @php $j++ @endphp
-                            <th>{{ $j }}</th>
-                            <th>{{ $item->nama_penyakit }}</th>
-                            <th>{{ $item->nama_pasien}}</th>
+                            <td>{{ $j }}</td>
+                            <td>{{ $item->nama_pasien}}</td>
+                            <td>{{ $item->nama_penyakit }}</td>
                             {{-- <th>{{ $item->tgl_periksa->format('d-m-Y') }}</th> --}}
-                            <th>{{ date('d M Y', strtotime($item->tgl_periksa))}}</th>
-                            <th><form action="" method="post">@csrf<button class="btn py-auto" type="submit"><i class="bi bi-eye-fill"></i></button>
-                            <input type="hidden" name="id_rekam" value="{{ $item->id_rekam_medis }}"></form></th>
+                            <td>{{ date('d M Y', strtotime($item->tgl_periksa))}}</td>
+                            <td><form action="" method="post">@csrf<button class="btn py-auto" type="submit"><i class="bi bi-eye-fill"></i></button>
+                            <input type="hidden" name="id_rekam" value="{{ $item->id_rekam_medis }}"></form></td>
                         </tr>
                             @endforeach  
                     </thead>

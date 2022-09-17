@@ -28,6 +28,7 @@ Route::post('/register', [RegisterController::class, "register"]);
 Route::get('/register', [RegisterController::class, "index"])->middleware('guest');
 Route::get('/dashboard', [dashboardController::class, "index"])->middleware('auth')->name('dashboard');
 Route::get('/reservasi', [dashboardController::class, "reservasi"])->middleware('auth');
+Route::post('/reservasi', [dashboardController::class, "reservasi"])->middleware('auth');
 Route::get('/profile', [dashboardController::class, "profile"])->middleware('auth')->name('profile');
 Route::get('/rekam-medis', [dashboardController::class, "rekammedis"])->middleware('auth');
 Route::post('/rekam-medis', [dashboardController::class, "rekammedispost"])->middleware('auth');

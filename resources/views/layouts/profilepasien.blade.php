@@ -1,5 +1,6 @@
 @extends('maintemplatedashboard')
 @section('content')
+@include('partials.sidebar')
 
 <body id="page-top">
     <div class="row">
@@ -130,5 +131,3 @@
     </div>
 
     @endsection
-
-    @include('partials.sidebar')

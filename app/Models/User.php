@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\reservasi;
 use app\Models\rekam_medis;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -63,5 +64,9 @@ class User extends Authenticatable
     {
         # code...
         return $this->hasMany(rekam_medis::class);
+    }
+    public function reservasi()
+    {
+        return $this->hasMany(reservasi::class);
     }
 }

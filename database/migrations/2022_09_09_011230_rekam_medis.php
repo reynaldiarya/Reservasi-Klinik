@@ -18,6 +18,11 @@ class RekamMedis extends Migration
             $table->foreignId('User_id');
             $table->string('nama_penyakit');
             $table->string('nama_pasien');
+            $table->string('kadar_gula_darah')->default('-');
+            $table->string('kadar_kolesterol')->default('-');
+            $table->string('kadar_asam_urat')->default('-');
+            $table->string('tekanan_darah')->default('-');
+            $table->string('alergi_makanan')->default('-');
             $table->date('tgl_periksa');
             $table->longText('keterangan');
             $table->timestamps();

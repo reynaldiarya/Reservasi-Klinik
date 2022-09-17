@@ -20,6 +20,7 @@ class CreateJadwalsTable extends Migration
             $table->time("jam_pulang");
             $table->boolean('status_masuk');
             $table->integer('jumlah_maxpasien');
+            $table->integer('jumlah_pasien_hari_ini');
             $table->timestamps();
         });
     }
