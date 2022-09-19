@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rekam_medis;
-use App\Models\reservasi;
 use App\Models\User;
+use App\Models\jadwal;
+use App\Models\reservasi;
+use App\Models\rekam_medis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,9 +24,9 @@ class dashboardController extends Controller
     {
         $reservasi = reservasi::where('user_id', Auth::user()->id)->get();
 
-        
-        return view('layouts.reservasi',[
-            'title' => self::title.' Reservasi',
+
+        return view('layouts.reservasi', [
+            'title' => self::title . ' Reservasi',
             'reservasi' => $reservasi
         ]);
     }
@@ -53,6 +54,30 @@ class dashboardController extends Controller
             'title' => self::title . "Profile",
             'id_rekam'  => $rekam
 
+        ]);
+    }
+    public function createreservasi()
+    {
+
+        return view('layouts.reservasi', [
+            'title' => self::title . ' Create Reservasi',
+            'create' => true
+        ]);
+    }
+    public function createreservasipost(Request $req)
+    {
+        $data = [
+            "namapasien" => $req['namaPasien'],
+            "tglReservasi" => $req['tglReservasi'],
+            "keluhan" => $req['keluhan']
+        ];
+        $valid = jadwal::where('tgl_jadwal',$data['tglReservasi'])->where('jumlah_maxpasien','>',0)->get();
+        if($valid->count()<1){
+            return back()->with('salah', 'Maaf Jadwal Tidak Tersedia')->with('namaPasien',$data['namapasien'])->with('keluhan', $data['keluhan']);
+        }
+        return view('layouts.reservasi', [
+            'title' => self::title . ' Create Reservasi',
+            
         ]);
     }
 }
