@@ -66,18 +66,25 @@ class dashboardController extends Controller
     }
     public function createreservasipost(Request $req)
     {
-        $data = [
-            "namapasien" => $req['namaPasien'],
-            "tglReservasi" => $req['tglReservasi'],
-            "keluhan" => $req['keluhan']
-        ];
-        $valid = jadwal::where('tgl_jadwal',$data['tglReservasi'])->where('jumlah_maxpasien','>',0)->get();
-        if($valid->count()<1){
-            return back()->with('salah', 'Maaf Jadwal Tidak Tersedia')->with('namaPasien',$data['namapasien'])->with('keluhan', $data['keluhan']);
+        $iduser =  Auth::user()->id;
+        $valid = jadwal::where('tgl_jadwal', $req['tglReservasi'])->where('jumlah_maxpasien', '>', 0)->get();
+        
+        if ($valid->count() < 1) {
+            return back()->with('salah', 'Maaf Jadwal Tidak Tersedia silahkan pilih jadwal lain')->with('namaPasien', $req['nama_pasien'])->with('keluhan', $req['keluhan']);
         }
-        return view('layouts.reservasi', [
-            'title' => self::title . ' Create Reservasi',
-            
-        ]);
+        $jumlah = $valid[0]['jumlah_maxpasien'] - 1;
+        $jumlah2 = $valid[0]['jumlah_pasien_hari_ini'] + 1;
+        jadwal::where('id_jadwal', $valid[0]['id_jadwal'])->update(['jumlah_maxpasien' => $jumlah]);
+        jadwal::where('id_jadwal', $valid[0]['id_jadwal'])->update(['jumlah_pasien_hari_ini' => $jumlah2]);
+        $data = [
+            "nama_pasien" => $req['namaPasien'],
+            'user_id' => $iduser,
+            "tgl_reservasi" => $req['tglReservasi'],
+            "keluhan" => $req['keluhan'],
+            "no_antrian" => $jumlah2,
+            "status_hadir" => 0
+        ];
+        reservasi::create($data);
+        return redirect()->intended('reservasi')->with('reservasiBerhasil','selamat reservasi anda berhasil');
     }
 }

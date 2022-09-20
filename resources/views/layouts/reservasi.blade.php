@@ -27,10 +27,9 @@
         </div>
         <div class="row mt-3">
             <div class="col-sm-3" > <label for="nama">Keluhan</label></div>
-        <div class="col-lg-5"><div class="form-floating">
-            <textarea required name="keluhan" class="form-control" placeholder="Masukan keluhan and" id="floatingTextarea2"  style="height: 100px"></textarea>
-            <label value = "tes" for="floatingTextarea2">Masukan keluhan anda</label>
-          </div></div>
+        <div class="col-lg-5">
+            <input required name="keluhan" class="form-control form-control-sm" type ="text" placeholder="Masukan keluhan anda"  @if (session()->has('keluhan') )value= "{{ session('keluhan') }}" @endif  >
+      </div>
     </div>
     </div>
     <div class="row">
@@ -46,6 +45,11 @@
 
 </div>
     @else
+    @if(session()->has('reservasiBerhasil'))
+    <div class="alert alert-success col-sm-4" role="alert">
+      {{ session('reservasiBerhasil')}}
+    </div>
+    @endif
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-5">
@@ -96,8 +100,16 @@
                             <td>{{ $item->nama_pasien }}</td>
                             <td>{{  date('d M Y', strtotime($item->tgl_reservasi)) }}</td>
                             <td>{{ $item->keluhan }}</td>
-                            <td>No Antrian</td>
-                            <td>Status Hadir</td>
+                            <td>{{ $item->no_antrian }}</td>
+                            @if ($item->status_hadir ==0 )
+                            <td>Belum Hadir</td>
+                            @endif
+                            @if ($item->status_hadir ==1)
+                            <td>Hadir</td>
+                            @endif
+                            @if ($item->status_hadir ==2)
+                            <td>Tidak Hadir</td>
+                            @endif
                             
                         </tr>
                         @endforeach
