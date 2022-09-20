@@ -22,7 +22,7 @@ class dashboardController extends Controller
     }
     public function reservasi()
     {
-        $reservasi = reservasi::where('user_id', Auth::user()->id)->get();
+        $reservasi = reservasi::where('user_id', Auth::user()->id)->paginate(5);
 
 
         return view('layouts.reservasi', [
@@ -39,7 +39,7 @@ class dashboardController extends Controller
     public function rekammedis()
     {
 
-        $rekam = rekam_medis::where('user_id', Auth::user()->id)->get();
+        $rekam = rekam_medis::where('user_id', Auth::user()->id)->paginate(5);
         return view('layouts.rekam-medis', [
             'title' => self::title . " Rekam medis",
             'rekam'  => $rekam
@@ -49,7 +49,7 @@ class dashboardController extends Controller
     public function rekammedispost(Request $req)
     {
         $data = $req['id_rekam'];
-        $rekam = rekam_medis::where('id_rekam_medis', $data)->get();
+        $rekam = rekam_medis::where('id_rekam_medis', $data)->paginate(5);
         return view('layouts.rekam-medis', [
             'title' => self::title . "Profile",
             'id_rekam'  => $rekam
@@ -68,7 +68,7 @@ class dashboardController extends Controller
     {
         $iduser =  Auth::user()->id;
         $valid = jadwal::where('tgl_jadwal', $req['tglReservasi'])->where('jumlah_maxpasien', '>', 0)->get();
-        
+
         if ($valid->count() < 1) {
             return back()->with('salah', 'Maaf Jadwal Tidak Tersedia silahkan pilih jadwal lain')->with('namaPasien', $req['nama_pasien'])->with('keluhan', $req['keluhan']);
         }
@@ -85,6 +85,6 @@ class dashboardController extends Controller
             "status_hadir" => 0
         ];
         reservasi::create($data);
-        return redirect()->intended('reservasi')->with('reservasiBerhasil','selamat reservasi anda berhasil');
+        return redirect()->intended('reservasi')->with('reservasiBerhasil', 'selamat reservasi anda berhasil');
     }
 }
