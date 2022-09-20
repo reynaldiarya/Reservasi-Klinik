@@ -8,21 +8,23 @@
       {{ session('salah')}}
     </div>
     @endif
-<div class="card">
-    <div class="card-header">
-   <h1>Form Reservasi</h1>
+<h3 class="text-dark mb-4">Form Reservasi</h3>
+<div class="card pb-4">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 fw-bold">Form Reservasi</p>
     </div>
     <div class="card-body">
         <form action="/create-reservasi" method="POST">
             @csrf
             <div class="row">
                 <div class="col-sm-3" ><label for="nama">Nama Pasien</label></div>
-            <div class="col-lg-5"><input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="nama pasien"></div>
+            <div class="col-lg-5">
+                <input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="Nama Pasien"></div>
         </div>
         <div class="row mt-3">
             <div class="col-sm-3">Tanggal Reservasi</div>
-            <div class="col-sm-5">
-                <input type="text" name="tglReservasi" class="form-control form-control-user"  placeholder="{{ __('Tanggal Lahir Pasien') }}" onmouseover="(this.type='date')" >
+            <div class="col-lg-5">
+                <input required class="form-control form-control-sm" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Lahir Pasien') }}" onmouseover="(this.type='date')" >
             </div>
         </div>
         <div class="row mt-3">
@@ -32,10 +34,10 @@
       </div>
     </div>
     </div>
-    <div class="row">
-        
-        <div class="col">
-            <button type="submit" class="btn bg-primary text-white col-sm-2">Submit</button>
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-7 col-md-5 col-xl-3">
+            <button type="submit" class="btn bg-primary text-white col">Submit</button>
         </form>
         </div>
     </div>
@@ -51,15 +53,14 @@
     </div>
     @endif
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-5">
-            <h3 class="text-dark mb-4">Reservasi 
+    <div class="row d-flex justify-content-between">
+        <div class="col-sm-5 col-lg-5">
+            <h3 class="text-dark mb-4">Reservasi
             </div>
-            <div class="col-lg-5">
-                
-        <a href="/create-reservasi" class="btn "><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
+        <div class="col-sm-5 col-lg-5 d-flex justify-content-end">
+            <a href="/create-reservasi" class="btn"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
+        </div>
     </div>
-</div>
 
     <div class="card shadow">
         <div class="card-header py-3">
@@ -74,7 +75,7 @@
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>&nbsp;</label></div>
-                </div> 
+                </div>
                 <div class="col-md-6">
                     <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
                 </div>
@@ -89,11 +90,11 @@
                             <th>Keluhan</th>
                             <th>No Antrian</th>
                             <th>Status Hadir</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody> @php $no = 0; @endphp
-                        @foreach ($reservasi as $item) 
+                        @foreach ($reservasi as $item)
                         <tr>
                             @php $no++ @endphp
                             <td>{{ $no }}</td>
@@ -110,11 +111,11 @@
                             @if ($item->status_hadir ==2)
                             <td>Tidak Hadir</td>
                             @endif
-                            
+
                         </tr>
                         @endforeach
                     </tbody>
-                    
+
                 </table>
             </div>
             <div class="row">

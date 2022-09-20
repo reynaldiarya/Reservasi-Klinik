@@ -23,13 +23,23 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/pasien">
+                    <i class="fa-solid fa-user-injured text-white"></i>
+                    <span>Pasien</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/jadwal">
+                    <i class="fa-solid fa-calendar-days text-white"></i>
+                    <span>Jadwal</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/reservasi">
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="bi bi-pencil-square text-white"></i>
                     <span>Reservasi</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/rekam-medis">
-                    <i class="bi bi-clipboard2-pulse"></i>
+                    <i class="bi bi-clipboard2-pulse text-white"></i>
                     <span>Rekam Medis</span></a>
             </li>
 
@@ -50,7 +60,7 @@
             </li> --}}
 
             <li class="nav-item">
-              <a href="/" class="nav-link"><i class="bi bi-arrow-left-circle"></i> Halaman awal</a>
+              <a href="/" class="nav-link text-white"><i class="bi bi-arrow-left-circle text-white"></i> Halaman awal</a>
             </li>
 
 

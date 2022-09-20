@@ -37,3 +37,9 @@ Route::post('/rekam-medis', [dashboardController::class, "rekammedispost"])->mid
 Route::post('/profile-update', [ProfileController::class, 'update']);
 Route::get('/profile-update', [ProfileController::class, 'update']);
 Route::get('/logout', [LoginController::class, "logout"]);
+
+
+// Route::get('/login-staff', [LoginController::class, "index"])->middleware('guest');
+// Route::post('/login-staff', [LoginController::class, "login"])->name('login');
+// Route::post('/logout', [LoginController::class, "logout"]);
+// Route::get('/dashboard-staff', [dashboardController::class, "index"])->middleware('auth')->name('dashboard-staff');
