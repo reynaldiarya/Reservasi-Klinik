@@ -59,9 +59,7 @@
                 </a>
             </li> --}}
 
-            <li class="nav-item">
-              <a href="/" class="nav-link text-white"><i class="bi bi-arrow-left-circle text-white"></i> Halaman awal</a>
-            </li>
+         
 
 
 
@@ -133,7 +131,7 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/profile">
+                                <a class="dropdown-item" href="/profile-staff">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

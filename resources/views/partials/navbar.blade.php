@@ -19,7 +19,7 @@
           </li>
         
         </ul>
-        @auth
+        @if ( @Auth()->user()->level == 0)
             <ul class="navbar-nav ms-auto mb-1 mb-lg-0">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-fill ms-1"> </i>{{ strtoupper(auth()->user()->name) }}</a>
@@ -38,7 +38,7 @@
         <button class="btn mx-1 btn-outline-info bg-light" type="submit"><a class="nav-link" href="/login">Login</a> </button>
         <button class="btn mx-1 btn-outline-info bg-light" type="submit"><a class="nav-link" href="/register">Register</a> </button>
 
-        @endauth
+        @endif
       </div>
     </div>
   </nav>

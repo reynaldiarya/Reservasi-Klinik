@@ -57,8 +57,8 @@
         <div class="col-sm-5 col-lg-5">
             <h3 class="text-dark mb-4">Reservasi
             </div>
-        <div class="col-sm-5 col-lg-5 d-flex justify-content-end">
-            <a href="/create-reservasi" class="btn"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
+        <div class="col-sm-5 d-flex justify-content-end">
+            <a href="/create-reservasi" class="nav-link"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
         </div>
     </div>
 
@@ -66,7 +66,6 @@
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
         </div>
-        <div class="card-body">
             {{-- <div class="row">
                 <div class="col-md-6 text-nowrap">
                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
@@ -122,14 +121,13 @@
                 <div class="col-md-6 align-self-center">
                 </div>
                 <div class="col-md-6">
-                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                    <nav class="d-lg-flex justify-content-lg-end me-5 dataTables_paginate paging_simple_numbers">
                         <ul class="pagination">
                             {{ $reservasi->links() }}
                         </ul>
                     </nav>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 @endisset

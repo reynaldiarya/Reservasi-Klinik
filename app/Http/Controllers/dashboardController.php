@@ -20,6 +20,12 @@ class dashboardController extends Controller
             'title' => self::title . ' Dashboard',
         ]);
     }
+    public function indexstaff()
+    {
+        return view('layouts.dashboardstaff', [
+            'title' => self::title . ' Dashboard',
+        ]);
+    }
     public function reservasi()
     {
         $reservasi = reservasi::where('user_id', Auth::user()->id)->paginate(5);
@@ -33,6 +39,12 @@ class dashboardController extends Controller
     public function profile()
     {
         return view('layouts.profilepasien', [
+            'title' => self::title . "Profile"
+        ]);
+    }
+    public function profilestaff()
+    {
+        return view('layouts.profilestaff', [
             'title' => self::title . "Profile"
         ]);
     }

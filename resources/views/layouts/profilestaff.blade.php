@@ -17,7 +17,7 @@
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <h5 class="font-weight-bold">{{  Auth::user()->fullName }}</h5>
-                                <p>Pasien</p>
+                                <p>Staff</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                 @endif
                 <div class="card-body">
 
-                    <form method="POST" action="/profile-update" autocomplete="off">
+                    <form method="POST" action="/profile-update-staff" autocomplete="off">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 
