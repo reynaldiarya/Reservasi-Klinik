@@ -9,7 +9,7 @@ class rekam_medis extends Model
 {
     use HasFactory;
 
-    protected $guard = ['id_rekam_medis'];
+    protected $guarded = ['id_rekam_medis'];
     public function user()
     {
         return $this->belongsTo(User::class);

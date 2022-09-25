@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h3><strong>
+            <h3><a class="nav-item" href="/rekam-medis"><i class="bi bi-arrow-left-short"></i></a><strong>
                 Keterangan
             </strong>
                 </h3>
@@ -52,7 +52,6 @@
             <p class="card-text col-sm-5">{{ $item->keterangan }}</p>
         </div>
         @endforeach
-        <a href="/rekam-medis" class="btn btn-primary mt-3">kembali</a>
     </div>
     </div>
 </div>

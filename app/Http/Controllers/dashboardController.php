@@ -99,4 +99,21 @@ class dashboardController extends Controller
         reservasi::create($data);
         return redirect()->intended('reservasi')->with('reservasiBerhasil', 'selamat reservasi anda berhasil');
     }
+    public function kelolapasien()
+    {
+        $all = User::where('level','0')->paginate(5);
+        return view('layouts.kelolapasien',[
+            'title' => self::title . ' Kelola Pasien',
+            'user'=>$all
+        ]);
+    }
+    public function kelolapasien2(Request $req)
+    {
+
+        $all = User::where('id',$req['id'])->get();
+        return view('layouts.kelolapasien',[
+            'title' => self::title . ' Kelola Pasien',
+            'editpasien'=>$all
+        ]);
+    }
 }

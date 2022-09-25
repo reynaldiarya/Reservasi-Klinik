@@ -36,7 +36,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(array('email' => $email, 'password' => $password, 'level'=>1))) {
             $req->session()->regenerate();
-            return redirect()->intended('dashboardstaff');
+            return redirect('/dashboard-staff');
         }
         return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);
     }
@@ -64,5 +64,12 @@ class LoginController extends Controller
         $req->session()->invalidate();
         $req->session()->regenerateToken();
         return redirect('/');
+    }
+    public function logoutstaff(Request $req)
+    {
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect()->intended('login-staff');
     }
 }

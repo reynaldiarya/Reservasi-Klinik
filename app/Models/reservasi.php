@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class reservasi extends Model
 {
     use HasFactory;
-    protected $guard = ['id_reservasi'];
-    protected $fillable = ['nama_pasien', 'user_id', 'tgl_reservasi', 'keluhan', 'no_antrian', "status_hadir"];
+    protected $guarded = ['id_reservasi'];
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -11,7 +11,19 @@ class ProfileController extends Controller
 {
   
 
-    
+    public function updatepasien(Request $request)
+    {
+        $user = User::where('id',$request['id'])->first();
+        $user->name = $request['name'];
+        $user->birthday = $request['birthday'];
+        $user->address = $request['address'];
+        $user->telp = $request['telp'];
+        
+
+        $user->save();
+
+        return redirect()->back()->withSuccess('Profile updated successfully.');
+    }
 
     public function update(Request $request)
     {
