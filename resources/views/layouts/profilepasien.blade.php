@@ -3,6 +3,8 @@
 @include('partials.sidebar')
 
 <body id="page-top">
+<div class="container-fluid">
+    <h3 class="text-dark mb-4">Profile</h3>
     <div class="row">
 
         <div class="col-lg-4 order-lg-2">
@@ -129,5 +131,6 @@
         </div>
 
     </div>
+</div>
 
-    @endsection
+@endsection

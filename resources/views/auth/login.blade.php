@@ -2,7 +2,7 @@
 @section('content')
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-sm-6 col-lg-5 col-xl-4">
+    <div class="col-12 col-md-8 col-xl-4">
       <h2 class="text-center mb-4">Login</h2>
       @isset($registberhasil)
       <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -2,7 +2,7 @@
 @section('content')
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="ms-5 col-sm-4">
+    <div class="col-12 col-md-8 col-xl-4">
       <h2 class="text-center mb-4">Register</h2>
       {{-- @if ($errors->any())
       <div class="alert alert-danger border-left-danger" role="alert">

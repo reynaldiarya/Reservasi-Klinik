@@ -24,22 +24,22 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/pasien">
-                    <i class="fa-solid fa-user-injured text-white"></i>
+                    <i class="fa-solid fa-user-injured"></i>
                     <span>Pasien</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/jadwal">
-                    <i class="fa-solid fa-calendar-days text-white"></i>
+                    <i class="fa-solid fa-calendar-days"></i>
                     <span>Jadwal</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/reservasi">
-                    <i class="bi bi-pencil-square text-white"></i>
+                    <i class="bi bi-pencil-square"></i>
                     <span>Reservasi</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/rekam-medis">
-                    <i class="bi bi-clipboard2-pulse text-white"></i>
+                    <i class="bi bi-clipboard2-pulse"></i>
                     <span>Rekam Medis</span></a>
             </li>
 
@@ -59,7 +59,7 @@
                 </a>
             </li> --}}
 
-         
+
 
 
 
@@ -102,7 +102,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                   
+
 
 
                         <!-- Nav Item - User Information -->

@@ -1,7 +1,7 @@
 <nav class="navbar  navbar-expand-lg navbar-light bg-transparent ">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <img src="img/logo.png" alt="" width="50">
+        <img async src="img/logo.png" alt="" width="50">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,12 +12,12 @@
             <a class="nav-link" href="/#cekjadwal">Reservasi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link "  href="/#aboutus">About Us</a>
+            <a class="nav-link"  href="/#aboutus">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link "  href="/#contactus">Contact Us</a>
+            <a class="nav-link"  href="/#contactus">Contact Us</a>
           </li>
-        
+
         </ul>
         @auth
         @if (Auth()->user()->level == 0)
@@ -31,7 +31,7 @@
                     @csrf
                     <button type="submit" class="dropdown-item">Logout</button>
                   </form>
-                
+
                 </ul>
               </li>
             </ul>
