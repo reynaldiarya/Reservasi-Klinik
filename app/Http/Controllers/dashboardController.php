@@ -72,7 +72,7 @@ class dashboardController extends Controller
     {
 
         return view('layouts.reservasi', [
-            'title' => self::title . ' Create Reservasi',
+            'title' => self::title . ' Buat Reservasi',
             'create' => true
         ]);
     }

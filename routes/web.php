@@ -35,8 +35,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/reservasi', [dashboardController::class, "reservasi"])->name('reservasi');
     Route::post('/reservasi', [dashboardController::class, "reservasi"]);
     Route::get('/profile', [dashboardController::class, "profile"])->name('profile');
-    Route::get('/create-reservasi', [dashboardController::class, "createreservasi"]);
-    Route::post('/create-reservasi', [dashboardController::class, "createreservasipost"]);
+    Route::get('/buat-reservasi', [dashboardController::class, "createreservasi"]);
+    Route::post('/buat-reservasi', [dashboardController::class, "createreservasipost"]);
     Route::post('/rekam-medis', [dashboardController::class, "rekammedispost"]);
     Route::get('/profile-update', [ProfileController::class, 'update']);
     Route::get('/rekam-medis', [dashboardController::class, "rekammedis"]);
@@ -45,15 +45,15 @@ Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('
 Route::post('/login-staff', [LoginController::class, "indexstafflogin"])->middleware('guest');
 
 Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
-    
+
     Route::get('/dashboard-staff', [dashboardController::class, "indexstaff"])->name('dashboard-staff');
     Route::get('/profile-staff', [dashboardController::class, "profilestaff"])->name('profile-staff');
     Route::get('/pasien', [dashboardController::class, "kelolapasien"]);
     Route::post('/pasien', [dashboardController::class, "kelolapasien2"]);
     Route::post('/profile-update-staff', [ProfileController::class, 'updatestaff']);
     Route::post('/profile-update-pasien', [ProfileController::class, 'updatepasien']);
-    
-    
+
+
 });
 // Route::post('/login-staff', [LoginController::class, "login"])->name('login');
 // Route::post('/logout', [LoginController::class, "logout"]);

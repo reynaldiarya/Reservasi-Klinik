@@ -9,15 +9,15 @@
     </div>
     @endif
 <h3 class="text-dark mb-4">Form Reservasi</h3>
-<div class="card pb-4">
+<div class="card shadow pb-4">
     <div class="card-header py-3">
         <p class="text-primary m-0 fw-bold">Form Reservasi</p>
     </div>
     <div class="card-body">
-        <form action="/create-reservasi" method="POST">
+        <form action="/buat-reservasi" method="POST">
             @csrf
             <div class="row">
-                <div class="col-sm-3" ><label for="nama">Nama Pasien</label></div>
+            <div class="col-sm-3"><label for="nama">Nama Pasien</label></div>
             <div class="col-lg-5">
                 <input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="Nama Pasien"></div>
         </div>
@@ -28,11 +28,11 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-sm-3" > <label for="nama">Keluhan</label></div>
-        <div class="col-lg-5">
-            <input required name="keluhan" class="form-control form-control-sm" type ="text" placeholder="Masukan keluhan anda"  @if (session()->has('keluhan') )value= "{{ session('keluhan') }}" @endif  >
-      </div>
-    </div>
+            <div class="col-sm-3" ><label for="nama">Keluhan</label></div>
+            <div class="col-lg-5">
+                <input required class="form-control form-control-sm" type ="text" name="keluhan" placeholder="Masukan keluhan anda"  @if (session()->has('keluhan') )value= "{{ session('keluhan') }}" @endif  >
+            </div>
+        </div>
     </div>
     <div class="row d-flex justify-content-center">
 
@@ -58,11 +58,11 @@
             <h3 class="text-dark mb-4">Reservasi
             </div>
         <div class="col-sm-5 d-flex justify-content-end">
-            <a href="/create-reservasi" class="nav-link"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
+            <a href="/buat-reservasi" class="nav-link"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
         </div>
     </div>
 
-    <div class="card shadow">
+    <div class="card shadow pb-4">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
         </div>
@@ -79,7 +79,8 @@
                     <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
                 </div>
             </div> --}}
-            <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <div class="card-body">
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <table class="table " id="dataTable">
                     <thead>
                         <tr>
@@ -117,6 +118,7 @@
 
                 </table>
             </div>
+            <div>
             <div class="row">
                 <div class="col-md-6 align-self-center">
                 </div>
