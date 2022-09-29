@@ -28,7 +28,7 @@
                     <span>Pasien</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jadwal">
+                <a class="nav-link" href="/makejadwal">
                     <i class="fa-solid fa-calendar-days"></i>
                     <span>Jadwal</span></a>
             </li>

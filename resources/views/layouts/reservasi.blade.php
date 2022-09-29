@@ -1,72 +1,78 @@
 @extends('maintemplatedashboard')
 @section('content')
 @include('partials.sidebar')
-@isset($create)
 <div class="container-fluid">
+    
     @if(session()->has('salah'))
     <div class="alert alert-danger col-sm-4" role="alert">
       {{ session('salah')}}
     </div>
     @endif
-<h3 class="text-dark mb-4">Form Reservasi</h3>
-<div class="card shadow pb-4">
-    <div class="card-header py-3">
-        <p class="text-primary m-0 fw-bold">Form Reservasi</p>
-    </div>
-    <div class="card-body">
-        <form action="/buat-reservasi" method="POST">
-            @csrf
-            <div class="row">
-            <div class="col-sm-3"><label for="nama">Nama Pasien</label></div>
-            <div class="col-lg-5">
-                <input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="Nama Pasien"></div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-3">Tanggal Reservasi</div>
-            <div class="col-lg-5">
-                <input required class="form-control form-control-sm" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Lahir Pasien') }}" onmouseover="(this.type='date')" >
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-3" ><label for="nama">Keluhan</label></div>
-            <div class="col-lg-5">
-                <input required class="form-control form-control-sm" type ="text" name="keluhan" placeholder="Masukan keluhan anda"  @if (session()->has('keluhan') )value= "{{ session('keluhan') }}" @endif  >
-            </div>
-        </div>
-    </div>
-    <div class="row d-flex justify-content-center">
-
-        <div class="col-7 col-md-5 col-xl-3">
-            <button type="submit" class="btn bg-primary text-white col">Submit</button>
-        </form>
-        </div>
-    </div>
-</div>
-<a href="/reservasi"  class="btn bg-primary text-white mt-4">Kembali</a>
-
-
-</div>
-    @else
     @if(session()->has('reservasiBerhasil'))
-    <div class="alert alert-success col-sm-4" role="alert">
+    <div class="alert alert-success col-sm-4  alert-dismissible fade show" role="alert">
       {{ session('reservasiBerhasil')}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-<div class="container-fluid">
-    <div class="row d-flex justify-content-between">
-        <div class="col-sm-5 col-lg-5">
-            <h3 class="text-dark mb-4">Reservasi
-            </div>
-        <div class="col-sm-5 d-flex justify-content-end">
-            <a href="/buat-reservasi" class="nav-link"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
+    @if(session()->has('hapus'))
+    <div class="alert alert-success col-sm-4  alert-dismissible fade show" role="alert">
+      {{ session('hapus')}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    <div class="row ">
+       
+        <div class="col-sm-5 ">
+            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
         </div>
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Buat Reservasi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/reservasi" method="POST">
+                @csrf
+                <div class="row">
+                <div class="col-5"><label for="nama">Nama Pasien</label></div>
+                <div class="col-lg-5">
+                    <input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="Nama Pasien"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-5">Tanggal Reservasi</div>
+                <div class="col-lg-5">
+                    <input required class="form-control form-control-sm" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Lahir Pasien') }}" onmouseover="(this.type='date')" >
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-5" ><label for="nama">Keluhan</label></div>
+                <div class="col-lg-5v">
+                    <input required class="form-control form-control-sm" type ="text" name="keluhan" placeholder="Masukan keluhan anda"  @if (session()->has('keluhan') )value= "{{ session('keluhan') }}" @endif  >
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-7 col-md-5 col-xl-3 mt-3">
+                    <button type="submit" class="btn bg-primary text-white col">Submit</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>
     <div class="card shadow pb-4">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
         </div>
-            {{-- <div class="row">
+        {{-- <div class="row">
                 <div class="col-md-6 text-nowrap">
                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
                         <option value="10" selected="">10</option>
@@ -80,17 +86,18 @@
                 </div>
             </div> --}}
             <div class="card-body">
-            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table class="table " id="dataTable">
-                    <thead>
-                        <tr>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table " id="dataTable">
+                        <thead>
+                            <tr>
                             <th>No</th>
                             <th>Nama Pasien</th>
                             <th>Tanggal Reservasi</th>
                             <th>Keluhan</th>
                             <th>No Antrian</th>
                             <th>Status Hadir</th>
-
+                            <th>Aksi</th>
+                            
                         </tr>
                     </thead>
                     <tbody> @php $no = 0; @endphp
@@ -111,11 +118,40 @@
                             @if ($item->status_hadir ==2)
                             <td>Tidak Hadir</td>
                             @endif
-
+                            <td><i  data-bs-toggle="modal" data-bs-target="#hapusReservasi" class="bi bi-trash-fill"></i>
+                                
+                                <div class="modal fade" id="hapusReservasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog ">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Reservasi</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/hapusreservasi" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item->id_reservasi }}">
+                                            <input type="hidden" name="tgl" value="{{ $item->tgl_reservasi }}">
+                                            <strong>Apakah anda yakin untuk menghapus?</strong>
+                                           <div class="modal-footer">
+                                               <div class="col-3 ">
+                                                   <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
+                                                </div>
+                                                <div class="col-4">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </div>
+                    </div>
                         </tr>
                         @endforeach
                     </tbody>
-
+                    
                 </table>
             </div>
             <div>
@@ -132,5 +168,5 @@
             </div>
     </div>
 </div>
-@endisset
+</div>
 @endsection

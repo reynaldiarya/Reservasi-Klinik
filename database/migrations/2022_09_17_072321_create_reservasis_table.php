@@ -19,7 +19,7 @@ class CreateReservasisTable extends Migration
             $table->date('tgl_reservasi');
             $table->string('nama_pasien');
             $table->string('keluhan');
-            $table->integer('no antrian');
+            $table->integer('no_antrian');
             $table->boolean('status_hadir');
             $table->timestamps();
         });

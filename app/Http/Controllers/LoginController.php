@@ -53,7 +53,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(array('email' => $email, 'password' => $password, 'level'=>0))) {
             $req->session()->regenerate();
-            return redirect()->intended('dashboard');
+            return redirect('/dashboard');
         }
 
         return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);

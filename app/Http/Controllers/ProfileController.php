@@ -9,7 +9,20 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-  
+    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || ';
+
+    public function profile()
+    {
+        return view('layouts.profilepasien', [
+            'title' => self::title . "Profile"
+        ]);
+    }
+    public function profilestaff()
+    {
+        return view('layouts.profilestaff', [
+            'title' => self::title . "Profile"
+        ]);
+    }
 
     public function updatepasien(Request $request)
     {

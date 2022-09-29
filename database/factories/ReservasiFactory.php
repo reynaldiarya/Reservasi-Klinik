@@ -15,6 +15,9 @@ class ReservasiFactory extends Factory
     {
         return [
             //
+            'nama_pasien' =>$this->faker->name(),
+            'user_id' => $this->faker->numberBetween(12, 22),
+            
         ];
     }
 }

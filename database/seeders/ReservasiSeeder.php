@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\reservasi;
 use Illuminate\Database\Seeder;
 
 class ReservasiSeeder extends Seeder
@@ -14,5 +15,7 @@ class ReservasiSeeder extends Seeder
     public function run()
     {
         //
+        reservasi::factory(10)->create();
+
     }
 }

@@ -18,8 +18,8 @@ class CreateJadwalsTable extends Migration
             $table->date('tgl_jadwal');
             $table->time('jam_masuk');
             $table->time("jam_pulang");
-            $table->boolean('status_masuk');
-            $table->integer('jumlah_maxpasien');
+            $table->boolean('status_masuk')->default('0');
+            $table->integer('jumlah_maxpasien')->default('30');
             $table->integer('jumlah_pasien_hari_ini');
             $table->timestamps();
         });
