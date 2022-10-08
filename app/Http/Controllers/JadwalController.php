@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\jadwal;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StorejadwalRequest;
 use App\Http\Requests\UpdatejadwalRequest;
 
@@ -16,16 +17,17 @@ class JadwalController extends Controller
         $jadwal = jadwal::orderby('tgl_jadwal','desc')->paginate(5);
         return view('layouts.kelolajadwal',[
            'title' => self::title . ' Kelola Jadwal',
-        'jadwal' => $jadwal
+            'jadwal' => $jadwal
        ]);
     }
-    public function kelolajadwal2(Request $req)
+    public function tambahjadwal(Request $req)
     {
+        $req->validate(['tgl_jadwal'=>'unique:jadwals']);
         $jadwal = [
-            'tgl_jadwal' => $req['tglReservasi'],
-            'jam_masuk' => $req['jamMasuk'],
-            'jam_pulang' => $req['jamKeluar'],
-            'jumlah_maxpasien' => $req['maxPasien']
+            'tgl_jadwal' => $req['tgl_jadwal'],
+            'jam_masuk' => $req['jam_masuk'],
+            'jam_pulang' => $req['jam_pulang'],
+            'jumlah_maxpasien' => $req['max_pasien']
         ];
         jadwal::create($jadwal);
         return back()->with('success', 'Jadwal Berhasil Terbuat');
@@ -40,7 +42,26 @@ class JadwalController extends Controller
     {
         //
     }
+    public function hapusjadwal(Request $req)
+    { 
+        jadwal::where('id_jadwal',$req['id'])->delete();
+        return back()->withSuccess('Jadwal berhasil di hapus ');
 
+    }
+    public function editjadwal(Request $Req)
+    {
+     
+        jadwal::where('id_jadwal',$Req['id'])->
+        update([
+        'tgl_jadwal' => $Req['tgl_jadwal'],
+        'jam_masuk' => $Req['jam_masuk'],
+        'jam_pulang' => $Req['jam_pulang'],
+        'status_masuk' => $Req['status'],
+        'jumlah_maxpasien' => $Req['jumlah_maxpasien']
+     ]);
+
+        return back()->withSuccess('Jadwal berhasil di perbarui');
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -96,7 +96,6 @@
                             <th>Keluhan</th>
                             <th>No Antrian</th>
                             <th>Status Hadir</th>
-                            <th>Aksi</th>
                             
                         </tr>
                     </thead>
@@ -118,34 +117,9 @@
                             @if ($item->status_hadir ==2)
                             <td>Tidak Hadir</td>
                             @endif
-                            <td><i  data-bs-toggle="modal" data-bs-target="#hapusReservasi" class="bi bi-trash-fill"></i>
                                 
-                                <div class="modal fade" id="hapusReservasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog ">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Reservasi</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="/hapusreservasi" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $item->id_reservasi }}">
-                                            <input type="hidden" name="tgl" value="{{ $item->tgl_reservasi }}">
-                                            <strong>Apakah anda yakin untuk menghapus?</strong>
-                                           <div class="modal-footer">
-                                               <div class="col-3 ">
-                                                   <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
-                                                </div>
-                                                <div class="col-4">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+                                
+                                    
                         </div>
                     </div>
                         </tr>

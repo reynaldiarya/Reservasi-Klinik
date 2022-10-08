@@ -1,3 +1,5 @@
+<link href="img/logo.png" rel="icon" type="image/png">
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -28,17 +30,17 @@
                     <span>Pasien</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/makejadwal">
+                <a class="nav-link" href="/kelola-jadwal">
                     <i class="fa-solid fa-calendar-days"></i>
                     <span>Jadwal</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reservasi">
+                <a class="nav-link" href="/kelola-reservasi">
                     <i class="bi bi-pencil-square"></i>
                     <span>Reservasi</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/rekam-medis">
+                <a class="nav-link" href="/kelola-rekam-medis">
                     <i class="bi bi-clipboard2-pulse"></i>
                     <span>Rekam Medis</span></a>
             </li>
@@ -88,17 +90,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
+                    @yield('search')
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 

@@ -26,8 +26,8 @@
                             <td>{{ $item->nama_penyakit }}</td>
                             {{-- <th>{{ $item->tgl_periksa->format('d-m-Y') }}</th> --}}
                             <td>{{ date('d M Y', strtotime($item->tgl_periksa))}}</td>
-                            <td style="padding-left: 32px"><button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill"></i></button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <td style="padding-left: 32px"><button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id_rekam_medis }}"><i class="bi bi-eye-fill"></i></button>
+                                <div class="modal fade" id="exampleModal{{ $item->id_rekam_medis }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog  modal-dialog-scrollable">
                                         <div class="modal-content">
                                     <div class="modal-header">

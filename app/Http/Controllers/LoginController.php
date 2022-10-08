@@ -34,7 +34,7 @@ class LoginController extends Controller
         $email = $data['email'];
         $password = $data['password'];
 
-        if (Auth::attempt(array('email' => $email, 'password' => $password, 'level'=>1))) {
+        if (Auth::attempt(array('email' => $email, 'password' => $password, 'level' => 1))) {
             $req->session()->regenerate();
             return redirect('/dashboard-staff');
         }
@@ -51,7 +51,7 @@ class LoginController extends Controller
         $email = $data['email'];
         $password = $data['password'];
 
-        if (Auth::attempt(array('email' => $email, 'password' => $password, 'level'=>0))) {
+        if (Auth::attempt(array('email' => $email, 'password' => $password, 'level' => 0))) {
             $req->session()->regenerate();
             return redirect('/dashboard');
         }

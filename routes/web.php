@@ -9,6 +9,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\ReservasiController;
 
 /*
@@ -40,7 +41,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::post('/hapusreservasi', [ReservasiController::class, "hapusreservasi"]);
     Route::get('/profile', [ProfileController::class, "profile"])->name('profile');
     Route::get('/profile-update', [ProfileController::class, 'update']);
-    Route::get('/rekam-medis', [dashboardController::class, "rekammedis"]);
+    Route::get('/rekam-medis', [RekamMedisController::class, "rekammedis"]);
 });
 Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('guest')->name('login-staff');
 Route::post('/login-staff', [LoginController::class, "indexstafflogin"])->middleware('guest');
@@ -50,11 +51,18 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     Route::get('/dashboard-staff', [dashboardController::class, "indexstaff"])->name('dashboard-staff');
     Route::get('/profile-staff', [ProfileController::class, "profilestaff"])->name('profile-staff');
     Route::get('/pasien', [dashboardController::class, "kelolapasien"]);
-    Route::get('/makejadwal', [JadwalController::class, "kelolajadwal"]);
-    Route::post('/makejadwal', [JadwalController::class, "kelolajadwal2"]);
+    Route::get('/kelola-jadwal', [JadwalController::class, "kelolajadwal"]);
+    Route::post('/tambah-jadwal', [JadwalController::class, "tambahjadwal"]);
     Route::post('/profile-update-staff', [ProfileController::class, 'updatestaff']);
     Route::post('/profile-update-pasien', [ProfileController::class, 'updatepasien']);
-
+    Route::post('/edit-jadwal',[JadwalController::class,'editjadwal']); 
+    Route::post('/hapus-jadwal',[JadwalController::class,'hapusjadwal']); 
+    Route::get('/kelola-reservasi',[ReservasiController::class,'kelolareservasi']);
+    Route::post('/edit-reservasi',[ReservasiController::class,'editreservasi']);
+    Route::post('/hapus-reservasi',[ReservasiController::class,'hapusreservasi']);
+    Route::get('/kelola-rekam-medis',[RekamMedisController::class,'kelolarekammedis']);
+    Route::post('/edit-rekam-medis',[RekamMedisController::class,'editrekammedis']);
+    Route::post('/hapus-rekam-medis',[RekamMedisController::class,'hapusrekammedis']);
 });
 // Route::post('/login-staff', [LoginController::class, "login"])->name('login');
 // Route::post('/logout', [LoginController::class, "logout"]);
