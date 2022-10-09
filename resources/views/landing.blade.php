@@ -9,7 +9,7 @@
         <h5 class="fontcusgrey">dr Reynaldi adalah seorang dokter tampan dan suka membantu masalah percintaan anda</h5>
     </div>
     <div class="col-12 col-md-8 col-xl-6 mx-auto my-4 d-flex justify-content-center">
-      <img  class ="d-block rounded-circle" src="img/drRey.jpeg" width="300" alt="">
+      <img  class ="d-block img-fluid" src="img/landingimage.png" width="500" alt="">
     </div>
   </div>
 </div>
@@ -31,11 +31,11 @@
     <div class="container col-9">
      @isset($jumlahjadwal)
     @if ($jumlahjadwal > 0)
-    <div class="alert alert-success col-xl-9 mt-4 text-center" role="alert">
+    <div class="alert alert-success col-lg-12 mt-4 text-center" role="alert">
      Jadwal {{ $tgl_jadwal }} ditemukan. ingin melakukan reservasi? <a href="/reservasi">klik disini</a>
     </div>
     @else
-    <div class="alert alert-danger col-xl-9 mt-4 text-center" role="alert">
+    <div class="alert alert-danger col-lg-12 mt-4 text-center" role="alert">
       Jadwal {{ $tgl_jadwal }} tidak ditemukan
     </div>
     @endif
@@ -50,7 +50,7 @@
         <h2 class="fontcusblue">Tentang Kami</h2>
       </div>
       <div class="row row-cols-1 row-cols-md-2 d-flex align-items-center">
-          <div class="col p-4"><img async class="rounded img-fluid" src="https://identsoft.ambitiousit.net/assets/images/ab2.jpg"></div>
+          <div class="col p-4"><img async class="rounded img-fluid" src="/img/ab2.jpg"></div>
           <div class="col d-flex flex-column justify-content-center p-4">
               <div class="text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
                   <div>
