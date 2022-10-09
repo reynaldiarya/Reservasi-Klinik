@@ -1,5 +1,3 @@
-<link href="img/logo.png" rel="icon" type="image/png">
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -21,7 +19,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard-staff">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa-solid fa-gauge"></i>
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
@@ -36,12 +34,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/kelola-reservasi">
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="fa-solid fa-calendar"></i>
                     <span>Reservasi</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/kelola-rekam-medis">
-                    <i class="bi bi-clipboard2-pulse"></i>
+                    <i class="fa-solid fa-notes-medical"></i>
                     <span>Rekam Medis</span></a>
             </li>
 

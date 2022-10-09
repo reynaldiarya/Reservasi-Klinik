@@ -12,10 +12,10 @@
             <a class="nav-link" href="/#cekjadwal">Reservasi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  href="/#aboutus">About Us</a>
+            <a class="nav-link"  href="/#tentangkami">Tentang Kami</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  href="/#contactus">Contact Us</a>
+            <a class="nav-link"  href="/#hubungikami">Hubungi Kami</a>
           </li>
 
         </ul>

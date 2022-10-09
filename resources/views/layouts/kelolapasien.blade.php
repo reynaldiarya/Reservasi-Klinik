@@ -11,11 +11,11 @@
     </div>
 
     @endif
-    <div class="card shadow">
+    <div class="card shadow pb-4">
         <div class="card-header py-3">
-            <p class="text-primary h4 m-0 fw-bold">Daftar Pasien</p>
+            <p class="text-primary m-0 fw-bold">Daftar Rekam Medis</p>
         </div>
-       
+        <div class="card-body">
             <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <table class="table " id="dataTable">
                     <thead>
@@ -27,7 +27,7 @@
                             <th>Email</th>
                             <th>No Telp</th>
                             <th>Aksi</th>
-                            
+
                         </thead>
                         <tbody>
                     @php $j = 0 @endphp
@@ -51,7 +51,7 @@
                                     <div class="modal-body">
                                         <form action="/profile-update-pasien" method="POST">
                                             @csrf
-                                         
+
                                             <input type="hidden" name="id" value="{{ $item->id }}">
                                             <div class="row">
                                                 <div class="col-lg-5">
@@ -66,9 +66,9 @@
                                                         <input type="date" id="birthday" required class="form-control" name="birthday" placeholder="hh/bb/tttt" value="{{ $item->birthday }}">
                                                     </div>
                                                 </div>
-                                                
-                                                
-                                                
+
+
+
                                                 <div class="row">
                                                     <div class="col-lg-11">
                                                         <div class="form-group">
@@ -77,7 +77,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="row">
                                                     <div class="col-lg-11">
                                                         <div class="form-group">
@@ -91,16 +91,16 @@
                                             </div>
                                         </form>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </td>
                     </tr>
-                    @endforeach  
-                        
+                    @endforeach
+
                     </tbody>
-                    
+
                 </table>
             </div>
             <div class="row">
@@ -110,7 +110,7 @@
                     {{ $user->links() }}
                 </div>
             </div>
-        
+        </div>
     </div>
 </div>
 @endsection

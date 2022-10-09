@@ -28,8 +28,14 @@ class dashboardController extends Controller
 
     public function indexstaff()
     {
+        $countallrekammedis = rekam_medis::count();
+        $countallreservasi = reservasi::count();
+        $countallpasien = User::where('level','0')->count();
         return view('layouts.dashboardstaff', [
             'title' => self::title . ' Dashboard',
+            'countallrekammedis' => $countallrekammedis,
+            'countallreservasi' => $countallreservasi,
+            'countallpasien' => $countallpasien
         ]);
     }
 

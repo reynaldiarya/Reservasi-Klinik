@@ -36,7 +36,7 @@
         </div>
     </div>
 <!-- Button trigger modal -->
-  
+
   <!-- Modal -->
   <div class="modal fade" id="buatjadwal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -74,24 +74,25 @@
                     <input required class="form-control form-control-sm" type="number" min="0" name="max_pasien" value="{{ old('max_pasien') }}" placeholder="{{ __('Jumlah Maximal Pasien') }}"  >
                 </div>
             </div>
-        
+
         </div>
         <div class="row d-flex justify-content-center">
-    
+
             <div class="col-7 col-md-5 col-xl-3 mb-3">
                 <button type="submit" class="btn bg-primary text-white col">Submit</button>
             </form>
             </div>
         </div>
-        
+
       </div>
     </div>
   </div>
-    <div class="card shadow">
+    <div class="card shadow pb-4">
         <div class="card-header py-3">
-            <p class="text-primary m-0  h4 fw-bold">Daftar Jadwal</p>
+            <p class="text-primary m-0 fw-bold">Daftar Jadwal</p>
         </div>
- 
+        <div class="card-body">
+
             <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <table class="table " id="dataTable">
                     <thead>
@@ -124,7 +125,7 @@
                             <td>
                                 <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#editjadwal{{ $item->id_jadwal }}" ><i class="bi bi-pencil-square"></i></a>
                                 <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_jadwal }}" ><i class="bi bi-trash-fill"></i></a>
-         
+
                         </td>
                     <div>
                         <div class="modal fade" id="hapusjadwal{{ $item->id_jadwal }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -178,7 +179,7 @@
                                                 <select  name ="status" class="form-select" aria-label="Default select example">
                                                     <option value="{{ $item->status_masuk }}" selected>@if ($item->status_masuk == 0 )
                                                         Hadir
-                                                        @else 
+                                                        @else
                                                         Tidak Hadir
                                                         @endif</option>
                                                     <option value="0">Hadir</option>
@@ -186,8 +187,8 @@
                                                   </select>
                                                 </div>
                                         </div>
-                                       
-                                        
+
+
                                         <div class="row">
                                             <div class="col-lg-5">
                                                 <div class="form-group">
@@ -201,8 +202,8 @@
                                                     <input type="time" id="jam_pulang" required class="form-control" name="jam_pulang"  value="{{ $item->jam_pulang }}">
                                                 </div>
                                             </div>
-                                            
-                                            
+
+
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5">
@@ -212,18 +213,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                         <div class="col-7 col-md-5 mt-3">
                                         <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
                                     </div>
-                                    
+
                                 </form>
-                                
+
                             </div>
-                            
+
                                 </div>
-                               
+
                               </div>
                             </div>
                           </div>

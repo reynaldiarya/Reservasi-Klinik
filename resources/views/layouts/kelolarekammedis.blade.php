@@ -17,8 +17,8 @@
 @endsection
 <div class="container-fluid">
     <div class="row d-flex justify-content-between">
-        <div class="col-sm-5 d-flex justify-content-start">
-        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#buatrekammedis"><i class="bi bi-calendar-plus"></i> Buat Rekam Medis</a></h3>
+        <div class="col-sm-12 d-flex justify-content-end">
+        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#buatrekammedis"><i class="fa-solid fa-notes-medical"></i> Buat Rekam Medis</a></h3>
     </div>
 </div>
 <!-- Button trigger modal -->
@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-sm-5">Nama User</div>
             <div class="col-lg-6">
-   
+
 
                 {{-- <input required class="form-control form-control-sm" type="text" name="nama_user" value="{{ old('nama_user') }}"  placeholder="{{ __('Nama Akun') }}" > --}}
             </div>
@@ -106,7 +106,7 @@
         </form>
         </div>
     </div>
-    
+
   </div>
 </div>
 </div>
@@ -153,7 +153,7 @@
                                                 <p class="card-text col-sm-5">{{ $item->nama_pasien }}</p>
                                             </div>
                                         </div>
-                                
+
                                         <div class="col-12 col-lg-6">
                                             <div class="row">
                                                 <div class="col-sm-5"><strong>Tekanan Darah</strong></div>
@@ -163,7 +163,7 @@
                                             </div>
                                         </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
@@ -173,7 +173,7 @@
                                                 <p class="card-text col-sm-5">{{ $item->nama_penyakit }}</p>
                                             </div>
                                         </div>
-                                
+
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
                                                 <div class="col-sm-5"><strong>Kadar Asam Urat</strong></div>
@@ -183,7 +183,7 @@
                                             </div>
                                         </div>
                                         </div>
-                                
+
                                         <div class="row">
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
@@ -193,7 +193,7 @@
                                                 <p class="card-text col-sm-5">{{ date('d M Y', strtotime($item->tgl_periksa))}}</p>
                                             </div>
                                         </div>
-                                
+
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
                                                 <div class="col-sm-5"><strong>Kadar gula darah</strong></div>
@@ -202,9 +202,9 @@
                                                 <p class="card-text col-sm-5">{{ $item->kadar_gula_darah }}</p>
                                             </div>
                                         </div>
-                                
+
                                         </div>
-                                
+
                                         <div class="row">
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
@@ -214,7 +214,7 @@
                                                 <p class="card-text col-sm-5">{{ $item->alergi_makanan }}</p>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
                                                 <div class="col-sm-5"><strong>kadar kolesterol</strong></div>
@@ -224,7 +224,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                
+
                                         <div class="row">
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">

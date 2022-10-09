@@ -22,30 +22,22 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
-    <div class="card shadow">
-        <div class="card-header">
-           <div class="h4 text-primary font-weight-bold">Daftar Reservasi</div>
+    <div class="card shadow pb-4">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
         </div>
-       
+        <div class="card-body">
         <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
             <table class="table " id="dataTable">
                 <thead>
                     <tr>
-                        <td>
-                            No
-                        </td>
-                        <td>
-                            Nama Pasien
-                        </td>
-                        <td>
-                            Tanggal Reservasi
-                        </td>
-                        <td>
-                            Keluhan
-                        </td>
-                        <td>No Antrian</td>
-                        <td >Status Hadir</td>
-                        <td>Aksi</td>
+                        <th>No</th>
+                        <th>Nama Pasien</th>
+                        <th>Tanggal Reservasi</th>
+                        <th>Keluhan</th>
+                        <th>No Antrian</th>
+                        <th >Status Hadir</th>
+                        <th>Aksi</th>
                     </tr>
                     @php
                         $i=1;
@@ -71,7 +63,7 @@
                                 <input type="hidden" name="id" value="{{ $item->id_reservasi }}">
                                 <input type="hidden" name="tgl" value="{{ $item->tgl_reservasi }}">
                                 <select name="status" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected value="{{ $item->status_hadir }}">   
+                                    <option selected value="{{ $item->status_hadir }}">
                                         @if( $item->status_hadir ==0)
                                         Belum Hadir
                                         @endif
@@ -85,9 +77,9 @@
                                     <option value="2">Tidak Hadir</option>
                                 </select>
                                 <button title="Simpan" type="submit" class="btn btn-primary"><i class="bi bi-save2"></i></button>
-                                
+
                             </form>
-                            
+
                         </td>
                 <td>
                     <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_reservasi }}" ><i class="bi bi-trash-fill"></i></a>
@@ -124,9 +116,9 @@
                 </tr>
                 @endforeach
             </thead>
-            
+
         </table>
-        
+
     </div>
     <div class="row">
         <div class="col-md-6 align-self-center">
@@ -135,6 +127,7 @@
             {{ $reservasi->links() }}
         </div>
     </div>
+    <div>
 </div>
 </div>
 

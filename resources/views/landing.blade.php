@@ -1,6 +1,6 @@
 @extends('maintemplate')
 @section('content')
-<div class="container d-flex align-items-center" style="height: 570px">
+<div class="container mt-4" style="height: 570px">
   <div class="row row-cols-1 row-cols-md-2 d-flex align-items-center">
     <div class="col-12 col-md-8 col-xl-6 mx-auto my-4">
       <h1 class="fontcusblue">
@@ -9,13 +9,13 @@
         <h5 class="fontcusgrey">dr Reynaldi adalah seorang dokter tampan dan suka membantu masalah percintaan anda</h5>
     </div>
     <div class="col-12 col-md-8 col-xl-6 mx-auto my-4 d-flex justify-content-center">
-      <img  class ="d-block img-fluid" src="img/landingimage.png" width="500" alt="">
+      <img  class ="d-block img-fluid" src="img/landingimage.png" width="400" alt="">
     </div>
   </div>
 </div>
 
 
-<div class="container d-flex justify-content-center align-items-center py-4 py-xl-5" id="cekjadwal" style="height: 300px">
+<div class="container d-flex justify-content-center align-items-center" id="cekjadwal" style="height: 300px">
   <div class="row d-flex justify-content-center">
     <h4 class="fontcusblue text-center my-3">Ingin Reservasi?</h4>
 
@@ -45,7 +45,7 @@
   </div>
 
 
-    <div class="container py-4 py-xl-5" id="aboutus" style="height:100%">
+    <div class="container py-4 py-xl-5" id="tentangkami" style="height:100%">
       <div class="col-12 col-md-8 col-xl-6 text-center mx-auto my-4">
         <h2 class="fontcusblue">Tentang Kami</h2>
       </div>
@@ -73,11 +73,11 @@
       </div>
   </div>
 
-    <div class="position-relative py-4 py-xl-5" id="contactus">
+    <div class="position-relative py-4 py-xl-5" id="hubungikami">
       <div class="container position-relative">
           <div class="row mb-5">
               <div class="col-12 col-md-8 col-xl-6 text-center mx-auto">
-                  <h2 class="fontcusblue">Contact us</h2>
+                  <h2 class="fontcusblue">Hubungi Kami</h2>
                   <p class="w-lg-50">Jangan ragu untuk menghubungi kami. Kami akan membalas Anda dengan sangat responsive.</p>
               </div>
           </div>
