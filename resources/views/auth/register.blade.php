@@ -78,8 +78,8 @@
         </div>
 
         <div class="form-group mb-4">
-            <label class="form-label">Password Confirmation</label>
-            <input type="password" class="form-control form-control-user @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" >
+            <label class="form-label">Konfirmasi Password</label>
+            <input type="password" class="form-control form-control-user @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="{{ __('Konfirmasi Password') }}" >
             @error('password_confirmation')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -96,7 +96,7 @@
 
     <div class="text-center">
             <a class="small" href="/login">
-                Already have an account? Login!
+                Sudah memiliki akun? Login!
             </a>
         </div>
     </div>

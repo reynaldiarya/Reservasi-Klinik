@@ -65,7 +65,7 @@
 
     </form>
         <div class="text-center">
-            <a class="small" href="/register">Create an Account!</a>
+            <a class="small" href="/register">Buat sebuah akun!</a>
         </div>
     </div>
   </div>

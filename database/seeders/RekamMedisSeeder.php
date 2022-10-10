@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\rekam_medis;
 use Illuminate\Database\Seeder;
 
 class RekamMedisSeeder extends Seeder
@@ -13,6 +14,6 @@ class RekamMedisSeeder extends Seeder
      */
     public function run()
     {
-        //
+        rekam_medis::factory(10)->create();
     }
 }

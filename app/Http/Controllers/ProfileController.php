@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || ';
+    const title = 'Profil - dr. Reynaldi';
 
     public function profile()
     {
@@ -31,7 +31,7 @@ class ProfileController extends Controller
         $user->birthday = $request['birthday'];
         $user->address = $request['address'];
         $user->telp = $request['telp'];
-        
+
 
         $user->save();
 

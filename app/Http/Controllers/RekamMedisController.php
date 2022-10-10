@@ -7,10 +7,10 @@ use App\Models\rekam_medis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
- 
+
 class RekamMedisController extends Controller
 {
-    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || ';
+    const title = 'Rekam Medis - dr. Reynaldi';
     public function rekammedis()
     {
 
@@ -45,12 +45,12 @@ class RekamMedisController extends Controller
                 "tekanan_darah"=>request("tekanan_darah"),
                 "alergi_makanan"=>request("alergi_makanan"),
                 "keterangan"=>request("keterangan")
-    
+
               ]);
               return back()->withSuccess('Data Berhasil Diubah');
-       
-      
-    
+
+
+
     }
     public function tambahrekammedispost(Request $req)
     {

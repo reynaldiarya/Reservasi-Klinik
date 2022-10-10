@@ -14,7 +14,7 @@ use App\Http\Requests\UpdatereservasiRequest;
 
 class ReservasiController extends Controller
 {
-    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || ';
+    const title = 'Reservasi - dr. Reynaldi';
 
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class ReservasiController extends Controller
     {
         //
     }
- 
+
     public function createreservasipost(Request $req)
     {
         $iduser =  Auth::user()->id;
@@ -118,7 +118,7 @@ class ReservasiController extends Controller
         reservasi::where('id_reservasi',$req['id'])->update(['status_hadir'=>$req['status']]);
         return back()->withSuccess('Data Berhasil Diubah');
     }
-    
+
     public function hapusreservasi(Request $req)
     {
         reservasi::where('id_reservasi',$req['id'])->delete();
@@ -126,7 +126,7 @@ class ReservasiController extends Controller
         $jadwal = jadwal::where('tgl_jadwal',$req['tgl'])->get();
         jadwal::where('tgl_jadwal',$req['tgl'])->update(['jumlah_maxpasien'=>$jadwal[0]->jumlah_maxpasien +1]);
         return back()->withSuccess('Data Berhasil Dihapus');
-        
+
     }
     /**
      * Update the specified resource in storage.

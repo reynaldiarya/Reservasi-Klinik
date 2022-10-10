@@ -11,17 +11,17 @@
       </div>
     @endif
     @if(session()->has('reservasiBerhasil'))
-   
+
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ session('reservasiBerhasil')}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
-    
+
     <div class="row ">
-       
-        <div class="col-sm-5 ">
-            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
+
+        <div class="col-sm-12 text-end">
+            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link"><i class="fa-solid fa-calendar-plus"></i> Buat reservasi</a></h3>
         </div>
     </div>
 
@@ -36,21 +36,21 @@
         <div class="modal-body">
             <form action="/reservasi" method="POST">
                 @csrf
-                <div class="row">
-                <div class="col-5"><label for="nama">Nama Pasien</label></div>
-                <div class="col-lg-5">
+                <div class="row d-flex align-items-center justify-content-between">
+                <div class="col-5">Nama Pasien</div>
+                <div class="col-lg-7">
                     <input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="Nama Pasien"></div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-3 d-flex align-items-center justify-content-between">
                 <div class="col-5">Tanggal Reservasi</div>
-                <div class="col-lg-5">
-                    <input required class="form-control form-control-sm" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Lahir Pasien') }}" onmouseover="(this.type='date')" >
+                <div class="col-lg-7">
+                    <input required class="form-control form-control-sm" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Reservasi') }}" onmouseover="(this.type='date')" >
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-5" ><label for="nama">Keluhan</label></div>
-                <div class="col-lg-5v">
-                    <textarea required class="form-control form-control-sm" name="keluhan" placeholder="Masukan keluhan anda">{{ session('keluhan') }}</textarea>
+                <div class="col-5">Keluhan</div>
+                <div class="col-lg-7v">
+                    <textarea required class="form-control form-control-sm" name="keluhan" placeholder="Masukan Keluhan Anda">{{ session('keluhan') }}</textarea>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">

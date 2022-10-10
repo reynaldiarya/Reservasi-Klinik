@@ -1,5 +1,3 @@
-<link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
-
 @extends('maintemplatedashboard')
 @section('content')
 @extends('partials.sidebarstaff')
@@ -8,7 +6,7 @@
     <div class="input-group">
         <input type="search" id="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-           
+
         </div>
     </div>
 </div>
@@ -125,7 +123,7 @@
                             <td>
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal{{ $item->id_jadwal }}" ><i class="bi bi-pencil-square"></i></button>
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_jadwal }}" ><i class="bi bi-trash-fill"></i></button>
-         
+
                         </td>
                     <div>
                         <div class="modal fade" id="hapusjadwal{{ $item->id_jadwal }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

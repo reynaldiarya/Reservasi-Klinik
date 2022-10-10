@@ -1,6 +1,5 @@
-<link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
-
 @extends('maintemplatedashboard')
+@section('content')
 @extends('partials.sidebarstaff')
 @section('search')
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -17,7 +16,7 @@
 @section('content')
 
 <div class="container-fluid">
-    
+
     @if(session()->has('success'))
     <div class="mt-3 ms-5 col-9 col-sm-10 col-xl-10 alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success')}}

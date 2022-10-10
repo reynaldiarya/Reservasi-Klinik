@@ -12,7 +12,7 @@ use App\Models\rekam_medis;
 class dashboardController extends Controller
 {
     //
-    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || ';
+    const title = 'Dashboard - dr. Reynaldi';
 
 
     public function index()

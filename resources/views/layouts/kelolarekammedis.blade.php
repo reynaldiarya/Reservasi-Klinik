@@ -1,7 +1,4 @@
-<link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
-
 @extends('maintemplatedashboard')
-@section('content')
 @extends('partials.sidebarstaff')
 @section('search')
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -38,7 +35,7 @@
         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
             <table class="table my-0" id="dataTable">
                 <thead>
-                    
+
                     <tr>
                         <th>No</th>
                         <th>Nama Pasien</th>
@@ -56,13 +53,13 @@
                         {{-- <th>{{ $item->tgl_periksa->format('d-m-Y') }}</th> --}}
                         <td>{{ date('d M Y', strtotime($item->tgl_periksa))}}</td>
                         <td style="padding-left: 32px">
-                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis{{ $item->id_rekam_medis }}"><i class="bi bi-pencil-square"></i></button> 
-                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis{{ $item->id_rekam_medis }}"><i class="bi bi-trash-fill"></i></button> 
+                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis{{ $item->id_rekam_medis }}"><i class="bi bi-pencil-square"></i></button>
+                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis{{ $item->id_rekam_medis }}"><i class="bi bi-trash-fill"></i></button>
 
                         </td>
                         <div>
                             <form action="/edit-rekam-medis" method="POST">
-                            @csrf 
+                            @csrf
                             <input type="hidden" name="id_user" value="{{ $item->id_rekam_medis }}">
                                 <div class="modal fade" id="edit_rekam_medis{{ $item->id_rekam_medis }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog  modal-dialog-scrollable">
@@ -81,7 +78,7 @@
                                                             <input type="text" name="nama_pasien" class="form-control col-sm-10" value="{{ $item->nama_pasien }}" >
                                                         </div>
                                                     </div>
-                                
+
                                         <div class="col-12 col-lg-6">
                                             <div class="row">
                                                 <div class="col-sm-5"><strong>Tekanan Darah</strong></div>
@@ -91,7 +88,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row">
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
@@ -101,7 +98,7 @@
                                                 <input type="text" name="nama_penyakit" class="form-control col-sm-10" value="{{ $item->nama_penyakit }}">
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
                                                 <div class="col-sm-5"><strong>Kadar Asam Urat</strong></div>
@@ -111,7 +108,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row">
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
@@ -121,7 +118,7 @@
                                                 <input type="text" name="tgl_periksa" class="form-control col-sm-10" value="{{ $item->tgl_periksa}}" onclick="(this.type='date')">
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
                                                 <div class="col-sm-5"><strong>Kadar gula darah</strong></div>
@@ -152,7 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row">
                                         <div class="col-12 col-lg-6">
                                             <div class="row mt-3">
@@ -177,7 +174,7 @@
             </tr>
 
                         @endforeach
-                       
+
                 </thead>
                 <tbody>
 
@@ -198,5 +195,5 @@
 {{-- end of container --}}
 </div>
 
-    
+
 @endsection

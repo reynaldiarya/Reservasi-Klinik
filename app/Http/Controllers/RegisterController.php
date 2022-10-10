@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     //
-    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || Register';
+    const title = 'Register - dr. Reynaldi - Specialist Penyakit Cinta';
 
     public function index()
     {

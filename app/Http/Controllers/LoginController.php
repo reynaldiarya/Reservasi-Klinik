@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 class LoginController extends Controller
 {
     //
-    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || Login';
+    const title = 'Login - dr. Reynaldi';
 
     public function index()
     {

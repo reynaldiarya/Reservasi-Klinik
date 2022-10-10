@@ -10,7 +10,7 @@ use App\Http\Requests\UpdatejadwalRequest;
 
 class JadwalController extends Controller
 {
-    const title = 'dr. Reynaldi - Specialist Penyakit Cinta || ';
+    const title = 'Jadwal - dr. Reynaldi';
 
     public function kelolajadwal()
     {
@@ -47,12 +47,12 @@ class JadwalController extends Controller
         {
             $no++;
             if($item->status_masuk==0){
-                    $status = 'Hadir';            
+                    $status = 'Hadir';
             }
             if($item->status_masuk==1){
-                    $status = 'Tidak Hadir';            
+                    $status = 'Tidak Hadir';
             }
-          
+
             $output.='<tr>
                             <td>'.$no. '</td>
                             <td>'.  date("d M Y", strtotime($item->tgl_jadwal)). '</td>
@@ -120,8 +120,8 @@ class JadwalController extends Controller
                                                   </select>
                                                 </div>
                                         </div>
-                                       
-                                        
+
+
                                         <div class="row">
                                             <div class="col-lg-5">
                                                 <div class="form-group">
@@ -135,8 +135,8 @@ class JadwalController extends Controller
                                                     <input type="time" id="jam_pulang" required class="form-control" name="jam_pulang"  value="'. $item->jam_pulang .'">
                                                 </div>
                                             </div>
-                                            
-                                            
+
+
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5">
@@ -146,27 +146,27 @@ class JadwalController extends Controller
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                         <div class="col-7 col-md-5 mt-3">
                                         <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
                                     </div>
-                                    
+
                                 </form>
-                                
+
                             </div>
-                            
+
                                 </div>
-                               
+
                               </div>
                             </div>
                           </div>
 
                         </tr>
-                            
-                           
-                            
-                            
+
+
+
+
                         </tr>';
                     }
         return response($output);
@@ -181,14 +181,14 @@ class JadwalController extends Controller
         //
     }
     public function hapusjadwal(Request $req)
-    { 
+    {
         jadwal::where('id_jadwal',$req['id'])->delete();
         return back()->withSuccess('Jadwal berhasil di hapus ');
 
     }
     public function editjadwal(Request $Req)
     {
-     
+
         jadwal::where('id_jadwal',$Req['id'])->
         update([
         'tgl_jadwal' => $Req['tgl_jadwal'],
