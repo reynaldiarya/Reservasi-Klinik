@@ -1,17 +1,17 @@
+<link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
+
 @extends('maintemplatedashboard')
 @section('content')
 @extends('partials.sidebarstaff')
 @section('search')
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+<div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
-        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="search" id="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
+           
         </div>
     </div>
-</form>
+</div>
 
 @endsection
 
@@ -103,11 +103,11 @@
                             <th>Jam Pulang</th>
                             <th>Status Masuk</th>
                             <th>Jumlah Max Pasien</th>
-                            <th>Aksi</th>
+                            <th style="padding-left: 32px">Aksi</th>
 
                         </tr>
                     </thead>
-                    <tbody> @php $no = 0; @endphp
+                    <tbody id="alldata" > @php $no = 0; @endphp
                         @foreach ($jadwal as $item)
                         <tr>
                             @php $no++ @endphp
@@ -123,9 +123,9 @@
                             @endif
                             <td>{{ $item->jumlah_maxpasien }}</td>
                             <td>
-                                <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#editjadwal{{ $item->id_jadwal }}" ><i class="bi bi-pencil-square"></i></a>
-                                <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_jadwal }}" ><i class="bi bi-trash-fill"></i></a>
-
+                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal{{ $item->id_jadwal }}" ><i class="bi bi-pencil-square"></i></button>
+                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_jadwal }}" ><i class="bi bi-trash-fill"></i></button>
+         
                         </td>
                     <div>
                         <div class="modal fade" id="hapusjadwal{{ $item->id_jadwal }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -232,6 +232,7 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <tbody id="konten"></tbody>
 
                 </table>
             </div>
@@ -248,5 +249,22 @@
             </div>
     </div>
 </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+$('#search').on('keyup',function () {
+   $value=$(this).val();
+   if($value){
+    $('#alldata').hide();
+   }
+   $.ajax({
+    type:'get',
+    url:'{{ URL::to('cari-jadwal')}}',
+    data:{'cari-jadwal': $value},
+    success:function(data){
+        $('#konten').html(data);
+    }
+   });
+})
+</script>
 
 @endsection

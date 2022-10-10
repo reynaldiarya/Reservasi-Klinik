@@ -1,3 +1,5 @@
+<link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
+
 @extends('maintemplatedashboard')
 @section('content')
 @include('partials.sidebarstaff')

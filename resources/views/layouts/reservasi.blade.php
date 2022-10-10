@@ -4,26 +4,24 @@
 <div class="container-fluid">
 
     @if(session()->has('salah'))
-    <div class="alert alert-danger col-sm-4" role="alert">
-      {{ session('salah')}}
-    </div>
+    <div class="alert alert-danger col-md-6 alert-dismissible fade show" role="alert">
+        {{ session('salah')}}
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     @endif
     @if(session()->has('reservasiBerhasil'))
-    <div class="alert alert-success col-sm-4  alert-dismissible fade show" role="alert">
+   
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ session('reservasiBerhasil')}}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     @endif
-    @if(session()->has('hapus'))
-    <div class="alert alert-success col-sm-4  alert-dismissible fade show" role="alert">
-      {{ session('hapus')}}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    <div class="row">
-
-        <div class="col-sm-12 d-flex justify-content-end">
-            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link"><i class="fa-solid fa-calendar-plus"></i> Buat reservasi</a></h3>
+    
+    <div class="row ">
+       
+        <div class="col-sm-5 ">
+            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link"><i class="bi bi-calendar-plus"></i> Buat reservasi</a></h3>
         </div>
     </div>
 
@@ -52,7 +50,7 @@
             <div class="row mt-3">
                 <div class="col-5" ><label for="nama">Keluhan</label></div>
                 <div class="col-lg-5v">
-                    <input required class="form-control form-control-sm" type ="text" name="keluhan" placeholder="Masukan keluhan anda"  @if (session()->has('keluhan') )value= "{{ session('keluhan') }}" @endif  >
+                    <textarea required class="form-control form-control-sm" name="keluhan" placeholder="Masukan keluhan anda">{{ session('keluhan') }}</textarea>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">

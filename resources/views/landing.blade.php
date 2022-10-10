@@ -14,8 +14,7 @@
   </div>
 </div>
 
-
-<div class="container d-flex justify-content-center align-items-center" id="cekjadwal" style="height: 300px">
+<div class="container d-flex justify-content-center align-items-center py-4 py-xl-5" id="cekjadwal" style="height: 300px">
   <div class="row d-flex justify-content-center">
     <h4 class="fontcusblue text-center my-3">Ingin Reservasi?</h4>
 
