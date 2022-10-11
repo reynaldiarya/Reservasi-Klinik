@@ -27,7 +27,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Buat Reservasi</h5>
@@ -66,7 +66,7 @@
         </div>
     </div>
 </div>
-    <div class="card shadow pb-4">
+    <div class="card shadow mb-5">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
         </div>
@@ -128,10 +128,10 @@
             </div>
             <div>
             <div class="row">
-                <div class="col-md-6 align-self-center">
+                <div class="col-md-5 align-self-center">
                 </div>
-                <div class="col-md-6">
-                    <nav class="d-lg-flex justify-content-lg-end me-5 dataTables_paginate paging_simple_numbers">
+                <div class="col-md-5">
+                    <nav class="dataTables_paginate paging_simple_numbers">
                         <ul class="pagination">
                             {{ $reservasi->links() }}
                         </ul>

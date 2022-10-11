@@ -2,7 +2,7 @@
 @section('content')
 @include('partials.sidebar')
 <div class="container-fluid">
-    <div class="card shadow pb-4">
+    <div class="card shadow mb-5">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Rekam Medis</p>
         </div>
@@ -13,9 +13,8 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Pasien</th>
-                            <th>Nama Penyakit</th>
                             <th>Tanggal Periksa</th>
-                            <th>Keterangan</th>
+                            <th>Dokter</th>
 
                         </tr>@php $j = 0 @endphp
                         <tr>
@@ -23,10 +22,10 @@
                             @php $j++ @endphp
                             <td style="padding-left: 15px">{{ $j }}</td>
                             <td>{{ $item->nama_pasien}}</td>
-                            <td>{{ $item->nama_penyakit }}</td>
                             {{-- <th>{{ $item->tgl_periksa->format('d-m-Y') }}</th> --}}
                             <td>{{ date('d M Y', strtotime($item->tgl_periksa))}}</td>
-                            <td style="padding-left: 32px"><button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id_rekam_medis }}"><i class="bi bi-eye-fill"></i></button>
+                            <td>dr Rey</td>
+                            {{-- <td style="padding-left: 32px"><button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id_rekam_medis }}"><i class="bi bi-eye-fill"></i></button>
                                 <div class="modal fade" id="exampleModal{{ $item->id_rekam_medis }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -128,7 +127,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </td>
 
@@ -143,10 +142,14 @@
                 </table>
             </div>
             <div class="row">
-                <div class="col-md-6 align-self-center">
+                <div class="col-md-5 align-self-center">
                 </div>
-                <div class="col-md-6">
-                    {{ $rekam->links() }}
+                <div class="col-md-5">
+                    <nav class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            {{ $rekam->links() }}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

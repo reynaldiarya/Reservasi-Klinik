@@ -2,24 +2,25 @@
 @section('content')
 @extends('partials.sidebarstaff')
 @section('search')
-<div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
         <input type="search" id="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-
+            <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
         </div>
     </div>
-</div>
+</form>
 
 @endsection
 
 <div class="container-fluid">
     @if(session()->has('success'))
 
-    <div class="mt-3 ms-5 col-9 col-sm-10 col-xl-10 alert alert-success alert-dismissible fade show" role="alert">
+    <div class="mt-3 col-md-4 text-center alert alert-success fade show" role="alert">
         {{ session('success')}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
+    </div>
     @endif
     @error('tgl_jadwal')
     <div class="mt-3 ms-5 col-9 col-sm-10 col-xl-10 alert alert-danger alert-dismissible fade show" role="alert">
@@ -28,9 +29,10 @@
       </div>
     @enderror
 
-    <div class="row d-flex justify-content-between">
-        <div class="col-sm-5 d-flex justify-content-start">
-            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#buatjadwal"><i class="bi bi-calendar-plus"></i> Buat jadwal</a></h3>
+    <div class="row ">
+
+        <div class="col-sm-12 text-end">
+            <a  data-bs-toggle="modal" data-bs-target="#buatjadwal" class="nav-link"><i class="fa-solid fa-calendar-plus"></i> Buat jadwal</a></h3>
         </div>
     </div>
 <!-- Button trigger modal -->
@@ -40,35 +42,33 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-        <p class="text-primary m-0 fw-bold">Buat Jadwal</p>
-          </h5>
+            <h5 class="modal-title" id="exampleModalLabel">Buat Jadwal</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form action="/tambah-jadwal" method="POST">
                 @csrf
-            <div class="row">
-                <div class="col-sm-3">Tanggal Jadwal</div>
-                <div class="col-lg-5">
+            <div class="row d-flex align-items-center justify-content-between">
+                <div class="col-5">Tanggal Jadwal</div>
+                <div class="col-lg-7">
                     <input required class="form-control form-control-sm" type="text" name="tgl_jadwal"  placeholder="{{ __('Tanggal Jadwal') }}" onmouseover="(this.type='date')" >
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-sm-3">Jam Masuk</div>
-                <div class="col-lg-5">
+            <div class="row mt-3 d-flex align-items-center justify-content-between">
+                <div class="col-5">Jam Masuk</div>
+                <div class="col-lg-7">
                     <input required class="form-control form-control-sm" type="text" name="jam_masuk" value="{{ old('jam_masuk') }}"  placeholder="{{ __('Jam Masuk') }}" onmouseover="(this.type='time')" >
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-sm-3">Jam Pulang</div>
-                <div class="col-lg-5">
+            <div class="row mt-3 d-flex align-items-center justify-content-between">
+                <div class="col-5">Jam Pulang</div>
+                <div class="col-lg-7">
                     <input required class="form-control form-control-sm" type="text" name="jam_pulang" value="{{ old('jam_pulang') }}"  placeholder="{{ __('Jam Pulang') }}" onmouseover="(this.type='time')" >
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-sm-3">Max Pasien</div>
-                <div class="col-lg-5">
+            <div class="row mt-3 d-flex align-items-center justify-content-between">
+                <div class="col-5">Max Pasien</div>
+                <div class="col-lg-7">
                     <input required class="form-control form-control-sm" type="number" min="0" name="max_pasien" value="{{ old('max_pasien') }}" placeholder="{{ __('Jumlah Maximal Pasien') }}"  >
                 </div>
             </div>
@@ -76,8 +76,8 @@
         </div>
         <div class="row d-flex justify-content-center">
 
-            <div class="col-7 col-md-5 col-xl-3 mb-3">
-                <button type="submit" class="btn bg-primary text-white col">Submit</button>
+            <div class="col-7 col-md-5 col-xl-5 mb-4">
+                <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
             </form>
             </div>
         </div>
@@ -85,7 +85,7 @@
       </div>
     </div>
   </div>
-    <div class="card shadow pb-4">
+    <div class="card shadow mb-5">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Jadwal</p>
         </div>
@@ -121,8 +121,8 @@
                             @endif
                             <td>{{ $item->jumlah_maxpasien }}</td>
                             <td>
-                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal{{ $item->id_jadwal }}" ><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_jadwal }}" ><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal{{ $item->id_jadwal }}" ><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_jadwal }}" ><i class="fa-solid fa-trash-can"></i></button>
 
                         </td>
                     <div>
@@ -151,8 +151,6 @@
                               </div>
                             </div>
                           </div>
-                    </div>
-                        <div>
                         <div class="modal fade" id="editjadwal{{ $item->id_jadwal }}" tabindex="-1"  aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -165,15 +163,15 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $item->id_jadwal }}">
                                     <div class="row">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-6">
                                             <div class="form-group focused">
-                                                <label class="form-control-label" for="tgl">Tanggal<span class="small text-danger">*</span></label>
+                                                <label class="form-control-label" for="tgl">Tanggal<span class="small text-danger"> *</span></label>
                                                 <input type="date" required id="tgl" class="form-control" name="tgl_jadwal"  value="{{ $item->tgl_jadwal}}">
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 ">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="status">Status Masuk<span class="small text-danger">*</span></label>
+                                                <label class="form-control-label" for="status">Status Masuk<span class="small text-danger"> *</span></label>
                                                 <select  name ="status" class="form-select" aria-label="Default select example">
                                                     <option value="{{ $item->status_masuk }}" selected>@if ($item->status_masuk == 0 )
                                                         Hadir
@@ -185,18 +183,18 @@
                                                   </select>
                                                 </div>
                                         </div>
-
+                                    </div>
 
                                         <div class="row">
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="jam_masuk">Jam Masuk<span class="small text-danger">*</span></label>
+                                                    <label class="form-control-label" for="jam_masuk">Jam Masuk<span class="small text-danger"> *</span></label>
                                                     <input type="time" id="jam_masuk" required class="form-control" name="jam_masuk" value="{{ $item->jam_masuk }}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="jam_pulang">Jam Pulang<span class="small text-danger">*</span></label>
+                                                    <label class="form-control-label" for="jam_pulang">Jam Pulang<span class="small text-danger"> *</span></label>
                                                     <input type="time" id="jam_pulang" required class="form-control" name="jam_pulang"  value="{{ $item->jam_pulang }}">
                                                 </div>
                                             </div>
@@ -204,22 +202,24 @@
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-12">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="Max Pasien">Max Pasien<span class="small text-danger">*</span></label>
+                                                    <label class="form-control-label" for="Max Pasien">Max Pasien<span class="small text-danger"> *</span></label>
                                                     <input type="number" min="0" id="Max Pasien" required class="form-control" name="jumlah_maxpasien" value="{{ $item->jumlah_maxpasien }}">
                                                 </div>
                                             </div>
                                         </div>
 
 
-                                        <div class="col-7 col-md-5 mt-3">
-                                        <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
+                                        <div class="row d-flex justify-content-center">
+
+                                            <div class="col-7 col-md-5 col-xl-5 mb-3">
+                                                <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
+                                            </form>
+                                            </div>
+                                        </div>
+
                                     </div>
-
-                                </form>
-
-                            </div>
 
                                 </div>
 
@@ -235,10 +235,10 @@
                 </table>
             </div>
             <div class="row">
-                <div class="col-md-6 align-self-center">
+                <div class="col-md-5 align-self-center">
                 </div>
-                <div class="col-md-6">
-                    <nav class="d-lg-flex justify-content-lg-end me-5 dataTables_paginate paging_simple_numbers">
+                <div class="col-md-5">
+                    <nav class="dataTables_paginate paging_simple_numbers">
                         <ul class="pagination">
                             {{ $jadwal->links() }}
                         </ul>
@@ -247,7 +247,6 @@
             </div>
     </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 $('#search').on('keyup',function () {
    $value=$(this).val();

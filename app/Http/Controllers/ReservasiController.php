@@ -32,7 +32,7 @@ class ReservasiController extends Controller
         $valid = jadwal::where('tgl_jadwal', $req['tglReservasi'])->where('jumlah_maxpasien', '>', 0)->get();
 
         if ($valid->count() < 1) {
-            return back()->with('salah', 'Maaf Jadwal Tidak Tersedia silahkan pilih jadwal lain')->with('namaPasien', $req['namaPasien'])->with('keluhan', $req['keluhan']);
+            return back()->with('salah', 'Maaf jadwal tidak tersedia, silahkan pilih jadwal lain')->with('namaPasien', $req['namaPasien'])->with('keluhan', $req['keluhan']);
         }
         $jumlah = $valid[0]['jumlah_maxpasien'] - 1;
         $jumlah2 = $valid[0]['jumlah_pasien_hari_ini'] + 1;
@@ -47,7 +47,7 @@ class ReservasiController extends Controller
         jadwal::where('id_jadwal', $valid[0]['id_jadwal'])->update(['jumlah_maxpasien' => $jumlah]);
         jadwal::where('id_jadwal', $valid[0]['id_jadwal'])->update(['jumlah_pasien_hari_ini' => $jumlah2]);
         reservasi::create($data);
-        return redirect()->intended('reservasi')->with('reservasiBerhasil', 'Selamat Reservasi Anda Berhasil');
+        return redirect()->intended('reservasi')->with('reservasiBerhasil', 'Reservasi Anda telah berhasil');
     }
     public function reservasi()
     {
@@ -125,7 +125,7 @@ class ReservasiController extends Controller
         reservasi::where('id_reservasi',$req['id'])->update(['status_hadir'=>$req['status']]);
         $jadwal = jadwal::where('tgl_jadwal',$req['tgl'])->get();
         jadwal::where('tgl_jadwal',$req['tgl'])->update(['jumlah_maxpasien'=>$jadwal[0]->jumlah_maxpasien +1]);
-        return back()->withSuccess('Data Berhasil Dihapus');
+        return back()->withSuccess('Reservasi berhasil dihapus');
 
     }
     /**

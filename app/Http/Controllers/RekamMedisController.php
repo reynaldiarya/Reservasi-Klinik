@@ -47,7 +47,7 @@ class RekamMedisController extends Controller
                 "keterangan"=>request("keterangan")
 
               ]);
-              return back()->withSuccess('Data Berhasil Diubah');
+              return back()->withSuccess('Data berhasil diperbarui');
 
 
 
@@ -86,7 +86,7 @@ class RekamMedisController extends Controller
             $data['keterangan']= '-';
         };
     rekam_medis::create($data);
-        return redirect('/kelola-rekam-medis')->withSuccess('Data Berhasil Ditambahkan');
+        return redirect('/kelola-rekam-medis')->withSuccess('Data berhasil ditambahkan');
     }
     public function tambahrekammedis()
     {

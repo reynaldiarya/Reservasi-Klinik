@@ -30,7 +30,7 @@ class JadwalController extends Controller
             'jumlah_maxpasien' => $req['max_pasien']
         ];
         jadwal::create($jadwal);
-        return back()->with('success', 'Jadwal Berhasil Terbuat');
+        return back()->with('success', 'Jadwal berhasil ditambahkan');
 
     }
     public function carijadwal()
@@ -183,7 +183,7 @@ class JadwalController extends Controller
     public function hapusjadwal(Request $req)
     {
         jadwal::where('id_jadwal',$req['id'])->delete();
-        return back()->withSuccess('Jadwal berhasil di hapus ');
+        return back()->withSuccess('Jadwal berhasil dihapus');
 
     }
     public function editjadwal(Request $Req)
@@ -198,7 +198,7 @@ class JadwalController extends Controller
         'jumlah_maxpasien' => $Req['jumlah_maxpasien']
      ]);
 
-        return back()->withSuccess('Jadwal berhasil di perbarui');
+        return back()->withSuccess('Jadwal berhasil diperbarui');
     }
     /**
      * Store a newly created resource in storage.

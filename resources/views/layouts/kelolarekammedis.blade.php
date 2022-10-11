@@ -1,6 +1,8 @@
 @extends('maintemplatedashboard')
+@section('content')
 @extends('partials.sidebarstaff')
 @section('search')
+
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -15,19 +17,19 @@
 @endsection
 @if(session()->has('success'))
 
-<div class="mt-3 ms-5 col-9 col-sm-10 col-xl-10 alert alert-success alert-dismissible fade show" role="alert">
+<div class="mt-3 col-md-4 text-center alert alert-success fade show" role="alert">
     {{ session('success')}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+</div>
 @endif
 <div class="container-fluid">
-    <div class="row d-flex justify-content-between">
-        <div class="col-sm-5 d-flex justify-content-start">
-        <a class="nav-link" href="/tambah-rekam-medis"><i class="bi bi-calendar-plus"></i> Buat Rekam Medis</a></h3>
-    </div>
-</div>
+    <div class="row ">
 
-<div class="card shadow pb-4">
+        <div class="col-sm-12 text-end">
+            <a href="/tambah-rekam-medis" class="nav-link"><i class="fa-solid fa-notes-medical"></i> Buat rekam medis</a></h3>
+        </div>
+    </div>
+
+<div class="card shadow mb-5">
     <div class="card-header py-3">
         <p class="text-primary m-0 fw-bold">Daftar Rekam Medis</p>
     </div>
@@ -71,23 +73,26 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-12 col-lg-6">
-                                                        <div class="row">
-                                                            <div class="col-sm-5"><strong>Nama Pasien</strong></div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-sm-10"><strong>Nama Pasien</strong></div>
                                                         </div>
                                                         <div class="row">
-                                                            <input type="text" name="nama_pasien" class="form-control col-sm-10" value="{{ $item->nama_pasien }}" >
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="nama_pasien" class="form-control col-sm-10" value="{{ $item->nama_pasien }}" >
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                        <div class="col-12 col-lg-6">
-                                            <div class="row">
-                                                <div class="col-sm-5"><strong>Tekanan Darah</strong></div>
-                                            </div>
-                                            <div class="row">
-                                                <input type="text" name="tekanan_darah" class="form-control col-sm-10" value="{{ $item->tekanan_darah }}">
-                                            </div>
-                                        </div>
-                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="row mt-3">
+                                                            <div class="col-sm-10"><strong>Tekanan Darah</strong></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="tekanan_darah" class="form-control col-sm-10" value="{{ $item->tekanan_darah }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                     <div class="row">
                                         <div class="col-12 col-lg-6">

@@ -16,11 +16,8 @@
 @endsection
 <div class="container-fluid">
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
 <div class="card shadow">
-  
+
     <div class="card-header">
       <h5 class="modal-title" id="exampleModalLabel">
     <p class="text-primary m-0 fw-bold">Buat Rekam Medis</p>
@@ -37,7 +34,7 @@
                     @foreach($pasien as $key)
                     <option value="{{ $key->id }}">{{ $key->name }}</option>
                     @endforeach
-                </select> 
+                </select>
                 @error('nama_user')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -49,7 +46,7 @@
             <div class="col-sm-5">Nama Pasien</div>
             <div class="col-lg-5">
                 <input required class="form-control form-control-sm" type="text" name="nama_pasien" value="{{ old('nama_pasien') }}"  placeholder="{{ __('Nama Pasien ') }}" >
-                
+
             </div>
         </div>
         <div class="row mt-3">
@@ -102,7 +99,7 @@
                   </div>
             </div>
         </div>
-      
+
     </div>
     <div class="row d-flex justify-content-center">
 
@@ -111,20 +108,20 @@
         </form>
         </div>
     </div>
-    
-  
+
+
 </div>
-<a href="/kelola-rekam-medis" class="btn col-1 btn-primary mt-5">
+<a href="/kelola-rekam-medis" class="btn col-1 btn-primary mt-5 mb-5">
     Kembali
 </a>
 </div>
 <script type="text/javascript">
 // In your Javascript (external .js resource or <script> tag)
     $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-    });
-    
-    
+    $('.js-example-basic-single').select2();
+});
+
+
     </script>
-    
+
 @endsection

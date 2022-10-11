@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->back()->withSuccess('Profile updated successfully.');
+        return redirect()->back()->withSuccess('Profil berhasil diperbarui');
     }
 
     public function update(Request $request)
@@ -69,7 +69,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile')->withSuccess('Profile updated successfully.');
+        return redirect()->route('profile')->withSuccess('Profil berhasil diperbarui');
     }
     public function updatestaff(Request $request)
     {
@@ -102,6 +102,6 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile-staff')->withSuccess('Profile updated successfully.');
+        return redirect()->route('profile-staff')->withSuccess('Profil berhasil diperbarui');
     }
 }
