@@ -1,6 +1,7 @@
 @extends('maintemplatedashboard')
 @section('content')
 @include('partials.sidebar')
+
 <div class="container-fluid">
 
     @if(session()->has('salah'))
@@ -56,7 +57,7 @@
             <div class="row d-flex justify-content-center">
 
                 <div class="col-7 col-md-5 col-xl-3 mt-3">
-                    <button type="submit" class="btn bg-primary text-white col">Submit</button>
+                    <button type="submit" class="btn bg-primary text-white col">Kirim</button>
                 </form>
             </div>
             </div>

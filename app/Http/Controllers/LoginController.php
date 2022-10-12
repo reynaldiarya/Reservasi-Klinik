@@ -23,23 +23,23 @@ class LoginController extends Controller
             'title' => self::title
         ]);
     }
-    public function indexstafflogin(Request $req)
-    {
+    // public function indexstafflogin(Request $req)
+    // {
 
-        $data = $req->validate([
-            'email' => 'email|required',
-            'password' => 'required'
-        ]);
+    //     $data = $req->validate([
+    //         'email' => 'email|required',
+    //         'password' => 'required'
+    //     ]);
 
-        $email = $data['email'];
-        $password = $data['password'];
+    //     $email = $data['email'];
+    //     $password = $data['password'];
 
-        if (Auth::attempt(array('email' => $email, 'password' => $password, 'level' => 1))) {
-            $req->session()->regenerate();
-            return redirect('/dashboard-staff');
-        }
-        return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);
-    }
+    //     if (Auth::attempt(array('email' => $email, 'password' => $password, 'level' => 1))) {
+    //         $req->session()->regenerate();
+    //         return redirect('/dashboard-staff');
+    //     }
+    //     return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);
+    // }
     public function login(Request $req)
     {
 
@@ -54,8 +54,10 @@ class LoginController extends Controller
         if (Auth::attempt(array('email' => $email, 'password' => $password, 'level' => 0))) {
             $req->session()->regenerate();
             return redirect('/dashboard');
+        }else if (Auth::attempt(array('email' => $email, 'password' => $password, 'level' => 1))) {
+            $req->session()->regenerate();
+            return redirect('/dashboard-staff');
         }
-
         return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);
     }
     public function logout(Request $req)
@@ -70,6 +72,6 @@ class LoginController extends Controller
         Auth::logout();
         $req->session()->invalidate();
         $req->session()->regenerateToken();
-        return redirect()->intended('login-staff');
+        return redirect('/');
     }
 }

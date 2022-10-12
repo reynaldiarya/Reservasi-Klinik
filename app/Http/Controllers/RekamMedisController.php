@@ -90,7 +90,7 @@ class RekamMedisController extends Controller
     }
     public function tambahrekammedis()
     {
-        $pasien = User::all();
+        $pasien = User::all()->where('level','0');
         return view('layouts.tambahrekammedis',[
             'pasien'=> $pasien,
             'title' => self::title . " Kelola Rekam medis"

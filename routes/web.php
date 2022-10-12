@@ -43,8 +43,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/profile-update', [ProfileController::class, 'update']);
     Route::get('/rekam-medis', [RekamMedisController::class, "rekammedis"]);
 });
-Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('guest')->name('login-staff');
-Route::post('/login-staff', [LoginController::class, "indexstafflogin"])->middleware('guest');
+// Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('guest')->name('login-staff');
+// Route::post('/login-staff', [LoginController::class, "indexstafflogin"])->middleware('guest');
 
 Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
 
@@ -55,8 +55,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     Route::post('/tambah-jadwal', [JadwalController::class, "tambahjadwal"]);
     Route::post('/profile-update-staff', [ProfileController::class, 'updatestaff']);
     Route::post('/profile-update-pasien', [ProfileController::class, 'updatepasien']);
-    Route::post('/edit-jadwal',[JadwalController::class,'editjadwal']); 
-    Route::post('/hapus-jadwal',[JadwalController::class,'hapusjadwal']); 
+    Route::post('/edit-jadwal',[JadwalController::class,'editjadwal']);
+    Route::post('/hapus-jadwal',[JadwalController::class,'hapusjadwal']);
     Route::get('/kelola-reservasi',[ReservasiController::class,'kelolareservasi']);
     Route::post('/edit-reservasi',[ReservasiController::class,'editreservasi']);
     Route::post('/hapus-reservasi',[ReservasiController::class,'hapusreservasi']);

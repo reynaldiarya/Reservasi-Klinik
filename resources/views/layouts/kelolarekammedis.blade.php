@@ -55,8 +55,8 @@
                         {{-- <th>{{ $item->tgl_periksa->format('d-m-Y') }}</th> --}}
                         <td>{{ date('d M Y', strtotime($item->tgl_periksa))}}</td>
                         <td style="padding-left: 32px">
-                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis{{ $item->id_rekam_medis }}"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis{{ $item->id_rekam_medis }}"><i class="bi bi-trash-fill"></i></button>
+                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis{{ $item->id_rekam_medis }}"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis{{ $item->id_rekam_medis }}"><i class="fa-solid fa-trash-can"></i></button>
 
                         </td>
                         <div>
