@@ -1,6 +1,7 @@
 @extends('maintemplatedashboard')
 @section('content')
-@include('partials.sidebar')
+@extends('partials.sidebar')
+
 <body id="page-top">
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
@@ -20,7 +21,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Reservasi</span></div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span><a href="/reservasi"> Reservasi</a></span></div>
                                             <div class="text-dark fw-bold h5 mb-0"><span>{{ $countreservasi }}</span></div>
                                         </div>
                                         <div class="col-auto"><i class="fa-solid fa-calendar fa-2x text-gray-300"></i></div>
@@ -33,7 +34,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
-                                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Rekam Medis</span></div>
+                                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span><a href="/rekam-medis" class="text-success"> Rekam Medis</a></span></div>
                                             <div class="text-dark fw-bold h5 mb-0">{{ $countrekammedis }}</div>
                                         </div>
                                         <div class="col-auto"><i class="fa-solid fa-notes-medical fa-2x text-gray-300"></i></div>

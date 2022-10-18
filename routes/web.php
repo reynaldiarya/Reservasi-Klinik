@@ -18,7 +18,7 @@ use App\Http\Controllers\ReservasiController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteServiceProvider wpithin a group which
 | contains the "web" middleware group. Now create something great!
 |
 */
@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/profile', [ProfileController::class, "profile"])->name('profile');
     Route::get('/profile-update', [ProfileController::class, 'update']);
     Route::get('/rekam-medis', [RekamMedisController::class, "rekammedis"]);
+    Route::get('/cari-reservasi-pasien',[ReservasiController::class,'carireservasipasien']);
 });
 // Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('guest')->name('login-staff');
 // Route::post('/login-staff', [LoginController::class, "indexstafflogin"])->middleware('guest');
@@ -55,17 +56,18 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     Route::post('/tambah-jadwal', [JadwalController::class, "tambahjadwal"]);
     Route::post('/profile-update-staff', [ProfileController::class, 'updatestaff']);
     Route::post('/profile-update-pasien', [ProfileController::class, 'updatepasien']);
-    Route::post('/edit-jadwal',[JadwalController::class,'editjadwal']);
-    Route::post('/hapus-jadwal',[JadwalController::class,'hapusjadwal']);
-    Route::get('/kelola-reservasi',[ReservasiController::class,'kelolareservasi']);
-    Route::post('/edit-reservasi',[ReservasiController::class,'editreservasi']);
-    Route::post('/hapus-reservasi',[ReservasiController::class,'hapusreservasi']);
-    Route::get('/kelola-rekam-medis',[RekamMedisController::class,'kelolarekammedis']);
-    Route::get('/tambah-rekam-medis',[RekamMedisController::class,'tambahrekammedis']);
-    Route::post('/tambah-rekam-medis',[RekamMedisController::class,'tambahrekammedispost']);
-    Route::post('/edit-rekam-medis',[RekamMedisController::class,'editrekammedis']);
-    Route::post('/hapus-rekam-medis',[RekamMedisController::class,'hapusrekammedis']);
-    route::get('/cari-jadwal',[JadwalController::class,'carijadwal']);
+    Route::post('/edit-jadwal', [JadwalController::class, 'editjadwal']);
+    Route::post('/hapus-jadwal', [JadwalController::class, 'hapusjadwal']);
+    Route::get('/kelola-reservasi', [ReservasiController::class, 'kelolareservasi']);
+    Route::post('/edit-reservasi', [ReservasiController::class, 'editreservasi']);
+    Route::post('/hapus-reservasi', [ReservasiController::class, 'hapusreservasi']);
+    Route::get('/kelola-rekam-medis', [RekamMedisController::class, 'kelolarekammedis']);
+    Route::get('/tambah-rekam-medis', [RekamMedisController::class, 'tambahrekammedis']);
+    Route::post('/tambah-rekam-medis', [RekamMedisController::class, 'tambahrekammedispost']);
+    Route::post('/edit-rekam-medis', [RekamMedisController::class, 'editrekammedis']);
+    Route::post('/hapus-rekam-medis', [RekamMedisController::class, 'hapusrekammedis']);
+    route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
+    route::get('/cari-reservasi', [ReservasiController::class, 'carireservasi']);
 });
 // Route::post('/login-staff', [LoginController::class, "login"])->name('login');
 // Route::post('/logout', [LoginController::class, "logout"]);

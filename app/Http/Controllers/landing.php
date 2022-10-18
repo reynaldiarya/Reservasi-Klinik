@@ -19,6 +19,7 @@ class landing extends Controller
     public function catch(Request $request)
     {
         $isi = $request['tgl'];
+        
         $jumlahjadwal = jadwal::where('tgl_jadwal', '=', $isi)->where('jumlah_maxpasien', '>', 0)->count();
         return view('landing', [
             'tgl_jadwal' => $isi,

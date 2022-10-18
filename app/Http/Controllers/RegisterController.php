@@ -13,7 +13,7 @@ class RegisterController extends Controller
     public function index()
     {
         # code...
-        return view('auth.register',[
+        return view('auth.register', [
             'title' => self::title
         ]);
     }
@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'name' => 'required',
             'birthday' => 'required',
             'address' => 'required',
-            'email' => 'email:dns|unique:users|required',
+            'email' => 'email|unique:users|required',
             'telp' => 'numeric|required',
             'password' => 'min:8|required',
             'password_confirmation' => 'min:8|required|same:password'

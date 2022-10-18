@@ -21,7 +21,7 @@
      <form class="d-flex justify-content-center" style="width: 300px" action="/" method="post">
       @csrf
       <div class="form-group col-10 col-xl-12 ">
-        <input required=""  name= "tgl" type="text" class="form-control" placeholder="Masukkan Tanggal" onclick="(this.type='date')" />
+        <input required=""  name= "tgl" type="text" class="form-control" placeholder="Masukkan Tanggal" min="{{  date('Y-m-d') }}"  onclick="(this.type='date')" />
       </div>
       <div class="col-md-auto ms-2">
         <button class="btn border-dark" type="submit" name="submit" > <i class="fa fa-search "></i></button>

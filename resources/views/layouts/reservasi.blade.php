@@ -1,7 +1,16 @@
 @extends('maintemplatedashboard')
 @section('content')
-@include('partials.sidebar')
+@extends('partials.sidebar')
+@section('search')
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+    <div class="input-group">
+        <input type="search" id="search" class="form-control bg-light border-1 rounded-5 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
 
+        </div>
+    </div>
+</form>
+@endsection
 <div class="container-fluid">
 
     @if(session()->has('salah'))
@@ -45,7 +54,7 @@
             <div class="row mt-3 d-flex align-items-center justify-content-between">
                 <div class="col-5">Tanggal Reservasi</div>
                 <div class="col-lg-7">
-                    <input required class="form-control form-control-sm" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Reservasi') }}" onmouseover="(this.type='date')" >
+                    <input required class="form-control form-control-sm" min="{{ date('Y-m-d') }}" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Reservasi') }}" onmouseover="(this.type='date')" >
                 </div>
             </div>
             <div class="row mt-3">
@@ -98,7 +107,7 @@
 
                         </tr>
                     </thead>
-                    <tbody> @php $no = 0; @endphp
+                    <tbody id="alldata"> @php $no = 0; @endphp
                         @foreach ($reservasi as $item)
                         <tr>
                             @php $no++ @endphp
@@ -124,7 +133,7 @@
                         </tr>
                         @endforeach
                     </tbody>
-
+                    <tbody id="konten"></tbody>
                 </table>
             </div>
             <div>
@@ -142,4 +151,27 @@
     </div>
 </div>
 </div>
+<script type="text/javascript">
+    $('#search').on('keyup',function () {
+       $value=$(this).val();
+       if($value){
+        $('#alldata').hide();
+        $('.pagination').hide();
+       }else{
+        $('#alldata').show();
+        $('.pagination').show();
+   }
+       $.ajax({
+        type:'get',
+        url:'{{ URL::to('cari-reservasi-pasien')}}',
+        data:{'data': $value},
+        success:function(data){
+            $('#konten').html(data);
+            
+            
+        }
+       });
+    })
+    </script>
+    
 @endsection
