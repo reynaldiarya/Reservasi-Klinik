@@ -21,10 +21,15 @@ class RekamMedisController extends Controller
 
         ]);
     }
+    public function hapusrekammedis()
+    {
+        rekam_medis::where('id_rekam_medis', request('id'))->delete();
+        return back()->withSuccess('Jadwal berhasil dihapus');
+    }
     public function kelolarekammedis()
     {
-        $rekam = rekam_medis::join('users','User_id','=','users.id')
-        ->orderBy('rekam_medis.tgl_periksa','desc')->select('rekam_medis.*','users.name')->paginate(5);
+        $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
+            ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
         return view('layouts.kelolarekammedis', [
             'title' => self::title . " Kelola Rekam medis",
             'rekam'  => $rekam,
@@ -34,68 +39,261 @@ class RekamMedisController extends Controller
     public function editrekammedis()
     {
         DB::table('rekam_medis')
-              ->where('id_rekam_medis', request('id_user'))
-              ->update([
-                'nama_pasien'=>request('nama_pasien'),
+            ->where('id_rekam_medis', request('id_user'))
+            ->update([
+                'nama_pasien' => request('nama_pasien'),
                 "tgl_periksa" => request("tgl_periksa"),
-                "nama_penyakit"=>request("nama_penyakit"),
-                "kadar_gula_darah"=>request("kadar_gula_darah"),
-                "kadar_kolesterol"=>request("kadar_kolesterol"),
-                "kadar_asam_urat"=>request("kadar_asam_urat"),
-                "tekanan_darah"=>request("tekanan_darah"),
-                "alergi_makanan"=>request("alergi_makanan"),
-                "keterangan"=>request("keterangan")
+                "nama_penyakit" => request("nama_penyakit"),
+                "kadar_gula_darah" => request("kadar_gula_darah"),
+                "kadar_kolesterol" => request("kadar_kolesterol"),
+                "kadar_asam_urat" => request("kadar_asam_urat"),
+                "tekanan_darah" => request("tekanan_darah"),
+                "alergi_makanan" => request("alergi_makanan"),
+                "keterangan" => request("keterangan")
 
-              ]);
-              return back()->withSuccess('Data berhasil diperbarui');
-
-
-
+            ]);
+        return back()->withSuccess('Data berhasil diperbarui');
     }
     public function tambahrekammedispost(Request $req)
     {
-        $req->validate(['nama_user'=>'required']);
+        $req->validate(['nama_user' => 'required']);
         $data = [
-            'User_id'=> request('nama_user'),
-            'nama_pasien'=>request('nama_pasien'),
+            'User_id' => request('nama_user'),
+            'nama_pasien' => request('nama_pasien'),
             "tgl_periksa" => request("tgl_periksa"),
-            "nama_penyakit"=>request("nama_penyakit"),
-            "kadar_gula_darah"=>request("kadar_gula_darah"),
-            "kadar_kolesterol"=>request("kadar_kolesterol"),
-            "kadar_asam_urat"=>request("kadar_asam_urat"),
-            "tekanan_darah"=>request("tekanan_darah"),
-            "alergi_makanan"=>request("alergi_makanan"),
-            "keterangan"=>request("keterangan")
+            "nama_penyakit" => request("nama_penyakit"),
+            "kadar_gula_darah" => request("kadar_gula_darah"),
+            "kadar_kolesterol" => request("kadar_kolesterol"),
+            "kadar_asam_urat" => request("kadar_asam_urat"),
+            "tekanan_darah" => request("tekanan_darah"),
+            "alergi_makanan" => request("alergi_makanan"),
+            "keterangan" => request("keterangan")
         ];
-        if($data['kadar_gula_darah']==null){
-            $data['kadar_gula_darah']= 0;
+        if ($data['kadar_gula_darah'] == null) {
+            $data['kadar_gula_darah'] = 0;
         };
-        if($data['kadar_asam_urat']==null){
-            $data['kadar_asam_urat']= 0;
+        if ($data['kadar_asam_urat'] == null) {
+            $data['kadar_asam_urat'] = 0;
         };
-        if($data['kadar_kolesterol']==null){
-            $data['kadar_kolesterol']= 0;
+        if ($data['kadar_kolesterol'] == null) {
+            $data['kadar_kolesterol'] = 0;
         };
-        if($data['alergi_makanan']==null){
-            $data['alergi_makanan']= '-';
+        if ($data['alergi_makanan'] == null) {
+            $data['alergi_makanan'] = '-';
         };
-        if($data['tekanan_darah']==null){
-            $data['tekanan_darah']= '-';
+        if ($data['tekanan_darah'] == null) {
+            $data['tekanan_darah'] = '-';
         };
-        if($data['keterangan']==null){
-            $data['keterangan']= '-';
+        if ($data['keterangan'] == null) {
+            $data['keterangan'] = '-';
         };
-    rekam_medis::create($data);
+        rekam_medis::create($data);
         return redirect('/kelola-rekam-medis')->withSuccess('Data berhasil ditambahkan');
     }
     public function tambahrekammedis()
     {
-        $pasien = User::where('level','0')->get();
-        return view('layouts.tambahrekammedis',[
-            'pasien'=> $pasien,
+        $pasien = User::where('level', '0')->get();
+        return view('layouts.tambahrekammedis', [
+            'pasien' => $pasien,
             'title' => self::title . " Kelola Rekam medis"
 
         ]);
     }
+    public function carirekampasien()
+    {
+        if (request('data') == null) {
+            return;
+        }
+        $data = rekam_medis::Where('nama_pasien', 'like', '%' . request('data') . '%')->get();
+        $data = $data->where('user_id', auth::id());
 
+        $no = 0;
+        $output = '';
+        foreach ($data as $item) {
+            $no++;
+            $output =
+                '<tr>
+            <td style="padding-left: 15px">' . $no . '</td>
+            <td>' . $item->nama_pasien . '</td>
+         <td>' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
+            <td>dr Rey</td>
+            </tr>';
+        }
+        return response($output);
+    }
+
+    public function carirekammedis()
+    {
+        if (request('data') == null) {
+            return;
+        }
+        $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id');
+
+        $data = $rekam->Where('nama_pasien', 'like', '%' . request('data') . '%')
+            ->orWhere('name', 'like', '%' . request('data') . '%')
+            ->get();
+        // $data = $data->where('', );
+
+
+        $no = 0;
+        $output = '';
+        foreach ($data as $item) {
+            $no++;
+            $output = '<td style="padding-left: 15px">' . $no . '</td>
+            <td>' . $item->nama_pasien . '</td>
+            <td>' . $item->name . '</td>
+            <td>' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
+            <td style="padding-left: 32px">
+                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-trash-can"></i></button>
+
+           
+            <div>
+            <div class="modal fade" id="hapus_rekam_medis' . $item->id_rekam_medis . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="hapus_rekam_medis' . $item->id_rekam_medis . '">Hapus Rekam Medis</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/hapus-rekam-medis" method="POST">
+                    ' . csrf_field() . '
+                        <div class="modal-body">
+                            <input type="hidden" name="id" value="' . $item->id_rekam_medis . '">
+                            <strong>Apakah anda yakin untuk menghapus?</strong>
+                        </div>
+                        <div class="modal-footer">
+                                <div class="col-4 ">
+                                    <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
+                                   </div>
+                                   <div class="col-4">
+                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
+                                   </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div>
+                <form action="/edit-rekam-medis" method="POST">
+                ' . csrf_field() . '
+                <input type="hidden" name="id_user" value="' . $item->id_rekam_medis . '">
+                    <div class="modal fade" id="edit_rekam_medis' . $item->id_rekam_medis . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog  modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="edit_rekam_medis' . $item->id_rekam_medis . '">Keterangan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                            <div class="row mt-3">
+                                                <div class="col-sm-10"><strong>Nama Pasien</strong></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="nama_pasien" class="form-control col-sm-10" value="' . $item->nama_pasien . '" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-6">
+                                            <div class="row mt-3">
+                                                <div class="col-sm-10"><strong>Tekanan Darah</strong></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="tekanan_darah" class="form-control col-sm-10" value="' . $item->tekanan_darah . '">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="row mt-3">
+                                    <div class="col-sm-5"><strong>Nama Penyakit</strong></div>
+                                </div>
+                                <div class="row">
+                                    <input type="text" name="nama_penyakit" class="form-control col-sm-10" value="' . $item->nama_penyakit . '">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-6">
+                                <div class="row mt-3">
+                                    <div class="col-sm-5"><strong>Kadar Asam Urat</strong></div>
+                                </div>
+                                <div class="row">
+                                    <input type="number" name="kadar_asam_urat" class="form-control col-sm-10" value="' . $item->kadar_asam_urat . '">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="row mt-3">
+                                    <div class="col-sm-5"><strong>Tanggal Periksa</strong></div>
+                                </div>
+                                <div class="row">
+                                    <input type="text" name="tgl_periksa" class="form-control col-sm-10" value="' . $item->tgl_periksa . '" onclick="(this.type="date")">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-6">
+                                <div class="row mt-3">
+                                    <div class="col-sm-5"><strong>Kadar gula darah</strong></div>
+                                </div>
+                                <div class="row">
+                                    <input type="number" name="kadar_gula_darah" class="form-control col-sm-10" value="' . $item->kadar_gula_darah . '">
+                                </div>
+                            </div>
+
+                            </div>
+
+                            <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="row mt-3">
+                                    <div class="col-sm-5"><strong>Alergi Makanan</strong></div>
+                                </div>
+                                <div class="row">
+                                    <input type="text" name="alergi_makanan" class="form-control col-sm-10" value="' . $item->alergi_makanan . '">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-6">
+                                <div class="row mt-3">
+                                    <div class="col-sm-5"><strong>kadar kolesterol</strong></div>
+                                </div>
+                                <div class="row">
+                                    <input type="number" name="kadar_kolesterol" class="form-control col-sm-10" value="' . $item->kadar_kolesterol . '">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="row mt-3">
+                                    <div class="col-sm-5"><strong>Keterangan</strong></div>
+                                </div>
+                                <div class="row">
+                                    <textarea  class="form-control col-sm-10" name="keterangan">' . $item->keterangan . '</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center ">
+                            <div class="col-5 mt-5">
+                                <button class="btn btn-primary col-lg-10" type="submit">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </td>
+</form>';
+        }
+        return response($output);
+    }
 }

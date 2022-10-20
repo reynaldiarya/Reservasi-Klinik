@@ -34,10 +34,9 @@
                             <th>Alamat</th>
                             <th>Email</th>
                             <th>No Telp</th>
-                            <th>Aksi</th>
 
                         </thead>
-                        <tbody>
+                        <tbody id="old">
                     @php $j = 0 @endphp
                         <tr>
                             @foreach ($user as $item)
@@ -48,7 +47,7 @@
                             <td>{{ $item->address }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->telp }}</td>
-                            <td><button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
+                            {{-- <td><button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
                                 <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -60,7 +59,7 @@
                                         <form action="/profile-update-pasien" method="POST">
                                             @csrf
 
-                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <input type="hidden" name="id" value="{{  }}">
                                                 <div class="row">
                                                 <div class="col-lg-7">
                                                     <div class="form-group focused">
@@ -107,11 +106,12 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
+                    </td> --}}
                     </tr>
                     @endforeach
 
                     </tbody>
+                    <tbody id="new"></tbody>
 
                 </table>
             </div>
@@ -129,4 +129,24 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('#search').on('keyup',function () {
+       $value=$(this).val();
+       if($value){
+        $('#old').hide();
+        $('.pagination').hide();
+       }else{
+        $('#old').show();
+        $('.pagination').show();
+       }
+       $.ajax({
+        type:'get',
+        url:'{{ URL::to('cari-pasien')}}',
+        data:{'data': $value},
+        success:function(data){
+            $('#new').html(data);
+        }
+       });
+    })
+    </script>
 @endsection

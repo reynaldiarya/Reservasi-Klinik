@@ -5,7 +5,7 @@
 
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
-        <input type="text" class="form-control bg-light border-5 small rounded-5" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="search" id="search" class="form-control bg-light border-5 small rounded-5" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
         </div>
     </div>
@@ -42,7 +42,10 @@
                         <th>Tanggal Periksa</th>
                         <th style="padding-left: 45px">Aksi</th>
 
-                    </tr>@php $j = 0 @endphp
+                    </tr>
+                </thead>
+                <tbody id="old">
+                @php $j = 0 @endphp
                     <tr>
                         @foreach ($rekam as $item)
                         @php $j++ @endphp
@@ -56,6 +59,33 @@
                             <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis{{ $item->id_rekam_medis }}"><i class="fa-solid fa-trash-can"></i></button>
 
                         </td>
+                        <div>
+                            <div class="modal fade" id="hapus_rekam_medis{{ $item->id_rekam_medis }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="hapus_rekam_medis{{ $item->id_rekam_medis }}">Hapus Rekam Medis</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="/hapus-rekam-medis" method="POST">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <input type="hidden" name="id" value="{{ $item->id_rekam_medis }}">
+                                            <strong>Apakah anda yakin untuk menghapus?</strong>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <div class="col-4 ">
+                                                    <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
+                                                   </div>
+                                                   <div class="col-4">
+                                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
+                                                   </div>
+                                        </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
                         <div>
                             <form action="/edit-rekam-medis" method="POST">
                             @csrf
@@ -177,8 +207,8 @@
 
                         @endforeach
 
-                </thead>
-                <tbody>
+                    </tbody>
+                <tbody id="new">
 
                 </tbody>
 
@@ -196,6 +226,26 @@
 
 {{-- end of container --}}
 </div>
-
+<script type="text/javascript">
+    $('#search').on('keyup',function () {
+       $value=$(this).val();
+       if($value){
+        $('#old').hide();
+        $('.pagination').hide();
+       }else{
+        $('#old').show();
+        $('.pagination').show();
+       }
+       $.ajax({
+        type:'get',
+        url:'{{ URL::to('cari-rekam-medis')}}',
+        data:{'data': $value},
+        success:function(data){
+            $('#new').html(data);
+            console.log(data);
+        }
+       });
+    })
+    </script>
 
 @endsection

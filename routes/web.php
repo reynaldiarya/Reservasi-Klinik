@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\ReservasiController;
+use App\Models\rekam_medis;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/profile-update', [ProfileController::class, 'update']);
     Route::get('/rekam-medis', [RekamMedisController::class, "rekammedis"]);
     Route::get('/cari-reservasi-pasien',[ReservasiController::class,'carireservasipasien']);
+    Route::get('/cari-rekam-pasien',[RekamMedisController::class,'carirekampasien']);
 });
 // Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('guest')->name('login-staff');
 // Route::post('/login-staff', [LoginController::class, "indexstafflogin"])->middleware('guest');
@@ -68,6 +70,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     Route::post('/hapus-rekam-medis', [RekamMedisController::class, 'hapusrekammedis']);
     route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
     route::get('/cari-reservasi', [ReservasiController::class, 'carireservasi']);
+    route::get('/cari-pasien', [ProfileController::class, 'caripasien']);
+route::get('/cari-rekam-medis', [RekamMedisController::class, 'carirekammedis']);
 });
 // Route::post('/login-staff', [LoginController::class, "login"])->name('login');
 // Route::post('/logout', [LoginController::class, "logout"]);

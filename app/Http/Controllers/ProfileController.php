@@ -104,4 +104,34 @@ class ProfileController extends Controller
 
         return redirect()->route('profile-staff')->withSuccess('Profil berhasil diperbarui');
     }
+
+    public function caripasien()
+    {
+        if(request('data')== null){
+            return;
+        }
+        $data = user::where('name', 'like', '%' . request('data') . '%')
+            ->orWhere('birthday', 'like', '%' . request('data') . '%')
+            ->orWhere('telp', 'like', '%' . request('data') . '%')
+            ->orWhere('email', 'like', '%' . request('data') . '%')
+            ->orWhere('address', 'like', '%' . request('data') . '%')->get();
+        $data = $data->where('level',0);
+
+        $no = 0;
+        $output = '';
+        foreach ($data as $item) {
+            $no++;
+        
+            $output .= '<tr>
+                                            <td>' . $no . '</td>
+                                            <td>' . $item->name . '</td>
+                                            <td>' .  date("d M Y", strtotime($item->birthday)) . '</td>
+                                            <td>' . $item->address . '</td>
+                                            <td>' . $item->email . '</td>
+                                            <td>' . $item->telp . '</td>
+                                            
+                            </tr>';
+        }
+        return response($output);
+    }
 }

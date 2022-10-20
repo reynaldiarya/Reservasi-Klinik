@@ -14,6 +14,6 @@ class RekamMedisSeeder extends Seeder
      */
     public function run()
     {
-        rekam_medis::factory(10)->create();
+        rekam_medis::factory(20)->create();
     }
 }

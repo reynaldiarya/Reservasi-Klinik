@@ -2,7 +2,7 @@
 @section('content')
 @extends('partials.sidebar')
 @section('search')
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-200P">
     <div class="input-group">
         <input type="search" id="search" class="form-control bg-light border-1 rounded-5 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">

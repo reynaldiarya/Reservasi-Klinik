@@ -251,6 +251,9 @@ $('#search').on('keyup',function () {
    if($value){
     $('#alldata').hide();
     $('.pagination').hide();
+}else{
+    $('#alldata').show();
+    $('.pagination').show();
 }
    $.ajax({
     type:'get',

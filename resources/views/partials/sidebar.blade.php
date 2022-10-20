@@ -30,7 +30,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/rekam-medis">
                     <i class="fa-solid fa-notes-medical"></i>
-                    <span>Rekam Medis</span></a>
+                    <span>Riwayat Pemeriksaan</span></a>
             </li>
 
             <!-- Divider -->
@@ -83,12 +83,12 @@
 
                     <!-- Topbar Search -->
                     
+                    @yield('search')
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         
-                        @yield('search')
                 
 
                         <!-- Nav Item - User Information -->

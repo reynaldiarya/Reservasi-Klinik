@@ -1,10 +1,21 @@
 @extends('maintemplatedashboard')
 @section('content')
-@include('partials.sidebar')
+@extends('partials.sidebar')
+@section('search')
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-200P">
+    <div class="input-group">
+        <input type="search" id="search" class="form-control bg-light border-1 rounded-5 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+
+        </div>
+    </div>
+</form>
+    
+@endsection
 <div class="container-fluid">
     <div class="card shadow mb-5">
         <div class="card-header py-3">
-            <p class="text-primary m-0 fw-bold">Daftar Rekam Medis</p>
+            <p class="text-primary m-0 fw-bold">Daftar Riwayat Pemeriksaan</p>
         </div>
         <div class="card-body">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -16,7 +27,10 @@
                             <th>Tanggal Periksa</th>
                             <th>Dokter</th>
 
-                        </tr>@php $j = 0 @endphp
+                        </tr>
+                    </thead>
+                        <tbody id="alldata">
+                        @php $j = 0 @endphp
                         <tr>
                             @foreach ($rekam as $item)
                             @php $j++ @endphp
@@ -134,8 +148,8 @@
                     </tr>
 
                             @endforeach
-                    </thead>
-                    <tbody>
+                    </tbody>
+                    <tbody id="konten">
 
                     </tbody>
 
@@ -155,5 +169,26 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    $('#search').on('keyup',function () {
+       $value=$(this).val();
+       if($value){
+        $('#alldata').hide();
+        $('.pagination').hide();
+       }else{
+        $('#alldata').show();
+        $('.pagination').show();
+   }
+       $.ajax({
+        type:'get',
+        url:'{{ URL::to('cari-rekam-pasien')}}',
+        data:{'data': $value},
+        success:function(data){
+            $('#konten').html(data);
+            
+            
+        }
+       });
+    })
+    </script>
 @endsection

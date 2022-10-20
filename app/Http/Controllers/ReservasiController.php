@@ -147,38 +147,35 @@ class ReservasiController extends Controller
         }
       
         
-        $data = reservasi::Where('nama_pasien', 'like', '%' . request('data') . '%')     
+        $data = reservasi::Where('nama_pasien', 'like', '%' . request('data') . '%')
         ->orWhere('tgl_reservasi', 'like', '%' . request('data') . '%')
-        ->orWhere('keluhan', 'like', '%' . request('data') . '%')->get();
-        
+        ->orWhere('keluhan', 'like', '%' . request('data') . '%')
+        ->get();
         $data = $data->where('user_id', auth::id());
-        // dd($data);
-        // dd($data);
-// $data = $data->where('nama_pasien', 'like', '%' . request('data') . '%');
-            // ->orWhere('tgl_reservasi', 'like', '%' . request('data') . '%')
-            // ->orWhere('keluhan', 'like', '%' . request('data') . '%');
-            
+        
+    
+
         $no = 0;
         $output = '';
         foreach ($data as $item) {
             $no++;
-            // if ($item->status_hadir == 0) {
-            //     $status = 'Belum Hadir';
-            // }
-            // if ($item->status_hadir == 1) {
-            //     $status = 'Hadir';
-            // }
-            // if ($item->status_hadir == 2) {
-            //     $status = 'Tidak Hadir';
-            // }
+            if ($item->status_hadir == 0) {
+                $status = 'Belum Hadir';
+            }
+            if ($item->status_hadir == 1) {
+                $status = 'Hadir';
+            }
+            if ($item->status_hadir == 2) {
+                $status = 'Tidak Hadir';
+            }
 
-            $output .= '<tr>
+            $output = '<tr>
                                             <td>' . $no . '</td>
                                             <td>' . $item->nama_pasien . '</td>
                                             <td>' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
                                             <td>' . $item->keluhan . '</td>
                                             <td>' . $item->no_antrian . '</td>
-                                            
+                                            <td>'.$status.'</td>
                                             
                             </tr>';
         }
