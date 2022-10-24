@@ -1,6 +1,6 @@
 @extends('maintemplatedashboard')
 @section('content')
-@include('partials.sidebarstaff')
+@extends('partials.sidebarstaff')
 
 <body id="page-top">
 <div class="container-fluid">

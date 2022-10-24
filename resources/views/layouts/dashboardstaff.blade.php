@@ -1,6 +1,6 @@
 @extends('maintemplatedashboard')
 @section('content')
-@include('partials.sidebarstaff')
+@extends('partials.sidebarstaff')
 <body id="page-top">
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
@@ -58,7 +58,7 @@
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Author @ Kelompok 12 SI UA </span></div>
+                    <div class="text-center my-auto copyright"><span>Kelompok 12 SI UA </span></div>
                 </div>
             </footer>
         </div>

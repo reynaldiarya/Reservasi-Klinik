@@ -61,8 +61,8 @@ class JadwalController extends Controller
                             <td>'. $status .'</td>
                             <td>'. $item->jumlah_maxpasien .'</td>
                             <td>
-                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal' . $item->id_jadwal . '" ><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal' . $item->id_jadwal . '" ><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal' . $item->id_jadwal . '" ><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal' . $item->id_jadwal . '" ><i class="fa-solid fa-trash-can"></i></button>
                            </td>
                            <div>
                         <div class="modal fade" id="hapusjadwal' . $item->id_jadwal . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

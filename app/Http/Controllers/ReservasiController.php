@@ -72,39 +72,40 @@ class ReservasiController extends Controller
         foreach ($data as $item) {
             $no++;
             if ($item->status_hadir == 0) {
-                $status = 'Belum Hadir';
+                $status = 'Tidak Hadir';
             }
             if ($item->status_hadir == 1) {
                 $status = 'Hadir';
             }
-            if ($item->status_hadir == 2) {
-                $status = 'Tidak Hadir';
-            }
+
 
             $output .= '<tr>
-                                            <td>' . $no . '</td>
-                                            <td>' . $item->nama_pasien . '</td>
-                                            <td>' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
-                                            <td>' . $item->keluhan . '</td>
-                                            <td>' . $item->no_antrian . '</td>
+                                            <td class="align-middle">' . $no . '</td>
+                                            <td class="align-middle">' . $item->nama_pasien . '</td>
+                                            <td class="align-middle">' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
+                                            <td class="align-middle">' . $item->keluhan . '</td>
+                                            <td class="align-middle">' . $item->no_antrian . '</td>
                                             <td>
-                                            <form action="edit-reservasi" method="post">
+                                            <form action="edit-reservasi" class="my-0" method="post">
                                                ' . csrf_field() . '
                                                 <input type="hidden" name="id" value="' . $item->id_reservasi . '">
                                                 <input type="hidden" name="tgl" value="' . $item->tgl_reservasi . '">
+
+                                                <div class="row">
+                                                <div class="col">
                                                 <select name="status" class="form-select form-select-sm" aria-label=".form-select-sm example">
                                                     <option selected value="' . $item->status_hadir . '">' . $status . '</option>
+                                                        <option value="0">Tidak Hadir</option>
                                                         <option value="1">Hadir</option>
-                                                        <option value="2">Tidak Hadir</option>
                                                     </select>
+                                                    </div>
+                                                    <div class="col">
                                                     <button title="Simpan" type="submit" class="btn btn-primary"><i class="bi bi-save2"></i></button>
-                                                    
+                                                    </div>
                                                 </form>
-                                                
+
                                             </td>
-                                            <td>
-                                    <a class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#hapusjadwal' . $item->id_reservasi . '" ><i class="bi bi-trash-fill"></i></a>
-                                </td>
+
                                 <div>
                                     <div class="modal fade" id="hapusjadwal' . $item->id_reservasi . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -117,7 +118,7 @@ class ReservasiController extends Controller
                                                     ' . csrf_field() . '
                                                     <div class="modal-body">
                                                         <input type="hidden" name="tgl" value="' . $item->tgl_reservasi . '">
-                                                        
+
                                                         <input type="hidden" name="id" value="' . $item->id_reservasi . '">
                                                         <strong>Apakah anda yakin untuk menghapus?</strong>
                                                     </div>
@@ -141,19 +142,19 @@ class ReservasiController extends Controller
 
     public function carireservasipasien()
     {
-        
+
         if(request('data')==null){
             return;
         }
-      
-        
+
+
         $data = reservasi::Where('nama_pasien', 'like', '%' . request('data') . '%')
         ->orWhere('tgl_reservasi', 'like', '%' . request('data') . '%')
         ->orWhere('keluhan', 'like', '%' . request('data') . '%')
         ->get();
         $data = $data->where('user_id', auth::id());
-        
-    
+
+
 
         $no = 0;
         $output = '';
@@ -176,11 +177,11 @@ class ReservasiController extends Controller
                                             <td>' . $item->keluhan . '</td>
                                             <td>' . $item->no_antrian . '</td>
                                             <td>'.$status.'</td>
-                                            
+
                             </tr>';
         }
         return response($output);
-      
+
     }
     public function kelolareservasi()
     {

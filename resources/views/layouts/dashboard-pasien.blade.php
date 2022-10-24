@@ -49,7 +49,7 @@
 
         <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Author @ Kelompok 12 SI UA </span></div>
+                    <div class="text-center my-auto copyright"><span>Kelompok 12 SI UA </span></div>
                 </div>
             </footer>
         </div>

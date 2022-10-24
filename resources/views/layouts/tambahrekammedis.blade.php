@@ -1,7 +1,6 @@
 @extends('maintemplatedashboard')
 @section('content')
-@include('partials.sidebarstaff')
-
+@extends('partials.sidebarstaff')
 
 
 <div class="container">

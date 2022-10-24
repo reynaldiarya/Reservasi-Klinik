@@ -139,15 +139,15 @@ class RekamMedisController extends Controller
         $output = '';
         foreach ($data as $item) {
             $no++;
-            $output = '<td style="padding-left: 15px">' . $no . '</td>
-            <td>' . $item->nama_pasien . '</td>
-            <td>' . $item->name . '</td>
-            <td>' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
+            $output = '<td class="align-middle" style="padding-left: 15px">' . $no . '</td>
+            <td class="align-middle">' . $item->nama_pasien . '</td>
+            <td class="align-middle">' . $item->name . '</td>
+            <td class="align-middle">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
             <td style="padding-left: 32px">
                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-pen-to-square"></i></button>
                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
 
-           
             <div>
             <div class="modal fade" id="hapus_rekam_medis' . $item->id_rekam_medis . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -291,7 +291,6 @@ class RekamMedisController extends Controller
             </div>
         </div>
     </div>
-    </td>
 </form>';
         }
         return response($output);

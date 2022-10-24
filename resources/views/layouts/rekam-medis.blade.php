@@ -2,16 +2,30 @@
 @section('content')
 @extends('partials.sidebar')
 @section('search')
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-200P">
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
-        <input type="search" id="search" class="form-control bg-light border-1 rounded-5 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="search" id="search" class="form-control bg-light border-1 small rounded-3" placeholder="Pencarian untuk..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-
         </div>
     </div>
 </form>
-    
 @endsection
+
+@section('searchm')
+<li class="nav-item dropdown no-arrow d-sm-none">
+    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-search fa-fw"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+        <form class="form-inline mr-auto w-100 navbar-search">
+            <div class="input-group">
+                <input type="searchm" id="searchm" class="form-control bg-light border-0 small" placeholder="Pencarian untuk..." aria-label="Search" aria-describedby="basic-addon2">
+            </div>
+        </form>
+    </div>
+</li>
+@endsection
+
 <div class="container-fluid">
     <div class="card shadow mb-5">
         <div class="card-header py-3">
@@ -19,7 +33,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table class="table my-0" id="dataTable">
+                <table class="table" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -185,8 +199,30 @@
         data:{'data': $value},
         success:function(data){
             $('#konten').html(data);
-            
-            
+
+
+        }
+       });
+    })
+    </script>
+<script type="text/javascript">
+    $('#searchm').on('keyup',function () {
+       $value=$(this).val();
+       if($value){
+        $('#alldata').hide();
+        $('.pagination').hide();
+       }else{
+        $('#alldata').show();
+        $('.pagination').show();
+   }
+       $.ajax({
+        type:'get',
+        url:'{{ URL::to('cari-rekam-pasien')}}',
+        data:{'data': $value},
+        success:function(data){
+            $('#konten').html(data);
+
+
         }
        });
     })
