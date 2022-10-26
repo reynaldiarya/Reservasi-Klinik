@@ -24,6 +24,7 @@ class CreateRekamMedisTable extends Migration
             $table->string('tekanan_darah')->default('-');
             $table->string('alergi_makanan')->default('-');
             $table->date('tgl_periksa');
+            $table->integer('usia');
             $table->longText('keterangan');
             $table->timestamps();
         });

@@ -28,8 +28,9 @@ class RekamMedisController extends Controller
     }
     public function kelolarekammedis()
     {
-        $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
-            ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
+        // $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
+        //     ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
+            $rekam = rekam_medis::with('user')->paginate(5);
         return view('layouts.kelolarekammedis', [
             'title' => self::title . " Kelola Rekam medis",
             'rekam'  => $rekam,
@@ -42,6 +43,7 @@ class RekamMedisController extends Controller
             ->where('id_rekam_medis', request('id_user'))
             ->update([
                 'nama_pasien' => request('nama_pasien'),
+                'usia' => request('usia'),
                 "tgl_periksa" => request("tgl_periksa"),
                 "nama_penyakit" => request("nama_penyakit"),
                 "kadar_gula_darah" => request("kadar_gula_darah"),
@@ -58,8 +60,9 @@ class RekamMedisController extends Controller
     {
         $req->validate(['nama_user' => 'required']);
         $data = [
-            'User_id' => request('nama_user'),
+            'user_id' => request('nama_user'),
             'nama_pasien' => request('nama_pasien'),
+            'usia' => request('usia'),
             "tgl_periksa" => request("tgl_periksa"),
             "nama_penyakit" => request("nama_penyakit"),
             "kadar_gula_darah" => request("kadar_gula_darah"),

@@ -63,7 +63,7 @@
             <div class="row d-flex align-items-center justify-content-between">
                 <div class="col-5">Tanggal Jadwal</div>
                 <div class="col-lg-7">
-                    <input required class="form-control form-control-sm" type="text" name="tgl_jadwal"  placeholder="{{ __('Tanggal Jadwal') }}" onmouseover="(this.type='date')" >
+                    <input required class="form-control form-control-sm" type="text" name="tgl_jadwal" min="{{ date('Y-m-d') }}" placeholder="{{ __('Tanggal Jadwal') }}" onmouseover="(this.type='date')" >
                 </div>
             </div>
             <div class="row mt-3 d-flex align-items-center justify-content-between">
@@ -112,7 +112,7 @@
                             <th>Jam Masuk</th>
                             <th>Jam Pulang</th>
                             <th>Status Masuk</th>
-                            <th>Jumlah Max Pasien</th>
+                            <th>Jumlah Pasien</th>
                             <th style="padding-left: 32px">Aksi</th>
 
                         </tr>
@@ -131,7 +131,7 @@
                             @if ($item->status_masuk ==1)
                             <td>Tidak Hadir</td>
                             @endif
-                            <td>{{ $item->jumlah_maxpasien }}</td>
+                            <td>{{ $item->jumlah_pasien_hari_ini }}</td>
                             <td>
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal{{ $item->id_jadwal }}" ><i class="fa-solid fa-pen-to-square"></i></button>
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal{{ $item->id_jadwal }}" ><i class="fa-solid fa-trash-can"></i></button>

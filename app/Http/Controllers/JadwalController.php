@@ -64,12 +64,12 @@ class JadwalController extends Controller
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal' . $item->id_jadwal . '" ><i class="fa-solid fa-pen-to-square"></i></button>
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal' . $item->id_jadwal . '" ><i class="fa-solid fa-trash-can"></i></button>
                            </td>
-                           <div>
+                           
                         <div class="modal fade" id="hapusjadwal' . $item->id_jadwal . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel'.$item->id_jadwal . '">Modal title</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form action="/hapus-jadwal" method="POST">' .
@@ -90,8 +90,8 @@ class JadwalController extends Controller
                               </div>
                             </div>
                           </div>
-                    </div>
-                        <div>
+                    
+                       
                         <div class="modal fade" id="editjadwal' . $item->id_jadwal . '" tabindex="-1"  aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -160,12 +160,7 @@ class JadwalController extends Controller
 
                               </div>
                             </div>
-                          </div>
-
-                        </tr>
-
-
-
+                         </td>
 
                         </tr>';
         }

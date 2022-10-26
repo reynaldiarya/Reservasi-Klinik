@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
 
     Route::get('/dashboard-staff', [dashboardController::class, "indexstaff"])->name('dashboard-staff');
     Route::get('/profile-staff', [ProfileController::class, "profilestaff"])->name('profile-staff');
-    Route::get('/pasien', [dashboardController::class, "kelolapasien"]);
+    Route::get('/kelola-pasien', [dashboardController::class, "kelolapasien"]);
     Route::get('/kelola-jadwal', [JadwalController::class, "kelolajadwal"]);
     Route::post('/tambah-jadwal', [JadwalController::class, "tambahjadwal"]);
     Route::post('/profile-update-staff', [ProfileController::class, 'updatestaff']);
@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
     route::get('/cari-reservasi', [ReservasiController::class, 'carireservasi']);
     route::get('/cari-pasien', [ProfileController::class, 'caripasien']);
-route::get('/cari-rekam-medis', [RekamMedisController::class, 'carirekammedis']);
+    route::get('/cari-rekam-medis', [RekamMedisController::class, 'carirekammedis']);
 });
 // Route::post('/login-staff', [LoginController::class, "login"])->name('login');
 // Route::post('/logout', [LoginController::class, "logout"]);

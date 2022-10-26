@@ -39,6 +39,13 @@
             </div>
         </div>
         <div class="row mt-3 d-flex align-items-center justify-content-between">
+            <div class="col-sm-5">Usia</div>
+            <div class="col-lg-7">
+                <input required class="form-control form-control-sm" type="number" min="0"  name="usia" value="{{ old('usia') }}"  placeholder="{{ __('Masukkan Usia ') }}" >
+
+            </div>
+        </div>
+        <div class="row mt-3 d-flex align-items-center justify-content-between">
             <div class="col-sm-5">Tanggal Periksa</div>
             <div class="col-lg-7">
                 <input required class="form-control form-control-sm" type="text" value="{{ old('tgl_periksa') }}" name="tgl_periksa"  placeholder="{{ __('Tanggal periksa') }}" onclick="(this.type='date')" >

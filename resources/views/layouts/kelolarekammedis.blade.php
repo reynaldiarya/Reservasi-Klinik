@@ -66,7 +66,7 @@
                         @php $j++ @endphp
                         <td style="padding-left: 15px">{{ $j }}</td>
                         <td>{{ $item->nama_pasien}}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->user->name }}</td>
                         {{-- <th>{{ $item->tgl_periksa->format('d-m-Y') }}</th> --}}
                         <td>{{ date('d M Y', strtotime($item->tgl_periksa))}}</td>
                         <td style="padding-left: 32px">
@@ -127,11 +127,11 @@
 
                                                     <div class="col-12 col-lg-6">
                                                         <div class="row mt-3">
-                                                            <div class="col-sm-10"><strong>Tekanan Darah</strong></div>
+                                                            <div class="col-sm-10"><strong>Usia</strong></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <input type="text" name="tekanan_darah" class="form-control col-sm-10" value="{{ $item->tekanan_darah }}">
+                                                                <input type="text" name="usia" class="form-control col-sm-10" value="{{ $item->usia }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -207,6 +207,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="row mt-3">
+                                                            <div class="col-sm-10"><strong>Kadar Gula Darah</strong></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <input type="text" name="kadar_gula_darah" class="form-control col-sm-10" value="{{ $item->kadar_gula_darah}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="row">
@@ -261,6 +271,7 @@
 </div>
 <script type="text/javascript">
     $('#search').on('keyup',function () {
+       
        $value=$(this).val();
        if($value){
         $('#old').hide();
@@ -275,7 +286,7 @@
         data:{'data': $value},
         success:function(data){
             $('#new').html(data);
-            console.log(data);
+        
         }
        });
     })
