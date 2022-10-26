@@ -15,8 +15,8 @@ class JadwalController extends Controller
     public function kelolajadwal()
     {
         $jadwal = jadwal::orderby('tgl_jadwal', 'desc')->paginate(5);
-        return view('layouts.kelolajadwal', [
-            'title' => self::title . ' Kelola Jadwal',
+        return view('staff.kelolajadwal', [
+            'title' => self::title,
             'jadwal' => $jadwal
         ]);
     }
@@ -54,17 +54,17 @@ class JadwalController extends Controller
             }
 
             $output.='<tr>
-                            <td>'.$no. '</td>
-                            <td>'.  date("d M Y", strtotime($item->tgl_jadwal)). '</td>
-                            <td>'.$item->jam_masuk.'</td>
-                            <td>'. $item->jam_pulang.'</td>
-                            <td>'. $status .'</td>
-                            <td>'. $item->jumlah_maxpasien .'</td>
-                            <td>
+                            <td class="text-center">'.$no. '</td>
+                            <td class="text-center">'.  date("d M Y", strtotime($item->tgl_jadwal)). '</td>
+                            <td class="text-center">'.$item->jam_masuk.'</td>
+                            <td class="text-center">'. $item->jam_pulang.'</td>
+                            <td class="text-center">'. $status .'</td>
+                            <td class="text-center">'. $item->jumlah_maxpasien .'</td>
+                            <td class="text-center">
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#editjadwal' . $item->id_jadwal . '" ><i class="fa-solid fa-pen-to-square"></i></button>
                                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapusjadwal' . $item->id_jadwal . '" ><i class="fa-solid fa-trash-can"></i></button>
                            </td>
-                           
+
                         <div class="modal fade" id="hapusjadwal' . $item->id_jadwal . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -90,8 +90,8 @@ class JadwalController extends Controller
                               </div>
                             </div>
                           </div>
-                    
-                       
+
+
                         <div class="modal fade" id="editjadwal' . $item->id_jadwal . '" tabindex="-1"  aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">

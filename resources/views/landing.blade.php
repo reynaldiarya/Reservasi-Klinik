@@ -1,20 +1,20 @@
 @extends('maintemplate')
 @section('content')
-<div class="container mt-4" style="height: 570px">
+<div class="container mt-auto d-flex align-items-center" style="height: 570px">
   <div class="row row-cols-1 row-cols-md-2 d-flex align-items-center">
-    <div class="col-12 col-md-8 col-xl-6 mx-auto my-4">
+    <div class="col-12 col-md-6 col-xl-6 mx-auto my-4">
       <h1 class="fontcusblue">
         dr Reynaldi siap melayani kebutuhan percintaan anda 24/7
         </h1>
         <h5 class="fontcusgrey">dr Reynaldi adalah seorang dokter tampan dan suka membantu masalah percintaan anda</h5>
     </div>
-    <div class="col-12 col-md-8 col-xl-6 mx-auto my-4 d-flex justify-content-center">
+    <div class="col-12 col-md-6 col-xl-6 mx-auto my-4 d-flex justify-content-center">
       <img  class ="d-block img-fluid" src="img/landingimage.png" width="400" alt="">
     </div>
   </div>
 </div>
 
-<div class="container d-flex justify-content-center align-items-center py-4 py-xl-5" id="cekjadwal" style="height: 300px">
+<div class="container d-flex justify-content-center align-items-center" id="cekjadwal" style="height: 300px">
   <div class="row d-flex justify-content-center">
     <h4 class="fontcusblue text-center my-3">Ingin Reservasi?</h4>
 
@@ -86,7 +86,7 @@
                       <div class="d-flex align-items-center p-3">
                         <i class="fa-solid fa-phone"></i>
                           <div class="px-2">
-                              <h6 class="mb-0">Phone</h6>
+                              <h6 class="mb-0">Telepon</h6>
                               <p class="mb-0">+62 811 222 333</p>
                           </div>
                       </div>
@@ -100,7 +100,7 @@
                       <div class="d-flex align-items-center p-3">
                         <i class="fa-solid fa-map"></i>
                           <div class="px-2">
-                              <h6 class="mb-0">Location</h6>
+                              <h6 class="mb-0">Alamat</h6>
                               <p class="mb-0">Jl Gubeng Kertajaya No 12, Gubeng, Surabaya, Indonesia 12345</p>
                           </div>
                       </div>
@@ -108,13 +108,19 @@
               </div>
               <div class="col-12 col-md-8 col-xl-4">
                   <div>
-                      <form class="p-3 p-xl-4" method="post">
-                          <div class="mb-3"><input class="form-control" type="text" id="name-1" name="name" placeholder="Name"></div>
-                          <div class="mb-3"><input class="form-control" type="email" id="email-1" name="email" placeholder="Email"></div>
-                          <div class="mb-3"><textarea class="form-control" id="message-1" name="message" rows="6" placeholder="Message"></textarea></div>
-                          <div><button class="btn btn-primary d-block w-100" type="submit">Send </button></div>
+                      <form class="p-3 p-xl-4" action="/hubungi-mail">
+                          <div class="mb-3"><input class="form-control" type="text" id="name" name="name" placeholder="Nama"></div>
+                          <div class="mb-3"><input class="form-control" type="email" id="email" name="email" placeholder="Email"></div>
+                          <div class="mb-3"><textarea class="form-control" id="message" name="message" rows="6" placeholder="Pesan"></textarea></div>
+                          <div><button class="btn btn-primary d-block w-100" type="submit">Kirim</button></div>
                       </form>
                   </div>
+                  @if(session()->has('success'))
+
+                    <div class="text-center alert alert-success fade show" role="alert">
+                        {{ session('success')}}
+                    </div>
+                  @endif
               </div>
           </div>
       </div>

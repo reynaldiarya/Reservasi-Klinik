@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Register;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
     //
-    const title = 'Register - dr. Reynaldi - Specialist Penyakit Cinta';
+    const title = 'Register - dr. Reynaldi';
 
     public function index()
     {
@@ -31,6 +33,17 @@ class RegisterController extends Controller
         ]);
         $valid['password'] = bcrypt($request['password']);
         User::create($valid);
+        $isi_email = [
+            'name' => $request->input('name'),
+            'birthday' => $request->input('birthday'),
+            'address' => $request->input('address'),
+            'email' => $request->input('email'),
+            'telp' => $request->input('telp'),
+            'password' => 'Password Anda',
+        ];
+
+        $tujuan = $request->get('email');
+        Mail::to($tujuan)->send(new Register($isi_email));
         return view('auth.login', [
             'registberhasil' => 'true',
             'email' => $valid['email'],

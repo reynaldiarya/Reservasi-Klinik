@@ -17,12 +17,12 @@ class LoginController extends Controller
             'title' => self::title
         ]);
     }
-    public function indexstaff()
-    {
-        return view('auth.loginstaff', [
-            'title' => self::title
-        ]);
-    }
+    // public function indexstaff()
+    // {
+    //     return view('auth.loginstaff', [
+    //         'title' => self::title
+    //     ]);
+    // }
     // public function indexstafflogin(Request $req)
     // {
 

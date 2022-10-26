@@ -59,7 +59,11 @@
                 </a>
             </li> --}}
 
-
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <i class="fa-solid fa-circle-arrow-left"></i>
+                  <span>Halaman Awal</span></a>
+            </li>
 
 
 
@@ -88,14 +92,8 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="search" id="search" class="form-control bg-light border-5 small rounded-5" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                            </div>
-                        </div>
-                    </form>
-                    {{-- for mobile --}}
+                    @yield('search')
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 

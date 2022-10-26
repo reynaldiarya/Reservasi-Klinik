@@ -53,8 +53,8 @@ class ReservasiController extends Controller
     {
         $reservasi = reservasi::orderBy('tgl_reservasi', 'desc')->where('user_id', Auth::user()->id)->paginate(5);
 
-        return view('layouts.reservasi', [
-            'title' => self::title . ' Reservasi',
+        return view('pasien.reservasi', [
+            'title' => self::title,
             'reservasi' => $reservasi
         ]);
     }
@@ -80,19 +80,19 @@ class ReservasiController extends Controller
 
 
             $output .= '<tr>
-                                            <td class="align-middle">' . $no . '</td>
-                                            <td class="align-middle">' . $item->nama_pasien . '</td>
-                                            <td class="align-middle">' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
-                                            <td class="align-middle">' . $item->keluhan . '</td>
-                                            <td class="align-middle">' . $item->no_antrian . '</td>
-                                            <td>
+                                            <td class="align-middle text-center">' . $no . '</td>
+                                            <td class="align-middle text-center">' . $item->nama_pasien . '</td>
+                                            <td class="align-middle text-center">' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
+                                            <td class="align-middle text-center">' . $item->keluhan . '</td>
+                                            <td class="align-middle text-center">' . $item->no_antrian . '</td>
+                                            <td class="align-middle">
                                             <form action="edit-reservasi" class="my-0" method="post">
                                                ' . csrf_field() . '
                                                 <input type="hidden" name="id" value="' . $item->id_reservasi . '">
                                                 <input type="hidden" name="tgl" value="' . $item->tgl_reservasi . '">
 
                                                 <div class="row">
-                                                <div class="col">
+                                                <div class="col-lg-8">
                                                 <select name="status" class="form-select form-select-sm" aria-label=".form-select-sm example">
                                                     <option selected value="' . $item->status_hadir . '">' . $status . '</option>
                                                         <option value="0">Tidak Hadir</option>
@@ -171,12 +171,12 @@ class ReservasiController extends Controller
             }
 
             $output = '<tr>
-                                            <td>' . $no . '</td>
-                                            <td>' . $item->nama_pasien . '</td>
-                                            <td>' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
-                                            <td>' . $item->keluhan . '</td>
-                                            <td>' . $item->no_antrian . '</td>
-                                            <td>'.$status.'</td>
+                                            <td class="align-middle text-center">' . $no . '</td>
+                                            <td class="align-middle text-center">' . $item->nama_pasien . '</td>
+                                            <td class="align-middle text-center">' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
+                                            <td class="align-middle text-center">' . $item->keluhan . '</td>
+                                            <td class="align-middle text-center">' . $item->no_antrian . '</td>
+                                            <td class="align-middle text-center">'.$status.'</td>
 
                             </tr>';
         }
@@ -186,9 +186,9 @@ class ReservasiController extends Controller
     public function kelolareservasi()
     {
         $kelolareservasi = reservasi::orderBy('tgl_reservasi')->orderBy('no_antrian')->paginate(5);
-        return view('layouts.kelolareservasi', [
+        return view('staff.kelolareservasi', [
             'reservasi' => $kelolareservasi,
-            'title' => self::title . ' Kelola Reservasi'
+            'title' => self::title
 
         ]);
     }

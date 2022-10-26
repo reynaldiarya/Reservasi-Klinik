@@ -15,8 +15,8 @@ class RekamMedisController extends Controller
     {
 
         $rekam = rekam_medis::latest()->where('user_id', Auth::user()->id)->paginate(5);
-        return view('layouts.rekam-medis', [
-            'title' => self::title . " Rekam medis",
+        return view('pasien.rekammedis', [
+            'title' => 'Riwayat Pemeriksaan',
             'rekam'  => $rekam
 
         ]);
@@ -31,8 +31,8 @@ class RekamMedisController extends Controller
         // $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
         //     ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
             $rekam = rekam_medis::with('user')->paginate(5);
-        return view('layouts.kelolarekammedis', [
-            'title' => self::title . " Kelola Rekam medis",
+        return view('staff.kelolarekammedis', [
+            'title' => self::title,
             'rekam'  => $rekam,
 
         ]);
@@ -96,9 +96,9 @@ class RekamMedisController extends Controller
     public function tambahrekammedis()
     {
         $pasien = User::where('level', '0')->get();
-        return view('layouts.tambahrekammedis', [
+        return view('staff.tambahrekammedis', [
             'pasien' => $pasien,
-            'title' => self::title . " Kelola Rekam medis"
+            'title' => self::title
 
         ]);
     }
@@ -116,10 +116,10 @@ class RekamMedisController extends Controller
             $no++;
             $output =
                 '<tr>
-            <td style="padding-left: 15px">' . $no . '</td>
-            <td>' . $item->nama_pasien . '</td>
-         <td>' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
-            <td>dr Rey</td>
+            <td class="text-center">' . $no . '</td>
+            <td class="text-center">' . $item->nama_pasien . '</td>
+         <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
+            <td class="text-center">dr Rey</td>
             </tr>';
         }
         return response($output);
@@ -142,11 +142,11 @@ class RekamMedisController extends Controller
         $output = '';
         foreach ($data as $item) {
             $no++;
-            $output = '<td class="align-middle" style="padding-left: 15px">' . $no . '</td>
-            <td class="align-middle">' . $item->nama_pasien . '</td>
-            <td class="align-middle">' . $item->name . '</td>
-            <td class="align-middle">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
-            <td style="padding-left: 32px">
+            $output = '<td class="text-center">' . $no . '</td>
+            <td class="text-center">' . $item->nama_pasien . '</td>
+            <td class="text-center">' . $item->name . '</td>
+            <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
+            <td class="text-center">
                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-pen-to-square"></i></button>
                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-trash-can"></i></button>
             </td>
@@ -190,104 +190,128 @@ class RekamMedisController extends Controller
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Nama Pasien</strong></div>
+                                    </div>
                                     <div class="row">
-                                        <div class="col-12 col-lg-6">
-                                            <div class="row mt-3">
-                                                <div class="col-sm-10"><strong>Nama Pasien</strong></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="nama_pasien" class="form-control col-sm-10" value="' . $item->nama_pasien . '" >
-                                                </div>
-                                            </div>
+                                        <div class="col-sm-12">
+                                            <input type="text" name="nama_pasien" class="form-control col-sm-12" value="{{ $item->nama_pasien }}" >
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="col-12 col-lg-6">
-                                            <div class="row mt-3">
-                                                <div class="col-sm-10"><strong>Tekanan Darah</strong></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="tekanan_darah" class="form-control col-sm-10" value="' . $item->tekanan_darah . '">
-                                                </div>
-                                            </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Usia</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="usia" class="form-control col-sm-12" value="{{ $item->usia }}">
                                         </div>
-
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <div class="row mt-3">
-                                    <div class="col-sm-5"><strong>Nama Penyakit</strong></div>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <input type="text" name="nama_penyakit" class="form-control col-sm-10" value="' . $item->nama_penyakit . '">
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-lg-6">
-                                <div class="row mt-3">
-                                    <div class="col-sm-5"><strong>Kadar Asam Urat</strong></div>
-                                </div>
-                                <div class="row">
-                                    <input type="number" name="kadar_asam_urat" class="form-control col-sm-10" value="' . $item->kadar_asam_urat . '">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <div class="row mt-3">
-                                    <div class="col-sm-5"><strong>Tanggal Periksa</strong></div>
-                                </div>
-                                <div class="row">
-                                    <input type="text" name="tgl_periksa" class="form-control col-sm-10" value="' . $item->tgl_periksa . '" onclick="(this.type="date")">
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-lg-6">
-                                <div class="row mt-3">
-                                    <div class="col-sm-5"><strong>Kadar gula darah</strong></div>
-                                </div>
-                                <div class="row">
-                                    <input type="number" name="kadar_gula_darah" class="form-control col-sm-10" value="' . $item->kadar_gula_darah . '">
-                                </div>
-                            </div>
-
                             </div>
 
                             <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <div class="row mt-3">
-                                    <div class="col-sm-5"><strong>Alergi Makanan</strong></div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Nama Penyakit</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="nama_penyakit" class="form-control col-sm-12" value="{{ $item->nama_penyakit }}">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <input type="text" name="alergi_makanan" class="form-control col-sm-10" value="' . $item->alergi_makanan . '">
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Kadar Asam Urat</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="number" name="kadar_asam_urat" class="form-control col-sm-12" value="{{ $item->kadar_asam_urat }}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-12 col-lg-6">
-                                <div class="row mt-3">
-                                    <div class="col-sm-5"><strong>kadar kolesterol</strong></div>
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Tanggal Periksa</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="tgl_periksa" class="form-control col-sm-12" value="{{ $item->tgl_periksa}}" onclick="(this.type="date")">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <input type="number" name="kadar_kolesterol" class="form-control col-sm-10" value="' . $item->kadar_kolesterol . '">
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <div class="row mt-3">
-                                    <div class="col-sm-5"><strong>Keterangan</strong></div>
-                                </div>
-                                <div class="row">
-                                    <textarea  class="form-control col-sm-10" name="keterangan">' . $item->keterangan . '</textarea>
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Kadar gula darah</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="number" name="kadar_gula_darah" class="form-control col-sm-12" value="{{ $item->kadar_gula_darah }}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Alergi Makanan</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="alergi_makanan" class="form-control col-sm-12" value="{{ $item->alergi_makanan}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>kadar kolesterol</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="number" name="kadar_kolesterol" class="form-control col-sm-12" value="{{ $item->kadar_kolesterol}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Kadar Gula Darah</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="kadar_gula_darah" class="form-control col-sm-12" value="{{ $item->kadar_gula_darah}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Keterangan</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea  class="form-control col-sm-12" name="keterangan">{{ $item->keterangan }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                            <div class="col-7 col-md-5 col-xl-5 mb-3 mt-3">
+                                <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
                         </div>
-                        <div class="row justify-content-center ">
-                            <div class="col-5 mt-5">
-                                <button class="btn btn-primary col-lg-10" type="submit">Simpan</button>
-                            </div>
                         </div>
                     </div>
                 </div>
