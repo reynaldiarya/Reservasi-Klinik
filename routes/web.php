@@ -42,6 +42,7 @@ Route::get('/registrasi-mail', [EmailController::class, "registrasi"]);
 
 Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
+    Route::get('/jadwal', [JadwalController::class, "jadwal"]);
     Route::post('/profile-update', [ProfileController::class, 'update']);
     Route::get('/reservasi', [ReservasiController::class, "reservasi"])->name('reservasi');
     Route::post('/reservasi', [ReservasiController::class, "createreservasipost"]);
@@ -49,8 +50,9 @@ Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/profile', [ProfileController::class, "profile"])->name('profile');
     Route::get('/profile-update', [ProfileController::class, 'update']);
     Route::get('/rekam-medis', [RekamMedisController::class, "rekammedis"]);
-    Route::get('/cari-reservasi-pasien',[ReservasiController::class,'carireservasipasien']);
-    Route::get('/cari-rekam-pasien',[RekamMedisController::class,'carirekampasien']);
+    Route::get('/cari-reservasi-pasien', [ReservasiController::class, 'carireservasipasien']);
+    Route::get('/cari-rekam-pasien', [RekamMedisController::class, 'carirekampasien']);
+    route::get('/cari-jadwal-pasien', [JadwalController::class, 'carijadwalpasien']);
 });
 // Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('guest')->name('login-staff');
 // Route::post('/login-staff', [LoginController::class, "indexstafflogin"])->middleware('guest');
@@ -73,11 +75,12 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     Route::post('/tambah-rekam-medis', [RekamMedisController::class, 'tambahrekammedispost']);
     Route::post('/edit-rekam-medis', [RekamMedisController::class, 'editrekammedis']);
     Route::post('/hapus-rekam-medis', [RekamMedisController::class, 'hapusrekammedis']);
-    route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
     route::get('/cari-reservasi', [ReservasiController::class, 'carireservasi']);
     route::get('/cari-pasien', [PasienController::class, 'caripasien']);
     route::get('/cari-rekam-medis', [RekamMedisController::class, 'carirekammedis']);
+    route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
 });
+
 // Route::post('/login-staff', [LoginController::class, "login"])->name('login');
 // Route::post('/logout', [LoginController::class, "logout"]);
 // Route::get('/dashboard-staff', [dashboardController::class, "index"])->middleware('auth')->name('dashboard-staff');

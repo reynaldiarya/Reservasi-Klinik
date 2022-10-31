@@ -15,12 +15,15 @@ class DashboardController extends Controller
 
     public function index()
     {
+        // $jadwal = jadwal::orderBy('tgl_jadwal','desc')->paginate(7);
         $countrekammedis = rekam_medis::where('user_id', Auth::user()->id)->count();
         $countreservasi = reservasi::where('user_id', Auth::user()->id)->count();
+        // $countjadwal = jadwal::count();
         return view('pasien.dashboardpasien', [
             'title' => self::title,
             'countrekammedis' => $countrekammedis,
-            'countreservasi' => $countreservasi
+            'countreservasi' => $countreservasi,
+            // 'countjadwal'=> $countjadwal
         ]);
     }
 
@@ -29,11 +32,13 @@ class DashboardController extends Controller
         $countallrekammedis = rekam_medis::count();
         $countallreservasi = reservasi::count();
         $countallpasien = User::where('level','0')->count();
+        $countalljadwal = jadwal::count();
         return view('staff.dashboardstaff', [
             'title' => self::title,
             'countallrekammedis' => $countallrekammedis,
             'countallreservasi' => $countallreservasi,
-            'countallpasien' => $countallpasien
+            'countallpasien' => $countallpasien,
+            'countalljadwal' => $countalljadwal
         ]);
     }
 

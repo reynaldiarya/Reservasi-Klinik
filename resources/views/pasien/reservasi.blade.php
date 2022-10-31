@@ -34,9 +34,9 @@
       </div>
     @endif
 
-    @if(session()->has('reservasiBerhasil'))
+    @if(session()->has('Success'))
     <div class="mt-3 col-md-4 text-center alert alert-success fade show" role="alert">
-        {{ session('reservasiBerhasil')}}
+        {{ session('Success')}}
     </div>
 
     @endif
@@ -44,51 +44,11 @@
     <div class="row ">
 
         <div class="col-sm-12 text-end">
-            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link"><i class="fa-solid fa-calendar-plus"></i> Buat reservasi</a></h3>
         </div>
     </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Buat Reservasi</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form action="/reservasi" method="POST">
-                @csrf
-                <div class="row d-flex align-items-center justify-content-between">
-                <div class="col-5">Nama Pasien</div>
-                <div class="col-lg-7">
-                    <input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="Nama Pasien"></div>
-            </div>
-            <div class="row mt-3 d-flex align-items-center justify-content-between">
-                <div class="col-5">Tanggal Reservasi</div>
-                <div class="col-lg-7">
-                    <input required class="form-control form-control-sm" min="{{ date('Y-m-d') }}" type="text" name="tglReservasi"  placeholder="{{ __('Tanggal Reservasi') }}" onmouseover="(this.type='date')" >
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-5">Keluhan</div>
-                <div class="col-lg-7v">
-                    <textarea required class="form-control form-control-sm" name="keluhan" placeholder="Masukan Keluhan Anda">{{ session('keluhan') }}</textarea>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center">
 
-                <div class="col-7 col-md-5 col-xl-3 mt-3">
-                    <button type="submit" class="btn bg-primary text-white col">Kirim</button>
-                </form>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-        </div>
-    </div>
-</div>
     <div class="card shadow mb-5">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
@@ -180,7 +140,6 @@
         data:{'data': $value},
         success:function(data){
             $('#konten').html(data);
-
 
         }
        });

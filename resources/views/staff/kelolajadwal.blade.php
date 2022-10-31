@@ -116,6 +116,7 @@
                             <th class="text-center">Aksi</th>
 
                         </tr>
+                        
                     </thead>
                     <tbody id="alldata" > @php $no = 0; @endphp
                         @foreach ($jadwal as $item)

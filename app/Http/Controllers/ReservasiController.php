@@ -28,13 +28,14 @@ class ReservasiController extends Controller
 
     public function createreservasipost(Request $req)
     {
+        // mengambil id user
         $iduser =  Auth::user()->id;
-        $valid = jadwal::where('tgl_jadwal', $req['tglReservasi'])->where('jumlah_maxpasien', '>', 0)->get();
+        // mengambil jadwal sesuai yg di inputkan user
+        $valid = jadwal::where('id_jadwal', $req['idJadwal'])->get();
 
-        if ($valid->count() < 1) {
-            return back()->with('salah', 'Maaf jadwal tidak tersedia, silahkan pilih jadwal lain')->with('namaPasien', $req['namaPasien'])->with('keluhan', $req['keluhan']);
-        }
+        // mengurangi jumlah maksimal pasien
         $jumlah = $valid[0]['jumlah_maxpasien'] - 1;
+        // menambahkan jumlah pasien hari ini , juga untuk nomer antrian
         $jumlah2 = $valid[0]['jumlah_pasien_hari_ini'] + 1;
         $data = [
             "nama_pasien" => $req['namaPasien'],
@@ -47,7 +48,7 @@ class ReservasiController extends Controller
         jadwal::where('id_jadwal', $valid[0]['id_jadwal'])->update(['jumlah_maxpasien' => $jumlah]);
         jadwal::where('id_jadwal', $valid[0]['id_jadwal'])->update(['jumlah_pasien_hari_ini' => $jumlah2]);
         reservasi::create($data);
-        return redirect()->intended('reservasi')->with('reservasiBerhasil', 'Reservasi Anda telah berhasil');
+        return redirect('/reservasi')->with('Success', 'Reservasi Anda telah berhasil');
     }
     public function reservasi()
     {

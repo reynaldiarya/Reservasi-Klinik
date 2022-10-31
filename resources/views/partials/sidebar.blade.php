@@ -23,6 +23,11 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/jadwal">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span> Jadwal</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/reservasi">
                     <i class="fa-solid fa-calendar"></i>
                     <span>Reservasi</span></a>
