@@ -41,5 +41,11 @@ class DashboardController extends Controller
             'countalljadwal' => $countalljadwal
         ]);
     }
+    public function indexdokter()
+    {
+        return view('dokter.dashboarddokter',[
+            'title'=> self::title
+        ]);
+    }
 
 }

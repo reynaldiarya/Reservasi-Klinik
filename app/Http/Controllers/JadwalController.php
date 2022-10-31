@@ -23,7 +23,7 @@ class JadwalController extends Controller
     }
     public function jadwal()
     {
-        $jadwal = jadwal::orderBy('tgl_jadwal', 'desc')->get();
+        $jadwal = jadwal::orderBy('tgl_jadwal', 'desc')->paginate(7);
         return view('pasien.jadwal', [
             'title' => self::title,
             'jadwal' => $jadwal

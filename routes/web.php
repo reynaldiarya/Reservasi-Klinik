@@ -30,25 +30,29 @@ Route::get('/', [LandingController::class, "index"])->name('base');
 Route::post('/', [LandingController::class, "catch"]);
 Route::get('/login', [LoginController::class, "index"])->middleware('guest');
 Route::post('/login', [LoginController::class, "login"])->name('login');
-Route::post('/logout', [LoginController::class, "logout"]);
+Route::post('/logout', [LoginController::class, "logout"])->middleware('auth');
 Route::post('/register', [RegisterController::class, "register"]);
 Route::get('/register', [RegisterController::class, "index"])->middleware('guest');
 Route::get('/logout', [LoginController::class, "logout"]);
-Route::post('/logout-staff', [LoginController::class, "logoutstaff"]);
 Route::post('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::get('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::post('/registrasi-mail', [EmailController::class, "registrasi"]);
 Route::get('/registrasi-mail', [EmailController::class, "registrasi"]);
 
+Route::group(['middleware'=>['auth','ceklevel:2']],function ()
+{
+    Route::get('/dashboard-dokter',[DashboardController::class,'indexdokter']);
+    Route::get('/profile-dokter',[ProfileController::class,'profiledokter']);
+    Route::post('/profile-dokter',[ProfileController::class,'updatedokter']);
+});
 Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
     Route::get('/jadwal', [JadwalController::class, "jadwal"]);
-    Route::post('/profile-update', [ProfileController::class, 'update']);
+    Route::post('/profile', [ProfileController::class, 'update']);
     Route::get('/reservasi', [ReservasiController::class, "reservasi"])->name('reservasi');
     Route::post('/reservasi', [ReservasiController::class, "createreservasipost"]);
     Route::post('/hapusreservasi', [ReservasiController::class, "hapusreservasi"]);
     Route::get('/profile', [ProfileController::class, "profile"])->name('profile');
-    Route::get('/profile-update', [ProfileController::class, 'update']);
     Route::get('/rekam-medis', [RekamMedisController::class, "rekammedis"]);
     Route::get('/cari-reservasi-pasien', [ReservasiController::class, 'carireservasipasien']);
     Route::get('/cari-rekam-pasien', [RekamMedisController::class, 'carirekampasien']);

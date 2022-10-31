@@ -28,7 +28,12 @@
         </div>
 
         <div class="col-lg-8 order-lg-1">
-
+@if (session()->has('benar'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+ {{ session('benar') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
             <div class="card shadow mb-4">
 
                 <div class="card-header py-3">
@@ -39,9 +44,21 @@
                     {{ session('success')}}
                 </div>
                 @endif
+                @if ($errors->any())
+      <div class="alert  alert-danger border-left-danger alert-dismissible fade show" role="alert">
+          <ul class="pl-4 my-2">
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+      </div>
+      @endif
+      
                 <div class="card-body">
 
-                    <form method="POST" action="/profile-update" autocomplete="off">
+                    <form method="POST" action="/profile" autocomplete="off">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 

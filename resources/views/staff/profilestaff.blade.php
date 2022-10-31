@@ -35,8 +35,21 @@
                     <h6 class="m-0 font-weight-bold text-primary">Akun Saya</h6>
                 </div>
                 @if(session()->has('success'))
-                <div class="mt-3 ms-5 col-9 col-sm-10 col-xl-10 alert alert-success fade show" role="alert">
+                <div class="mt-3 ms-5 col-9 col-sm-10 col-xl-10 alert alert-dismissible fade show alert-success fade show" role="alert">
                     {{ session('success')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                </div>
+                @endif
+                @if ($errors->any())
+                <div class="alert  alert-danger border-left-danger alert-dismissible fade show" role="alert">
+                    <ul class="pl-4 my-2">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          
                 </div>
                 @endif
                 <div class="card-body">
