@@ -15,8 +15,16 @@ class JadwalController extends Controller
 
     public function kelolajadwal()
     {
-        $jadwal = jadwal::orderby('tgl_jadwal', 'desc')->paginate(5);
+        $jadwal = jadwal::orderby('tgl_jadwal', 'desc')->paginate(7);
         return view('staff.kelolajadwal', [
+            'title' => self::title,
+            'jadwal' => $jadwal
+        ]);
+    }
+    public function lihatjadwal()
+    {
+        $jadwal = jadwal::orderby('tgl_jadwal', 'desc')->paginate(7);
+        return view('dokter.jadwal', [
             'title' => self::title,
             'jadwal' => $jadwal
         ]);
@@ -106,7 +114,7 @@ class JadwalController extends Controller
                                    </div>
                                </div>
                                <div class="row d-flex justify-content-center">
-                   
+
                                    <div class="col-7 col-md-5 col-xl-3 mt-3">
                                        <button type="submit" class="btn bg-primary text-white col">Kirim</button>
                                    </div>
@@ -115,11 +123,11 @@ class JadwalController extends Controller
                                </div>
                            </div>
                            </div>
-                          
-                       
-                      
+
+
+
                     ';
-        } 
+        }
         return response($output);
     }
 
@@ -142,7 +150,7 @@ class JadwalController extends Controller
             if ($item->status_masuk == 1) {
                 $status = 'Tidak Hadir';
             }
-          
+
                 $output = '<tr> <td class="text-center">' . $no . '</td>
                             <td class="text-center">' .  date("d M Y", strtotime($item->tgl_jadwal)) . '</td>
                             <td class="text-center">' . $item->jam_masuk . '</td>
@@ -225,7 +233,7 @@ class JadwalController extends Controller
                                                 </div>
                                             </div>
 
-                                            
+
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5">
@@ -242,17 +250,52 @@ class JadwalController extends Controller
                                     </div>
 
                                 </form>
-                                
+
                             </div>
-                            
+
                                 </div>
-                                
+
                                 </div>
                                 </div>
                          </td>
-                         
+
                         </tr>';
-            
+
+        }
+
+        return response($output);
+    }
+
+    public function carijadwaldokter()
+    {
+        if (request('cari-jadwal') == null) {
+            return;
+        }
+        $jadwal = jadwal::where('tgl_jadwal', 'like', '%' . request('cari-jadwal') . '%')
+            ->orWhere('jam_masuk', 'Like', '%' . request('cari-jadwal') . '%')
+            ->orWhere('jam_pulang', 'Like', '%' . request('cari-jadwal') . '%')
+            ->orWhere('jumlah_maxpasien', 'Like', '%' . request('cari-jadwal') . '%')->get();
+        $no = 0;
+        $output = '';
+        foreach ($jadwal as $item) {
+            $no++;
+            if ($item->status_masuk == 0) {
+                $status = 'Hadir';
+            }
+            if ($item->status_masuk == 1) {
+                $status = 'Tidak Hadir';
+            }
+
+                $output = '<tr> <td class="text-center">' . $no . '</td>
+                            <td class="text-center">' .  date("d M Y", strtotime($item->tgl_jadwal)) . '</td>
+                            <td class="text-center">' . $item->jam_masuk . '</td>
+                            <td class="text-center">' . $item->jam_pulang . '</td>
+                            <td class="text-center">' . $status . '</td>
+                            <td class="text-center">' . $item->jumlah_maxpasien . '</td>
+
+
+                        </tr>';
+
         }
 
         return response($output);

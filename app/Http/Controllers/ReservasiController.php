@@ -52,13 +52,48 @@ class ReservasiController extends Controller
     }
     public function reservasi()
     {
-        $reservasi = reservasi::orderBy('tgl_reservasi', 'desc')->where('user_id', Auth::user()->id)->paginate(5);
+        $reservasi = reservasi::orderBy('tgl_reservasi', 'desc')->where('user_id', Auth::user()->id)->paginate(10);
 
         return view('pasien.reservasi', [
             'title' => self::title,
             'reservasi' => $reservasi
         ]);
     }
+
+    public function carireservasidokter()
+    {
+        if(request('data')== null){
+            return;
+        }
+        $data = reservasi::where('nama_pasien', 'like', '%' . request('data') . '%')
+            ->orWhere('tgl_reservasi', 'like', '%' . request('data') . '%')
+            ->orWhere('keluhan', 'like', '%' . request('data') . '%')->get();
+
+        $no = 0;
+        $output = '';
+        foreach ($data as $item) {
+            $no++;
+            if ($item->status_hadir == 0) {
+                $status = 'Tidak Hadir';
+            }
+            if ($item->status_hadir == 1) {
+                $status = 'Hadir';
+            }
+
+
+            $output .= '<tr>
+                                            <td class="align-middle text-center">' . $no . '</td>
+                                            <td class="align-middle text-center">' . $item->nama_pasien . '</td>
+                                            <td class="align-middle text-center">' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
+                                            <td class="align-middle text-center">' . $item->keluhan . '</td>
+                                            <td class="align-middle text-center">' . $item->no_antrian . '</td>
+
+
+                            </tr>';
+        }
+        return response($output);
+    }
+
     public function carireservasi()
     {
         if(request('data')== null){
@@ -186,8 +221,18 @@ class ReservasiController extends Controller
     }
     public function kelolareservasi()
     {
-        $kelolareservasi = reservasi::orderBy('tgl_reservasi')->orderBy('no_antrian')->paginate(5);
+        $kelolareservasi = reservasi::orderBy('tgl_reservasi')->orderBy('no_antrian')->paginate(10);
         return view('staff.kelolareservasi', [
+            'reservasi' => $kelolareservasi,
+            'title' => self::title
+
+        ]);
+    }
+
+    public function lihatreservasi()
+    {
+        $kelolareservasi = reservasi::orderBy('tgl_reservasi')->orderBy('no_antrian')->paginate(10);
+        return view('dokter.reservasi', [
             'reservasi' => $kelolareservasi,
             'title' => self::title
 

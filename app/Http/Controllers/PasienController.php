@@ -10,8 +10,17 @@ class PasienController extends Controller
     const title = 'Pasien - dr. Reynaldi';
     public function kelolapasien()
     {
-        $all = User::where('level','0')->paginate(5);
+        $all = User::where('level','0')->paginate(10);
         return view('staff.kelolapasien',[
+            'title' => self::title,
+            'user'=>$all
+        ]);
+    }
+
+    public function lihatpasien()
+    {
+        $all = User::where('level','0')->paginate(10);
+        return view('dokter.pasien',[
             'title' => self::title,
             'user'=>$all
         ]);

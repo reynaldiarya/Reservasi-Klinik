@@ -14,10 +14,21 @@ class RekamMedisController extends Controller
     public function rekammedis()
     {
 
-        $rekam = rekam_medis::latest()->where('user_id', Auth::user()->id)->paginate(5);
+        $rekam = rekam_medis::latest()->where('user_id', Auth::user()->id)->paginate(10);
         return view('pasien.rekammedis', [
             'title' => 'Riwayat Pemeriksaan',
             'rekam'  => $rekam
+
+        ]);
+    }
+    public function lihatrekammedis()
+    {
+        // $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
+        //     ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
+            $rekam = rekam_medis::with('user')->paginate(10);
+        return view('dokter.rekammedis', [
+            'title' => self::title,
+            'rekam'  => $rekam,
 
         ]);
     }
@@ -30,7 +41,7 @@ class RekamMedisController extends Controller
     {
         // $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
         //     ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
-            $rekam = rekam_medis::with('user')->paginate(5);
+            $rekam = rekam_medis::with('user')->paginate(10);
         return view('staff.kelolarekammedis', [
             'title' => self::title,
             'rekam'  => $rekam,
@@ -179,6 +190,176 @@ class RekamMedisController extends Controller
               </div>
             </div>
         <div>
+                <form action="/edit-rekam-medis" method="POST">
+                ' . csrf_field() . '
+                <input type="hidden" name="id_user" value="' . $item->id_rekam_medis . '">
+                    <div class="modal fade" id="edit_rekam_medis' . $item->id_rekam_medis . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog  modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="edit_rekam_medis' . $item->id_rekam_medis . '">Keterangan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Nama Pasien</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="nama_pasien" class="form-control col-sm-12" value="{{ $item->nama_pasien }}" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Usia</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="usia" class="form-control col-sm-12" value="{{ $item->usia }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Nama Penyakit</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="nama_penyakit" class="form-control col-sm-12" value="{{ $item->nama_penyakit }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Kadar Asam Urat</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="number" name="kadar_asam_urat" class="form-control col-sm-12" value="{{ $item->kadar_asam_urat }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Tanggal Periksa</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="tgl_periksa" class="form-control col-sm-12" value="{{ $item->tgl_periksa}}" onclick="(this.type="date")">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Kadar gula darah</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="number" name="kadar_gula_darah" class="form-control col-sm-12" value="{{ $item->kadar_gula_darah }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Alergi Makanan</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="alergi_makanan" class="form-control col-sm-12" value="{{ $item->alergi_makanan}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>kadar kolesterol</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="number" name="kadar_kolesterol" class="form-control col-sm-12" value="{{ $item->kadar_kolesterol}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Kadar Gula Darah</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" name="kadar_gula_darah" class="form-control col-sm-12" value="{{ $item->kadar_gula_darah}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="row mt-3">
+                                        <div class="col-sm-10"><strong>Keterangan</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea  class="form-control col-sm-12" name="keterangan">{{ $item->keterangan }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                            <div class="col-7 col-md-5 col-xl-5 mb-3 mt-3">
+                                <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>';
+        }
+        return response($output);
+    }
+
+    public function carirekammedisdokter()
+    {
+        if (request('data') == null) {
+            return;
+        }
+        $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id');
+
+        $data = $rekam->Where('nama_pasien', 'like', '%' . request('data') . '%')
+            ->orWhere('name', 'like', '%' . request('data') . '%')
+            ->get();
+        // $data = $data->where('', );
+
+
+        $no = 0;
+        $output = '';
+        foreach ($data as $item) {
+            $no++;
+            $output = '<td class="text-center">' . $no . '</td>
+            <td class="text-center">' . $item->nama_pasien . '</td>
+            <td class="text-center">' . $item->name . '</td>
+            <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
+            <td class="text-center">
+                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-pen-to-square"></i></button>
+            </td>
+
+            <div>
                 <form action="/edit-rekam-medis" method="POST">
                 ' . csrf_field() . '
                 <input type="hidden" name="id_user" value="' . $item->id_rekam_medis . '">

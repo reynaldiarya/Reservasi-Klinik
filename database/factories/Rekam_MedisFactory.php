@@ -24,6 +24,7 @@ class Rekam_MedisFactory extends Factory
             'tekanan_darah' => $this->faker->numberBetween(0, 100),
             'alergi_makanan' => $this->faker->word(1),
             'tgl_periksa' => $this->faker->date('Y_m_d'),
+            'usia' => $this->faker->numberBetween(0, 100),
             'keterangan' => $this->faker->word()
         ];
     }

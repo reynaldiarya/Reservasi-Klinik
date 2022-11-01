@@ -18,30 +18,31 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard-staff">
+                <a class="nav-link" href="/dashboard-dokter">
                     <i class="fa-solid fa-gauge"></i>
                     <span>Dashboard</span></a>
             </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="/kelola-pasien">
+            <li class="nav-item">
+                <a class="nav-link" href="/lihat-pasien">
                     <i class="fa-solid fa-user-injured"></i>
                     <span>Pasien</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/kelola-jadwal">
+                <a class="nav-link" href="/lihat-jadwal">
                     <i class="fa-solid fa-calendar-days"></i>
                     <span>Jadwal</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/kelola-reservasi">
+                <a class="nav-link" href="/lihat-reservasi">
                     <i class="fa-solid fa-calendar"></i>
                     <span>Reservasi</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/kelola-rekam-medis">
+                <a class="nav-link" href="/lihat-rekam-medis">
                     <i class="fa-solid fa-notes-medical"></i>
                     <span>Rekam Medis</span></a>
-            </li> --}}
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
