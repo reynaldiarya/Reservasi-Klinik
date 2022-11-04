@@ -29,15 +29,16 @@
 <div class="container-fluid">
     @if(session()->has('success'))
 
-    <div class="mt-3 col-md-4 text-center alert alert-success fade show" role="alert">
+    <div class="mt-3 col-md-4 text-center alert alert-dismissible alert-success fade show" role="alert">
         {{ session('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
     <div class="row ">
 
         <div class="col-sm-12 text-end">
-            <a href="/tambah-rekam-medis" class="nav-link"><i class="fa-solid fa-notes-medical"></i> Buat rekam medis</a></h3>
+            <a href="/tambah-rekam-medis-dokter" class="nav-link"><i class="fa-solid fa-notes-medical"></i> Buat rekam medis</a></h3>
         </div>
     </div>
 
@@ -71,7 +72,35 @@
                         <td class="text-center">{{ date('d M Y', strtotime($item->tgl_periksa))}}</td>
                         <td class="text-center">
                             <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis{{ $item->id_rekam_medis }}"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis{{ $item->id_rekam_medis }}"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
+                        <div>
+                            <div class="modal fade" id="hapus_rekam_medis{{ $item->id_rekam_medis }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="hapus_rekam_medis{{ $item->id_rekam_medis }}">Hapus Rekam Medis</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="/hapus-rekam-medis" method="POST">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <input type="hidden" name="id" value="{{ $item->id_rekam_medis }}">
+                                            <strong>Apakah anda yakin untuk menghapus?</strong>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <div class="col-4 ">
+                                                    <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
+                                                   </div>
+                                                   <div class="col-4">
+                                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
+                                                   </div>
+                                        </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
                         <div>
                             <form action="/edit-rekam-medis" method="POST">
                             @csrf

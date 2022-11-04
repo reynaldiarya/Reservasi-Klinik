@@ -38,17 +38,19 @@ Route::post('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::get('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::post('/registrasi-mail', [EmailController::class, "registrasi"]);
 Route::get('/registrasi-mail', [EmailController::class, "registrasi"]);
+Route::post('/hapus-rekam-medis', [RekamMedisController::class, 'hapusrekammedis'])->middleware('auth');
 
 Route::group(['middleware'=>['auth','ceklevel:2']],function ()
 {
+    Route::any('/tambah-rekam-medis-dokter',[RekamMedisController::class,'tambahrekammedisdokter']);
     Route::get('/dashboard-dokter',[DashboardController::class,"indexdokter"]);
     Route::get('/profile-dokter',[ProfileController::class,"profiledokter"]);
     Route::post('/profile-dokter',[ProfileController::class,"updatedokter"]);
     Route::get('/lihat-pasien', [PasienController::class, "lihatpasien"]);
     route::get('/cari-pasien-dokter', [PasienController::class, 'caripasien']);
-    Route::get('/lihat-jadwal', [JadwalController::class, "lihatjadwal"]);
+    Route::any('/lihat-jadwal', [JadwalController::class, "lihatjadwal"]);
     route::get('/cari-jadwal-dokter', [JadwalController::class, 'carijadwaldokter']);
-    Route::get('/lihat-reservasi', [ReservasiController::class, "lihatreservasi"]);
+    Route::any('/lihat-reservasi', [ReservasiController::class, "lihatreservasi"]);
     route::get('/cari-reservasi-dokter', [ReservasiController::class, 'carireservasidokter']);
     Route::get('/lihat-rekam-medis', [RekamMedisController::class, "lihatrekammedis"]);
     route::get('/cari-rekam-medis-dokter', [RekamMedisController::class, 'carirekammedisdokter']);
@@ -86,7 +88,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     Route::get('/tambah-rekam-medis', [RekamMedisController::class, 'tambahrekammedis']);
     Route::post('/tambah-rekam-medis', [RekamMedisController::class, 'tambahrekammedispost']);
     Route::post('/edit-rekam-medis', [RekamMedisController::class, 'editrekammedis']);
-    Route::post('/hapus-rekam-medis', [RekamMedisController::class, 'hapusrekammedis']);
     route::get('/cari-reservasi', [ReservasiController::class, 'carireservasi']);
     route::get('/cari-pasien', [PasienController::class, 'caripasien']);
     route::get('/cari-rekam-medis', [RekamMedisController::class, 'carirekammedis']);

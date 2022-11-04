@@ -23,15 +23,28 @@ class JadwalController extends Controller
     }
     public function lihatjadwal()
     {
-        $jadwal = jadwal::orderby('tgl_jadwal', 'desc')->paginate(7);
+        $monthselected = ''; 
+        if(request('filter')!=null){
+            $jadwal = jadwal::whereMonth('tgl_jadwal',request('filter'))->whereYear('tgl_jadwal',request('year'))->orderBy('tgl_jadwal','desc')->get();
+            $monthselected = date('m',request('filter'));
+        }else{
+            $jadwal = jadwal::whereMonth('tgl_jadwal',date('m'))->orderBy('tgl_jadwal','desc')->get();
+
+        }
+        // dd($monthselected);
+
         return view('dokter.jadwal', [
             'title' => self::title,
-            'jadwal' => $jadwal
+            'jadwal' => $jadwal,
+            'month' => $monthselected,
+
         ]);
     }
     public function jadwal()
     {
-        $jadwal = jadwal::orderBy('tgl_jadwal', 'desc')->paginate(7);
+        $date = date('Y-m-d');
+        $dateplus7 = date('Y-m-d', strtotime('+7 day', strtotime($date)));
+        $jadwal = jadwal::whereBetween('tgl_jadwal', [$date, $dateplus7])->orderBy('tgl_jadwal', 'desc')->get();
         return view('pasien.jadwal', [
             'title' => self::title,
             'jadwal' => $jadwal
@@ -73,7 +86,7 @@ class JadwalController extends Controller
             if ($item->jumlah_maxpasien < 1) {
                 $aksi =   '<i title="Tidak tersedia" class="bi bi-x-circle-fill justify-content-center text-danger"></i>';
             } else {
-                $aksi = '<button type = "button" title="Buat Reservasi" data-bs-toggle="modal" data-bs-target="#buat-jadwal' . $item->id_jadwal .'" class="nav-link btn"><i class="fa-solid fa-calendar-plus"></i></button>';
+                $aksi = '<button type = "button" title="Buat Reservasi" data-bs-toggle="modal" data-bs-target="#buat-jadwal' . $item->id_jadwal . '" class="nav-link btn"><i class="fa-solid fa-calendar-plus"></i></button>';
             }
             $output = '<tr >
                         <td class="">' . $no . '</td>
@@ -136,12 +149,12 @@ class JadwalController extends Controller
         if (request('cari-jadwal') == null) {
             return;
         }
-        $jadwal = jadwal::where('tgl_jadwal', 'like', '%' . request('cari-jadwal') . '%')
-            ->orWhere('jam_masuk', 'Like', '%' . request('cari-jadwal') . '%')
-            ->orWhere('jam_pulang', 'Like', '%' . request('cari-jadwal') . '%')
-            ->orWhere('jumlah_maxpasien', 'Like', '%' . request('cari-jadwal') . '%')->get();
-        $no = 0;
-        $output = '';
+        $jadwal = jadwal::where('tgl_jadwal', 'like', '%' . request('cari-jadwal') . '%')->get();
+            // ->orWhere('jam_masuk', 'Like', '%' . request('cari-jadwal') . '%')
+            // ->orWhere('jam_pulang', 'Like', '%' . request('cari-jadwal') . '%')
+            // ->orWhere('jumlah_maxpasien', 'Like', '%' . request('cari-jadwal') . '%')->get();
+            $no = 0;
+        $output = [];
         foreach ($jadwal as $item) {
             $no++;
             if ($item->status_masuk == 0) {
@@ -151,7 +164,7 @@ class JadwalController extends Controller
                 $status = 'Tidak Hadir';
             }
 
-                $output = '<tr> <td class="text-center">' . $no . '</td>
+            $output[$no-1] = '<tr> <td class="text-center">' . $no . '</td>
                             <td class="text-center">' .  date("d M Y", strtotime($item->tgl_jadwal)) . '</td>
                             <td class="text-center">' . $item->jam_masuk . '</td>
                             <td class="text-center">' . $item->jam_pulang . '</td>
@@ -170,7 +183,7 @@ class JadwalController extends Controller
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form action="/hapus-jadwal" method="POST">' .
-                    csrf_field() . '
+                csrf_field() . '
                                     <div class="modal-body">
                                         <input type="hidden" name="id" value="' . $item->id_jadwal . '">
                                         <strong>Apakah anda yakin untuk menghapus?</strong>
@@ -260,7 +273,7 @@ class JadwalController extends Controller
                          </td>
 
                         </tr>';
-
+                        
         }
 
         return response($output);
@@ -271,12 +284,11 @@ class JadwalController extends Controller
         if (request('cari-jadwal') == null) {
             return;
         }
-        $jadwal = jadwal::where('tgl_jadwal', 'like', '%' . request('cari-jadwal') . '%')
-            ->orWhere('jam_masuk', 'Like', '%' . request('cari-jadwal') . '%')
-            ->orWhere('jam_pulang', 'Like', '%' . request('cari-jadwal') . '%')
-            ->orWhere('jumlah_maxpasien', 'Like', '%' . request('cari-jadwal') . '%')->get();
+        $jadwal = jadwal::where('tgl_jadwal', 'like', '%' . request('cari-jadwal') . '%')->get();
         $no = 0;
-        $output = '';
+        $output = [];
+    //    dd($jadwal);
+
         foreach ($jadwal as $item) {
             $no++;
             if ($item->status_masuk == 0) {
@@ -286,7 +298,7 @@ class JadwalController extends Controller
                 $status = 'Tidak Hadir';
             }
 
-                $output = '<tr> <td class="text-center">' . $no . '</td>
+            $output[$no-1] = '<tr> <td class="text-center">' . $no . '</td>
                             <td class="text-center">' .  date("d M Y", strtotime($item->tgl_jadwal)) . '</td>
                             <td class="text-center">' . $item->jam_masuk . '</td>
                             <td class="text-center">' . $item->jam_pulang . '</td>
@@ -295,8 +307,8 @@ class JadwalController extends Controller
 
 
                         </tr>';
-
         }
+        
 
         return response($output);
     }

@@ -1,6 +1,13 @@
 @extends('maintemplatedashboard')
 @section('content')
 @extends('partials.sidebarstaff')
+<style>
+    .chart-container {
+      width: 50%;
+      height: 50%;
+      margin: auto;
+    }
+  </style>
 <body id="page-top">
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
@@ -69,7 +76,10 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
+            <div class="card chart-container">
+                <canvas id="chart"></canvas>
+              </div>
+            <footer class="mt-5 bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Kelompok 12 SI UA </span></div>
                 </div>
@@ -80,5 +90,6 @@
     <!-- Logout Modal-->
 
 </body>
+
 
 @endsection

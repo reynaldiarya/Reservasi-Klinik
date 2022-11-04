@@ -21,11 +21,58 @@ class RekamMedisController extends Controller
 
         ]);
     }
+    
+    public function tambahrekammedisdokter(Request $req)
+    {
+        if($req->nama_user != null){
+            $req->validate(['nama_user' => 'required']);
+        $data = [
+            'user_id' => request('nama_user'),
+            'nama_pasien' => request('nama_pasien'),
+            'usia' => request('usia'),
+            "tgl_periksa" => request("tgl_periksa"),
+            "nama_penyakit" => request("nama_penyakit"),
+            "kadar_gula_darah" => request("kadar_gula_darah"),
+            "kadar_kolesterol" => request("kadar_kolesterol"),
+            "kadar_asam_urat" => request("kadar_asam_urat"),
+            "tekanan_darah" => request("tekanan_darah"),
+            "alergi_makanan" => request("alergi_makanan"),
+            "keterangan" => request("keterangan")
+        ];
+        if ($data['kadar_gula_darah'] == null) {
+            $data['kadar_gula_darah'] = 0;
+        };
+        if ($data['kadar_asam_urat'] == null) {
+            $data['kadar_asam_urat'] = 0;
+        };
+        if ($data['kadar_kolesterol'] == null) {
+            $data['kadar_kolesterol'] = 0;
+        };
+        if ($data['alergi_makanan'] == null) {
+            $data['alergi_makanan'] = '-';
+        };
+        if ($data['tekanan_darah'] == null) {
+            $data['tekanan_darah'] = '-';
+        };
+        if ($data['keterangan'] == null) {
+            $data['keterangan'] = '-';
+        };
+        rekam_medis::create($data);
+        return redirect('/lihat-rekam-medis')->withSuccess('Data berhasil ditambahkan');
+        }
+        
+        $pasien = User::where('level', '0')->get();
+        return view('dokter.tambahrekammedis', [
+            'pasien' => $pasien,
+            'title' => self::title
+
+        ]);
+    }
     public function lihatrekammedis()
     {
         // $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
         //     ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
-            $rekam = rekam_medis::with('user')->paginate(10);
+            $rekam = rekam_medis::with('user')->orderBy('created_at','desc')->paginate(10);
         return view('dokter.rekammedis', [
             'title' => self::title,
             'rekam'  => $rekam,
@@ -122,10 +169,10 @@ class RekamMedisController extends Controller
         $data = $data->where('user_id', auth::id());
 
         $no = 0;
-        $output = '';
+        $output = [];
         foreach ($data as $item) {
             $no++;
-            $output =
+            $output[$no-1] =
                 '<tr>
             <td class="text-center">' . $no . '</td>
             <td class="text-center">' . $item->nama_pasien . '</td>
@@ -150,10 +197,10 @@ class RekamMedisController extends Controller
 
 
         $no = 0;
-        $output = '';
+        $output = [];
         foreach ($data as $item) {
             $no++;
-            $output = '<td class="text-center">' . $no . '</td>
+            $output[$no-1] = '<td class="text-center">' . $no . '</td>
             <td class="text-center">' . $item->nama_pasien . '</td>
             <td class="text-center">' . $item->name . '</td>
             <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
@@ -348,10 +395,11 @@ class RekamMedisController extends Controller
 
 
         $no = 0;
-        $output = '';
+        $output = [];
         foreach ($data as $item) {
             $no++;
-            $output = '<td class="text-center">' . $no . '</td>
+            $output[$no-1]= '<tr>
+            <td class="text-center">' . $no . '</td>
             <td class="text-center">' . $item->nama_pasien . '</td>
             <td class="text-center">' . $item->name . '</td>
             <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
@@ -499,7 +547,9 @@ class RekamMedisController extends Controller
             </div>
         </div>
     </div>
-</form>';
+</form>
+</tr>';
+
         }
         return response($output);
     }

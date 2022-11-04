@@ -276,8 +276,6 @@ $('#search').on('keyup',function () {
     data:{'cari-jadwal': $value},
     success:function(data){
         $('#konten').html(data);
-
-
     }
    });
 })

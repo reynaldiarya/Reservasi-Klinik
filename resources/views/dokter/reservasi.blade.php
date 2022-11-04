@@ -27,12 +27,17 @@
 @endsection
 
 <div class="container-fluid">
-
-    @if(session()->has('success'))
-    <div class="mt-3 col-md-4 text-center alert alert-success fade show" role="alert">
-        {{ session('success')}}
+<form action="/lihat-reservasi" method="post">
+    @csrf
+  <div class="row">
+    <div class="col-md-3">
+        <div class="input-group mb-3">
+            <input type="text" name="tanggal" class="form-control" placeholder="Pilih Tanggal"  onmouseover="(this.type='date')" aria-describedby="basic-addon1">
+            <button type="submit" class="btn input-group-text" id="basic-addon1"><i class="bi bi-search"></i></button>
+        </div >
     </div>
-    @endif
+  </div>
+</form>
     <div class="card shadow mb-5">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
@@ -64,7 +69,7 @@
                             {{ $item->nama_pasien }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $item->tgl_reservasi }}
+                            {{ date('D / d-m-Y',strtotime($item->tgl_reservasi) )}}
                         </td>
                         <td class="align-middle text-center">
                             {{ $item->keluhan }}
@@ -95,7 +100,7 @@
         <div class="col-md-5">
             <nav class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
-                    {{ $reservasi->links() }}
+                    {{-- {{ $reservasi->links() }} --}}
                 </ul>
             </nav>
         </div>

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body >
+<body style="font-family: monserats">
   <header>
 
     @include('partials.navbar')

@@ -231,7 +231,11 @@ class ReservasiController extends Controller
 
     public function lihatreservasi()
     {
-        $kelolareservasi = reservasi::orderBy('tgl_reservasi')->orderBy('no_antrian')->paginate(10);
+        if (request('tanggal')==null) {
+            $kelolareservasi = reservasi::where('tgl_reservasi',date('Y-m-d'))->orderBy('tgl_reservasi','desc')->orderBy('no_antrian')->paginate(10);
+        }else{
+            $kelolareservasi = reservasi::where('tgl_reservasi',request('tanggal'))->get();
+        }
         return view('dokter.reservasi', [
             'reservasi' => $kelolareservasi,
             'title' => self::title

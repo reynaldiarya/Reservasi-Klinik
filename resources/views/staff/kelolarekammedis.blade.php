@@ -222,6 +222,19 @@
                                                     </div>
                                                     <div class="col-12 col-lg-6">
                                                         <div class="row mt-3">
+                                                            <div class="col-sm-10"><strong>Tekanan Darah</strong></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <input type="text" name="tekanan_darah" class="form-control col-sm-12" value="{{ $item->tekanan_darah}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="row mt-3">
                                                             <div class="col-sm-10"><strong>Keterangan</strong></div>
                                                         </div>
                                                         <div class="row">
@@ -231,7 +244,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                         <div class="row d-flex justify-content-center">
                                             <div class="col-7 col-md-5 col-xl-5 mb-3 mt-3">
                                                 <button type="submit" class="btn bg-primary text-white col">Simpan Perubahan</button>
