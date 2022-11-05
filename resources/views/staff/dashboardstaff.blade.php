@@ -8,7 +8,6 @@
       margin: auto;
     }
   </style>
-<body id="page-top">
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
@@ -76,9 +75,11 @@
                     </div>
                 </div>
             </div>
-            <div class="card chart-container">
+            <div class="container">
+                <div class="card px-4 py-4">
                 <canvas id="chart"></canvas>
               </div>
+        </div>
             <footer class="mt-5 bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Kelompok 12 SI UA </span></div>
@@ -89,7 +90,44 @@
 
     <!-- Logout Modal-->
 
-</body>
 
+    <script>
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'Juni',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Reservasi Bulanan',
+            backgroundColor: 'rgb(13, 110, 253)',
+            borderColor: 'rgb(13, 110, 253)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+          }]
+        };
+
+        const config = {
+          type: 'line',
+          data: data,
+          options: {}
+        };
+      </script>
+      <script>
+        const chart = new Chart(
+          document.getElementById('chart'),
+          config
+        );
+      </script>
 
 @endsection

@@ -31,7 +31,7 @@
 @if (session()->has('benar'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
  {{ session('benar') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 @if ($errors->any())
@@ -50,7 +50,7 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Akun Saya</h6>
                 </div>
-      
+
                 <div class="card-body">
 
                     <form method="POST" action="/profile-dokter" autocomplete="off">

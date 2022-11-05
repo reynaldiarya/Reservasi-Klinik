@@ -2,7 +2,7 @@
 @section('content')
 @extends('partials.sidebar')
 
-<body id="page-top">
+
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
@@ -58,6 +58,6 @@
 
     <!-- Logout Modal-->
 
-</body>
+
 
 @endsection

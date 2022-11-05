@@ -87,6 +87,7 @@ class ReservasiController extends Controller
                                             <td class="align-middle text-center">' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
                                             <td class="align-middle text-center">' . $item->keluhan . '</td>
                                             <td class="align-middle text-center">' . $item->no_antrian . '</td>
+                                            <td class="align-middle text-center">' . $status . '</td>
 
 
                             </tr>';
@@ -221,7 +222,11 @@ class ReservasiController extends Controller
     }
     public function kelolareservasi()
     {
-        $kelolareservasi = reservasi::orderBy('tgl_reservasi')->orderBy('no_antrian')->paginate(10);
+        if (request('tanggal')==null) {
+            $kelolareservasi = reservasi::where('tgl_reservasi',date('Y-m-d'))->orderBy('tgl_reservasi','desc')->orderBy('no_antrian')->paginate(10);
+        }else{
+            $kelolareservasi = reservasi::where('tgl_reservasi',request('tanggal'))->orderBy('no_antrian')->paginate();
+        }
         return view('staff.kelolareservasi', [
             'reservasi' => $kelolareservasi,
             'title' => self::title
@@ -234,7 +239,7 @@ class ReservasiController extends Controller
         if (request('tanggal')==null) {
             $kelolareservasi = reservasi::where('tgl_reservasi',date('Y-m-d'))->orderBy('tgl_reservasi','desc')->orderBy('no_antrian')->paginate(10);
         }else{
-            $kelolareservasi = reservasi::where('tgl_reservasi',request('tanggal'))->get();
+            $kelolareservasi = reservasi::where('tgl_reservasi',request('tanggal'))->orderBy('no_antrian')->paginate();
         }
         return view('dokter.reservasi', [
             'reservasi' => $kelolareservasi,

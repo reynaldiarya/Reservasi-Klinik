@@ -32,8 +32,8 @@
             <p class="text-primary m-0 fw-bold">Daftar Riwayat Pemeriksaan</p>
         </div>
         <div class="card-body">
-            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table class="table" id="dataTable">
+            <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table table-bordered" id="dataTable">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>

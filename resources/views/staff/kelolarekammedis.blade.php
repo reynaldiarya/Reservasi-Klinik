@@ -29,8 +29,9 @@
 <div class="container-fluid">
     @if(session()->has('success'))
 
-    <div class="mt-3 col-md-4 text-center alert alert-success fade show" role="alert">
+    <div class="mt-3 col-md-4 text-center alert alert-dismissible alert-success fade show" role="alert">
         {{ session('success')}}
+        <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
@@ -47,7 +48,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
-            <table class="table" id="dataTable">
+            <table class="table table-bordered" id="dataTable">
                 <thead>
 
                     <tr>
@@ -82,18 +83,18 @@
                                       <h5 class="modal-title" id="hapus_rekam_medis{{ $item->id_rekam_medis }}">Hapus Rekam Medis</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <div class="modal-body">
+                                        <p>Apakah Anda yakin untuk menghapus?</p>
+                                    </div>
                                     <form action="/hapus-rekam-medis" method="POST">
                                         @csrf
-                                        <div class="modal-body">
-                                            <input type="hidden" name="id" value="{{ $item->id_rekam_medis }}">
-                                            <strong>Apakah anda yakin untuk menghapus?</strong>
-                                        </div>
-                                        <div class="modal-footer">
-                                                <div class="col-4 ">
-                                                    <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
+                                        <input type="hidden" name="id" value="{{ $item->id_rekam_medis }}">
+                                        <div class="modal-footer d-flex justify-content-center">
+                                                <div class="col-4 text-center">
+                                                    <button type="submit" class="btn bg-danger text-white col-6">Ya</button>
                                                    </div>
-                                                   <div class="col-4">
-                                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
+                                                   <div class="col-4 text-center">
+                                                       <button type="button" class="btn btn-secondary col-6" data-bs-dismiss="modal">Tidak</button>
                                                    </div>
                                         </div>
                                     </form>
@@ -230,7 +231,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12 col-lg-6">

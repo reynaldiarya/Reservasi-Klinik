@@ -29,16 +29,17 @@
 <div class="card shadow">
         <div class="card-header"><h5 class="text-primary m-0 fw-bold">Jadwal</h5></div>
         <div class="card-body">
-            <table class="table border-3">
+            <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th >Tanggal</th>
-                        <th >Jam Masuk</th>
-                        <th >Jam Pulang</th>
-                        <th >Status Masuk</th>
-                        <th>Jumlah Tersedia</th>
-                        <th>Aksi</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Tanggal</th>
+                        <th class="text-center">Jam Masuk</th>
+                        <th class="text-center">Jam Pulang</th>
+                        <th class="text-center">Status Masuk</th>
+                        <th class="text-center">Jumlah Tersedia</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
 
@@ -46,20 +47,20 @@
                     @foreach ($jadwal as $item)
                     <tr >
                         @php $no++ @endphp
-                        <td class="">{{ $no }}</td>
-                        <td class="">{{  date('d M Y', strtotime($item->tgl_jadwal)) }}</td>
-                        <td class="">{{ $item->jam_masuk }}</td>
-                        <td class="">{{ $item->jam_pulang }}</td>
+                        <td class="text-center align-middle">{{ $no }}</td>
+                        <td class="text-center align-middle">{{  date('d M Y', strtotime($item->tgl_jadwal)) }}</td>
+                        <td class="text-center align-middle">{{ $item->jam_masuk }}</td>
+                        <td class="text-center align-middle">{{ $item->jam_pulang }}</td>
                         @if ($item->status_masuk ==0 )
-                        <td class="">Hadir</td>
+                        <td class="text-center align-middle">Hadir</td>
                         @endif
                         @if ($item->status_masuk ==1)
-                        <td class="">Tidak Hadir</td>
+                        <td class="text-center align-middle">Tidak Hadir</td>
                         @endif
-                       <td>{{ $item->jumlah_maxpasien }}</td>
-                       <td>
+                       <td class="text-center align-middle">{{ $item->jumlah_maxpasien }}</td>
+                       <td class="text-center align-middle">
                         @if ($item->jumlah_maxpasien<1)
-                         <i title="Tidak tersedia" class="bi bi-x-circle-fill justify-content-center text-danger"></i>
+                         <i title="Tidak tersedia" class="bi bi-x-circle-fill text-danger"></i>
                     @else
 
                     <a  title="Buat Reservasi" data-bs-toggle="modal" data-bs-target="#buat-jadwal{{ $no }}" class="nav-link"><i class="fa-solid fa-calendar-plus"></i></a></h3>
@@ -76,19 +77,19 @@
                                     <input type="hidden"  name="tglReservasi"  value="{{ $item->tgl_jadwal }}">
                                     <input type="hidden" name="idJadwal" value="{{ $item->id_jadwal }}">
                                     <div class="row d-flex align-items-center justify-content-between">
-                                    <div class="col-md-5">Nama Pasien</div>
+                                    <div class="col-md-5 text-left h6">Nama Pasien</div>
                                     <div class="col-lg-7">
                                         <input required class="form-control form-control-sm" type="text" name="namaPasien"  @if (session()->has('namaPasien') )value= "{{ session('namaPasien') }}" @endif id="nama" placeholder="Nama Pasien"></div>
                                 </div>
                                 <div class="row mt-3 d-flex align-items-center justify-content-between">
-                                    <div class="col-md-5">Tanggal Periksa</div>
+                                    <div class="col-md-5 text-left h6">Tanggal Periksa</div>
                                     <div class="col-lg-7">
                                         <input required class="form-control form-control-sm"  value="{{ $item->tgl_jadwal }}"  type="text" placeholder="{{ __('Tanggal Reservasi') }}" disabled>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-5">Keluhan</div>
-                                    <div class="col-lg-7v">
+                                    <div class="col-md-5 text-left h6">Keluhan</div>
+                                    <div class="col-lg-7">
                                         <textarea required class="form-control form-control-sm" name="keluhan" placeholder="Masukan Keluhan Anda">{{ session('keluhan') }}</textarea>
                                     </div>
                                 </div>
@@ -113,6 +114,7 @@
 
                 </tbody>
             </table>
+        </div>
             </div>
             </div>
 

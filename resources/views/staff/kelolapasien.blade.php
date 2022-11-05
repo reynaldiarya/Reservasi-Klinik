@@ -39,7 +39,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table class="table " id="dataTable">
+                <table class="table table-bordered" id="dataTable">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>

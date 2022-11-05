@@ -26,60 +26,62 @@
 </li>
 @endsection
 <div class="container-fluid">
-    <div class="row mb-1">
-        <div class="col-md-3">
-         
-                <form action="/lihat-jadwal" method="post">
-                    @csrf
-            <select name="filter"  class="form-select col form-select-sm" aria-label=".form-select-sm example">
-                <option value="" >Pilih Bulan</option>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">Maret</option>
-                <option value="4">April</option>
-                <option value="5">Mei</option>
-                <option value="6">Juni</option>
-                <option value="7">Juli</option>
-                <option value="8">Agustus</option>
-                <option value="9">September</option>
-                <option value="10">Oktober</option>
-                <option value="11">November</option>
-                <option value="12">Desember</option>
-            </select> 
-    
 
+    <div class="card shadow mb-5">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold">Daftar Jadwal</p>
         </div>
-       <div class="col-sm-3">
-           <select name="year"  class="form-select col form-select-sm" aria-label=".form-select-sm example">
-            <option  selected value="2022">Pilih Tahun</option>
-            <option  value="2022">2022</option>
-
-            <option  value="2023">2023</option>
-           </select>
-           
-        </div>
-        <div class="col-md-3">
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-search"></i>
-            </button>
-        </div>
-           
-    </form>
-    </div>
-    <div class="card shadow">
-    
-   
-        <div class="card-header"><h5 class="text-primary m-0 fw-bold" >Jadwal</h5></div>
         <div class="card-body">
-            <table class="table border-3">
+            <div class="row mb-2 ">
+                <div class="col-md-2">
+
+                        <form action="/lihat-jadwal" method="post">
+                            @csrf
+                    <select name="filter"  class="form-select" aria-label=".form-select-sm example">
+                        <option value="" >Pilih Bulan</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
+                    </select>
+
+
+                </div>
+               <div class="col-md-2">
+                   <select name="year"  class="form-select" aria-label=".form-select-sm example">
+                    <option  selected value="2022">Pilih Tahun</option>
+                    <option  value="2022">2022</option>
+
+                    <option  value="2023">2023</option>
+                   </select>
+
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+            </form>
+            </div>
+            <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
-                        <th >No</th>
-                        <th >Tanggal</th>
-                        <th >Jam Masuk</th>
-                        <th >Jam Pulang</th>
-                        <th >Status Masuk</th>
-                        <th>Jumlah Tersedia</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Tanggal</th>
+                        <th class="text-center">Jam Masuk</th>
+                        <th class="text-center">Jam Pulang</th>
+                        <th class="text-center">Status Masuk</th>
+                        <th class="text-center">Jumlah Tersedia</th>
                     </tr>
                 </thead>
 
@@ -87,42 +89,44 @@
                     @foreach ($jadwal as $item)
                     <tr >
                         @php $no++ @endphp
-                        <td class="">{{ $no }}</td>
-                        <td id="date" month = "{{ date('m', strtotime($item->tgl_jadwal)) }}" year="{{ date('Y', strtotime($item->tgl_jadwal)) }}" class="">{{  date('d M Y', strtotime($item->tgl_jadwal)) }}</td>
-                        <td class="">{{ $item->jam_masuk }}</td>
-                        <td class="">{{ $item->jam_pulang }}</td>
-                        @if ($item->status_masuk ==0 )
-                        <td class="">Hadir</td>
+                        <td class="text-center">{{ $no }}</td>
+                        <td class="text-center" id="date" month = "{{ date('m', strtotime($item->tgl_jadwal)) }}" year="{{ date('Y', strtotime($item->tgl_jadwal)) }}">{{  date('d M Y', strtotime($item->tgl_jadwal)) }}</td>
+                        <td class="text-center">{{ $item->jam_masuk }}</td>
+                        <td class="text-center">{{ $item->jam_pulang }}</td>
+                        @if ($item->status_masuk == 0 )
+                        <td class="text-center">Tidak Hadir</td>
                         @endif
-                        @if ($item->status_masuk ==1)
-                        <td class="">Tidak Hadir</td>
+                        @if ($item->status_masuk == 1)
+                        <td class="text-center">Hadir</td>
                         @endif
-                       <td>{{ $item->jumlah_maxpasien }}</td>
+                       <td class="text-center">{{ $item->jumlah_maxpasien }}</td>
 
                         @endforeach
-                        
+
                 </tbody>
-                
-                
+
+
                 <tbody id="new">
 
                 </tbody>
             </table>
+            </div>
             <div class="row">
                 <div class="col-md-5 align-self-center">
                 </div>
                 <div class="col-md-5">
                     <nav class="dataTables_paginate paging_simple_numbers">
                         <ul class="pagination">
-                            {{-- {{ $jadwal->links() }} --}}
+                            {{ $jadwal->links() }}
                         </ul>
                     </nav>
                 </div>
             </div>
-            </div>
-            </div>
+        </div>
+    </div>
 
-           
+
+
 <script type="text/javascript">
     $('#search').on('keyup',function () {
        $value=$(this).val();
@@ -141,7 +145,7 @@
             $('#new').html(data);
         }
        });
-      
+
     })
 
     </script>

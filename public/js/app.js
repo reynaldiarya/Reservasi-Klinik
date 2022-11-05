@@ -8613,7 +8613,7 @@
         (window.axios = n(17)),
             (window.axios.defaults.headers.common["X-Requested-With"] =
                 "XMLHttpRequest");
-        var r = document.head.querySelector('meta[name="csrf-token"]');
+        var r = document.querySelector('meta[name="csrf-token"]');
         r
             ? (window.axios.defaults.headers.common["X-CSRF-TOKEN"] = r.content)
             : console.error(
@@ -24708,3 +24708,4 @@
     },
     function (e, t) {},
 ]);
+

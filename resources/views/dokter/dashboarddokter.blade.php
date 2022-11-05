@@ -1,7 +1,7 @@
 @extends('maintemplatedashboard')
 @section('content')
 @extends('partials.sidebardokter')
-<body id="page-top">
+
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
@@ -19,7 +19,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold  mb-1"><a href="/lihat-reservasi"><span>Reservasi : {{ date('d-m-Y') }}</span></a></div>
+                                            <div class="text-uppercase text-primary fw-bold  mb-1"><a href="/lihat-reservasi"><span>Reservasi: {{ date('d-m-Y') }}</span></a></div>
                                             <div class="text-dark fw-bold h5 mb-0"><span>{{ $countallreservasi }}</span></div>
                                         </div>
                                         <div class="col-auto"><a href="/lihat-reservasi"><i class="fa-solid fa-calendar fa-2x text-gray-300"></i></a></div>
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -40,7 +40,5 @@
     </div>
 
     <!-- Logout Modal-->
-
-</body>
 
 @endsection

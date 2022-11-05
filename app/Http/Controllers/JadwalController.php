@@ -15,20 +15,28 @@ class JadwalController extends Controller
 
     public function kelolajadwal()
     {
-        $jadwal = jadwal::orderby('tgl_jadwal', 'desc')->paginate(7);
+        $monthselected = '';
+        if(request('filter')!=null){
+            $jadwal = jadwal::whereMonth('tgl_jadwal',request('filter'))->whereYear('tgl_jadwal',request('year'))->orderBy('tgl_jadwal','desc')->paginate();
+            $monthselected = date('m',request('filter'));
+        }else{
+            $jadwal = jadwal::orderBy('tgl_jadwal','desc')->paginate(10);
+
+        }
         return view('staff.kelolajadwal', [
             'title' => self::title,
-            'jadwal' => $jadwal
+            'jadwal' => $jadwal,
+            'month' => $monthselected
         ]);
     }
     public function lihatjadwal()
     {
-        $monthselected = ''; 
+        $monthselected = '';
         if(request('filter')!=null){
-            $jadwal = jadwal::whereMonth('tgl_jadwal',request('filter'))->whereYear('tgl_jadwal',request('year'))->orderBy('tgl_jadwal','desc')->get();
+            $jadwal = jadwal::whereMonth('tgl_jadwal',request('filter'))->whereYear('tgl_jadwal',request('year'))->orderBy('tgl_jadwal','desc')->paginate();
             $monthselected = date('m',request('filter'));
         }else{
-            $jadwal = jadwal::whereMonth('tgl_jadwal',date('m'))->orderBy('tgl_jadwal','desc')->get();
+            $jadwal = jadwal::orderBy('tgl_jadwal','desc')->paginate(10);
 
         }
         // dd($monthselected);
@@ -36,7 +44,7 @@ class JadwalController extends Controller
         return view('dokter.jadwal', [
             'title' => self::title,
             'jadwal' => $jadwal,
-            'month' => $monthselected,
+            'month' => $monthselected
 
         ]);
     }
@@ -57,7 +65,8 @@ class JadwalController extends Controller
             'tgl_jadwal' => $req['tgl_jadwal'],
             'jam_masuk' => $req['jam_masuk'],
             'jam_pulang' => $req['jam_pulang'],
-            'jumlah_maxpasien' => $req['max_pasien']
+            'jumlah_maxpasien' => $req['max_pasien'],
+            'status_masuk' => 0
         ];
         jadwal::create($jadwal);
         return back()->with('success', 'Jadwal berhasil ditambahkan');
@@ -273,7 +282,7 @@ class JadwalController extends Controller
                          </td>
 
                         </tr>';
-                        
+
         }
 
         return response($output);
@@ -308,7 +317,7 @@ class JadwalController extends Controller
 
                         </tr>';
         }
-        
+
 
         return response($output);
     }

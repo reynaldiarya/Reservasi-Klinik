@@ -21,7 +21,7 @@ class RekamMedisController extends Controller
 
         ]);
     }
-    
+
     public function tambahrekammedisdokter(Request $req)
     {
         if($req->nama_user != null){
@@ -60,7 +60,7 @@ class RekamMedisController extends Controller
         rekam_medis::create($data);
         return redirect('/lihat-rekam-medis')->withSuccess('Data berhasil ditambahkan');
         }
-        
+
         $pasien = User::where('level', '0')->get();
         return view('dokter.tambahrekammedis', [
             'pasien' => $pasien,
@@ -82,19 +82,20 @@ class RekamMedisController extends Controller
     public function hapusrekammedis()
     {
         rekam_medis::where('id_rekam_medis', request('id'))->delete();
-        return back()->withSuccess('Jadwal berhasil dihapus');
+        return back()->withSuccess('Rekam Medis berhasil dihapus');
     }
     public function kelolarekammedis()
     {
         // $rekam = rekam_medis::join('users', 'User_id', '=', 'users.id')
         //     ->orderBy('rekam_medis.tgl_periksa', 'desc')->select('rekam_medis.*', 'users.name')->paginate(5);
-            $rekam = rekam_medis::with('user')->paginate(10);
+        $rekam = rekam_medis::with('user')->orderBy('created_at','desc')->paginate(10);
         return view('staff.kelolarekammedis', [
             'title' => self::title,
             'rekam'  => $rekam,
 
         ]);
     }
+
     public function editrekammedis()
     {
         DB::table('rekam_medis')
@@ -176,7 +177,7 @@ class RekamMedisController extends Controller
                 '<tr>
             <td class="text-center">' . $no . '</td>
             <td class="text-center">' . $item->nama_pasien . '</td>
-         <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
+            <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
             <td class="text-center">dr Rey</td>
             </tr>';
         }
@@ -200,7 +201,8 @@ class RekamMedisController extends Controller
         $output = [];
         foreach ($data as $item) {
             $no++;
-            $output[$no-1] = '<td class="text-center">' . $no . '</td>
+            $output[$no-1] = '<tr>
+            <td class="text-center">' . $no . '</td>
             <td class="text-center">' . $item->nama_pasien . '</td>
             <td class="text-center">' . $item->name . '</td>
             <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
@@ -217,12 +219,12 @@ class RekamMedisController extends Controller
                       <h5 class="modal-title" id="hapus_rekam_medis' . $item->id_rekam_medis . '">Hapus Rekam Medis</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <div class="modal-body">
+                    <p>Apakah Anda yakin untuk menghapus?</p>
+                        </div>
                     <form action="/hapus-rekam-medis" method="POST">
                     ' . csrf_field() . '
-                        <div class="modal-body">
-                            <input type="hidden" name="id" value="' . $item->id_rekam_medis . '">
-                            <strong>Apakah anda yakin untuk menghapus?</strong>
-                        </div>
+                    <input type="hidden" name="id" value="' . $item->id_rekam_medis . '">
                         <div class="modal-footer">
                                 <div class="col-4 ">
                                     <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
@@ -376,7 +378,8 @@ class RekamMedisController extends Controller
             </div>
         </div>
     </div>
-</form>';
+</form>
+</tr>';
         }
         return response($output);
     }
@@ -405,8 +408,36 @@ class RekamMedisController extends Controller
             <td class="text-center">' . date('d M Y', strtotime($item->tgl_periksa)) . '</td>
             <td class="text-center">
                 <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#edit_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-sm py-auto" data-bs-toggle="modal" data-bs-target="#hapus_rekam_medis' . $item->id_rekam_medis . '"><i class="fa-solid fa-trash-can"></i></button>
             </td>
 
+            <div class="modal fade" id="hapus_rekam_medis' . $item->id_rekam_medis . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="hapus_rekam_medis' . $item->id_rekam_medis . '">Hapus Rekam Medis</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin untuk menghapus?</p>
+                    </div>
+                    <form action="/hapus-rekam-medis" method="POST">
+                    ' . csrf_field() . '
+                            <input type="hidden" name="id" value="' . $item->id_rekam_medis . '">
+                        <div class="modal-footer">
+                                <div class="col-4 ">
+                                    <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
+                                   </div>
+                                   <div class="col-4">
+                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
+                                   </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div>
             <div>
                 <form action="/edit-rekam-medis" method="POST">
                 ' . csrf_field() . '

@@ -38,8 +38,21 @@
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
         </div>
         <div class="card-body">
-        <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
-            <table class="table " id="dataTable">
+            <form action="/kelola-reservasi" method="post">
+                @csrf
+              <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group mb-2">
+                        <input type="text" name="tanggal" class="form-control" placeholder="Pilih Tanggal"  onmouseover="(this.type='date')" aria-describedby="basic-addon1">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div >
+                </div>
+              </div>
+            </form>
+            <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th class="text-center">No</th>

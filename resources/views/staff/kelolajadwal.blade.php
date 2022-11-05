@@ -102,9 +102,48 @@
             <p class="text-primary m-0 fw-bold">Daftar Jadwal</p>
         </div>
         <div class="card-body">
+            <div class="row mb-2 ">
+                <div class="col-md-2">
 
+                        <form action="/kelola-jadwal" method="post">
+                            @csrf
+                    <select name="filter"  class="form-select" aria-label=".form-select-sm example">
+                        <option value="" >Pilih Bulan</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
+                    </select>
+
+
+                </div>
+               <div class="col-md-2">
+                   <select name="year"  class="form-select" aria-label=".form-select-sm example">
+                    <option  selected value="2022">Pilih Tahun</option>
+                    <option  value="2022">2022</option>
+
+                    <option  value="2023">2023</option>
+                   </select>
+
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+            </form>
+            </div>
             <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table class="table " id="dataTable">
+                <table class="table table-bordered" id="dataTable">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
@@ -116,7 +155,7 @@
                             <th class="text-center">Aksi</th>
 
                         </tr>
-                        
+
                     </thead>
                     <tbody id="alldata" > @php $no = 0; @endphp
                         @foreach ($jadwal as $item)
@@ -126,11 +165,11 @@
                             <td class="text-center">{{  date('d M Y', strtotime($item->tgl_jadwal)) }}</td>
                             <td class="text-center">{{ $item->jam_masuk }}</td>
                             <td class="text-center">{{ $item->jam_pulang }}</td>
-                            @if ($item->status_masuk ==0 )
-                            <td class="text-center">Hadir</td>
-                            @endif
-                            @if ($item->status_masuk ==1)
+                            @if ($item->status_masuk == 0 )
                             <td class="text-center">Tidak Hadir</td>
+                            @endif
+                            @if ($item->status_masuk == 1)
+                            <td class="text-center">Hadir</td>
                             @endif
                             <td class="text-center">{{ $item->jumlah_pasien_hari_ini }}</td>
                             <td class="text-center">
@@ -143,22 +182,22 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                  <h5 class="modal-title"  id="hapus_jadwal{{ $item->id_jadwal }}">Hapus Jadwal</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Apakah Anda yakin untuk menghapus?</p>
                                 </div>
                                 <form action="/hapus-jadwal" method="POST">
                                     @csrf
-                                    <div class="modal-body">
                                         <input type="hidden" name="id" value="{{ $item->id_jadwal }}">
-                                        <strong>Apakah anda yakin untuk menghapus?</strong>
-                                    </div>
-                                    <div class="modal-footer">
-                                            <div class="col-4 ">
-                                                <button type="submit" class="btn bg-danger text-white col">Ya yakin</button>
-                                               </div>
-                                               <div class="col-4">
-                                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak jadi </button>
-                                               </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                        <div class="col-4 text-center">
+                                            <button type="submit" class="btn bg-danger text-white col-6">Ya</button>
+                                           </div>
+                                           <div class="col-4 text-center">
+                                               <button type="button" class="btn btn-secondary col-6" data-bs-dismiss="modal">Tidak</button>
+                                           </div>
                                     </div>
                                 </form>
                               </div>
@@ -187,12 +226,12 @@
                                                 <label class="form-control-label" for="status">Status Masuk<span class="small text-danger"> *</span></label>
                                                 <select  name ="status" class="form-select" aria-label="Default select example">
                                                     <option value="{{ $item->status_masuk }}" selected>@if ($item->status_masuk == 0 )
-                                                        Hadir
-                                                        @else
                                                         Tidak Hadir
+                                                        @else
+                                                        Hadir
                                                         @endif</option>
-                                                    <option value="0">Hadir</option>
-                                                    <option value="1">Tidak Hadir</option>
+                                                    <option value="0">Tidak Hadir</option>
+                                                    <option value="1">Hadir</option>
                                                   </select>
                                                 </div>
                                         </div>

@@ -27,24 +27,27 @@
 @endsection
 
 <div class="container-fluid">
-<form action="/lihat-reservasi" method="post">
-    @csrf
-  <div class="row">
-    <div class="col-md-3">
-        <div class="input-group mb-3">
-            <input type="text" name="tanggal" class="form-control" placeholder="Pilih Tanggal"  onmouseover="(this.type='date')" aria-describedby="basic-addon1">
-            <button type="submit" class="btn input-group-text" id="basic-addon1"><i class="bi bi-search"></i></button>
-        </div >
-    </div>
-  </div>
-</form>
+
     <div class="card shadow mb-5">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Daftar Reservasi</p>
         </div>
         <div class="card-body">
+            <form action="/lihat-reservasi" method="post">
+                @csrf
+              <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group mb-2">
+                        <input type="text" name="tanggal" class="form-control" placeholder="Pilih Tanggal"  onmouseover="(this.type='date')" aria-describedby="basic-addon1">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div >
+                </div>
+              </div>
+            </form>
         <div class="table-responsive table " id="dataTable" role="grid" aria-describedby="dataTable_info">
-            <table class="table " id="dataTable">
+            <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
@@ -100,7 +103,7 @@
         <div class="col-md-5">
             <nav class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
-                    {{-- {{ $reservasi->links() }} --}}
+                    {{ $reservasi->links() }}
                 </ul>
             </nav>
         </div>

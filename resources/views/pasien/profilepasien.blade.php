@@ -31,7 +31,7 @@
 @if (session()->has('benar'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
  {{ session('benar') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+ <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
             <div class="card shadow mb-4">
@@ -55,7 +55,7 @@
 
       </div>
       @endif
-      
+
                 <div class="card-body">
 
                     <form method="POST" action="/profile" autocomplete="off">
