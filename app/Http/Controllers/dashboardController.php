@@ -29,16 +29,17 @@ class DashboardController extends Controller
 
     public function indexstaff()
     {
-        $countallrekammedis = rekam_medis::count();
-        $countallreservasi = reservasi::count();
-        $countallpasien = User::where('level','0')->count();
-        $countalljadwal = jadwal::count();
+        $countreservasitoday = reservasi::where('tgl_reservasi',date('Y-m-D'))->count();
+        $countjadwalmonthly = jadwal::whereMonth('tgl_jadwal',date('m'))->count();
+        $countAllReservasi= [];
+        for($i = 1;$i<=12;$i++){
+            $countAllReservasi[$i]= reservasi::whereMonth('tgl_reservasi',$i)->count();
+        }
         return view('staff.dashboardstaff', [
             'title' => self::title,
-            'countallrekammedis' => $countallrekammedis,
-            'countallreservasi' => $countallreservasi,
-            'countallpasien' => $countallpasien,
-            'countalljadwal' => $countalljadwal
+            'countreservasitoday' => $countreservasitoday,
+            'countjadwalmonthly' => $countjadwalmonthly,
+            'countAllReservasi'=> $countAllReservasi
         ]);
     }
     public function indexdokter()

@@ -93,14 +93,17 @@
                                 <select name="status" class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected value="{{ $item->status_hadir }}">
                                         @if( $item->status_hadir == 0)
-                                        Tidak Hadir
+                                        Belum Hadir
                                         @endif
                                         @if( $item->status_hadir == 1)
                                         Hadir
                                         @endif
+                                        @if( $item->status_hadir == 2)
+                                         Tidak Hadir
+                                        @endif
                                     </option>
-                                    <option value="0">Tidak Hadir</option>
                                     <option value="1">Hadir</option>
+                                    <option value="2">Tidak Hadir</option>
                                 </select>
                                     </div>
                                 <div class="col">

@@ -25,15 +25,16 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Reservasi</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span>{{ $countallreservasi }}</span></div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Reservasi = </span>{{ date('d-M-Y') }}</div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{ $countreservasitoday }}</span></div>
                                         </div>
                                         <div class="col-auto"><i class="fa-solid fa-calendar fa-2x text-gray-300"></i></div>
                                     </div>
                                 </div>
                             </div>
+                           
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        {{-- <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-start-success py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
@@ -45,8 +46,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        </div> --}}
+                        {{-- <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-start-success py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
@@ -58,14 +59,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-start-success py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
-                                            <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>jadwal</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0">{{ $countalljadwal }}</div>
+                                            <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>jadwal = </span>{{ date('M') }}</div>
+                                            <div class="text-dark fw-bold h5 mb-0">{{ $countjadwalmonthly }}</div>
                                         </div>
                                         <div class="col-auto"><i class="fa-regular fa-calendar-days fa-2x text-gray-300"></i></div>
                                     </div>
@@ -75,10 +76,22 @@
                     </div>
                 </div>
             </div>
+          
             <div class="container">
-                <div class="card px-4 py-4">
-                <canvas id="chart"></canvas>
+                <div class="col-md-5">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#reservasiBulanan" role="button" aria-expanded="false" aria-controls="reservasiBulanan">
+                       Reservasi Bulanan<i class="bi bi-arrow-down-short"></i>
+                      </a>
+               
+                </div>
+               
+                
+                <div class="collapse" id="reservasiBulanan">
+                        <div class="card  px-4 py-4" >
+                        <canvas id="chart"></canvas>
+                </div>
               </div>
+              
         </div>
             <footer class="mt-5 bg-white sticky-footer">
                 <div class="container my-auto">
@@ -110,10 +123,10 @@
         const data = {
           labels: labels,
           datasets: [{
-            label: 'Reservasi Bulanan',
+            label: 'Reservasi Bulanan Tahun : '+{{ date('Y') }},
             backgroundColor: 'rgb(13, 110, 253)',
             borderColor: 'rgb(13, 110, 253)',
-            data: [0, 10, 5, 2, 20, 30, 45],
+            data: [{{ $countAllReservasi[1] }},{{ $countAllReservasi[2] }},{{ $countAllReservasi[3] }},{{ $countAllReservasi[4] }},{{ $countAllReservasi[5] }},{{ $countAllReservasi[6] }},{{ $countAllReservasi[7] }},{{ $countAllReservasi[8] }},{{ $countAllReservasi[9] }},{{ $countAllReservasi[10] }},{{ $countAllReservasi[11] }},{{ $countAllReservasi[12] }},],
           }]
         };
 

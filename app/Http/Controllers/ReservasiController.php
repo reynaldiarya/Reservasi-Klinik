@@ -35,7 +35,7 @@ class ReservasiController extends Controller
 
         // mengurangi jumlah maksimal pasien
         $jumlah = $valid[0]['jumlah_maxpasien'] - 1;
-        // menambahkan jumlah pasien hari ini , juga untuk nomer antrian
+        // menambahkan jumlah pasien hari ini , juga untuk nomer antrian. jumlah ini bisa saja melebihi dari maximal slot pasien jadwal hari itu .
         $jumlah2 = $valid[0]['jumlah_pasien_hari_ini'] + 1;
         $data = [
             "nama_pasien" => $req['namaPasien'],
@@ -194,7 +194,7 @@ class ReservasiController extends Controller
 
 
         $no = 0;
-        $output = '';
+        $output = [];
         foreach ($data as $item) {
             $no++;
             if ($item->status_hadir == 0) {
@@ -207,7 +207,7 @@ class ReservasiController extends Controller
                 $status = 'Tidak Hadir';
             }
 
-            $output = '<tr>
+            $output[$no-1] = '<tr>
                                             <td class="align-middle text-center">' . $no . '</td>
                                             <td class="align-middle text-center">' . $item->nama_pasien . '</td>
                                             <td class="align-middle text-center">' .  date("d M Y", strtotime($item->tgl_reservasi)) . '</td>
@@ -250,14 +250,19 @@ class ReservasiController extends Controller
 
     public function editreservasi(Request $req)
     {
-        $reservasi = reservasi::where('id_reservasi', $req['id'])->get();
-        if ($reservasi[0]->status_hadir == 1 && $req['status'] == 2) {
-            $jadwal =  jadwal::where('tgl_jadwal', $req['tgl'])->get();
-            jadwal::where('tgl_jadwal', $req['tgl'])->update(['jumlah_maxpasien' => $jadwal[0]->jumlah_maxpasien + 1]);
-        } else if ($reservasi[0]->status_hadir == 2 && $req['status'] == 1) {
-            $jadwal =  jadwal::where('tgl_jadwal', $req['tgl'])->get();
-            jadwal::where('tgl_jadwal', $req['tgl'])->update(['jumlah_maxpasien' => $jadwal[0]->jumlah_maxpasien - 1]);
+        // 0 belum hadir, 1 hadir,2 tidak hadir
+        // $ reservasi = reservasi yg ingin di edit
+        $reservasi = reservasi::where('id_reservasi', $req['id'])->first();
+        if ($reservasi->status_hadir == 1 && $req['status'] == 2) {
+            // kalau status pasien hadir dan dirubah menjadi tidak hadir maka jadwal yang di pilih akan di tambah satu jumlah max pasiennya , supaya slot nya bertambah lagi
+            $jadwal =  jadwal::where('tgl_jadwal', $req['tgl'])->first();
+            jadwal::where('tgl_jadwal', $req['tgl'])->update(['jumlah_maxpasien' => $jadwal->jumlah_maxpasien + 1]);
+        } else if ($reservasi->status_hadir == 2 && $req['status'] == 1) {
+            // kalau status pasien tidak hadir dan dirubah menjadi  hadir maka jadwal yang di pilih akan di kurangi satu jumlah max pasiennya , supaya slot nya berkurang
+            $jadwal =  jadwal::where('tgl_jadwal', $req['tgl'])->first();
+            jadwal::where('tgl_jadwal', $req['tgl'])->update(['jumlah_maxpasien' => $jadwal->jumlah_maxpasien - 1]);
         }
+        // update status hadir dari reservasi yg di pilih
         reservasi::where('id_reservasi', $req['id'])->update(['status_hadir' => $req['status']]);
         return back()->withSuccess('Data Berhasil Diubah');
     }

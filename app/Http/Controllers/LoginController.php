@@ -61,6 +61,7 @@ class LoginController extends Controller
             $req->session()->regenerate();
             return redirect('/dashboard-dokter');
         }
+      
         return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);
     }
     public function logout(Request $req)
