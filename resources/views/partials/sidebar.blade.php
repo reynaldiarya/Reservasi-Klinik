@@ -100,7 +100,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ strtoupper(Auth::user()->name) }}</span>
-                                <figure class="img-profile rounded-circle avatar font-weight-bold" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
+                                @if(Auth::user()->image != null)
+                                <img class="rounded-circle avatar avatar" src="{{asset('/images/'.Auth::user()->image)}}">
+                                @else
+                                <figure class="rounded-circle avatar avatar font-weight-bold" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
+                                @endif
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

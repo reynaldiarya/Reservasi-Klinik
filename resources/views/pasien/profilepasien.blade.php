@@ -10,7 +10,11 @@
 
             <div class="card shadow mb-4">
                 <div class="card-profile-image mt-4">
-                    <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 60px; height: 180px; width: 180px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
+                    @if(Auth::user()->image != null)
+                    <img class="rounded-circle avatar avatar" style="height: 150px; width: 150px;" src="{{asset('/images/'.Auth::user()->image)}}">
+                    @else
+                    <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
+                    @endif
                 </div>
                 <div class="card-body">
 
@@ -139,7 +143,20 @@
                             </div>
                         </div>
                     </form>
-
+                    <h6 class="heading-small text-muted mt-5 mb-4">Foto Profil</h6>
+                    <form action="/upload-foto-pasien" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="col-lg-12">
+                            <div class="form-group focused">
+                                <input type="file" name="image" id="image" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
             </div>

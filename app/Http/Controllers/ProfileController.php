@@ -30,6 +30,26 @@ class ProfileController extends Controller
         ]);
     }
 
+
+    public function updateprofilepicture(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=1024,max_height=1024',
+        ]);
+
+        $imageName = time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+
+        $user = User::findOrFail(Auth::user()->id);
+        $user->image = $imageName;
+
+        $user->save();
+
+        return back()
+            ->with('success','Foto Profil Berhasil di Update');
+    }
+
     public function updatepasien(Request $request)
     {
         $user = User::where('id', $request['id'])->first();

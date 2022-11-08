@@ -60,6 +60,7 @@ Route::group(['middleware'=>['auth','ceklevel:2']],function ()
     route::get('/cari-rekam-medis-dokter', [RekamMedisController::class, 'carirekammedisdokter']);
     Route::post('/edit-rekam-medis-dokter', [RekamMedisController::class, 'editrekammedis']);
     Route::post('/hapus-rekam-medis-dokter', [RekamMedisController::class, 'hapusrekammedis']);
+    Route::post('/upload-foto-dokter', [ ProfileController::class, 'updateprofilepicture' ]);
 });
 
 // Route::get('/login-staff', [LoginController::class, "indexstaff"])->middleware('guest')->name('login-staff');
@@ -87,6 +88,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     route::get('/cari-pasien', [PasienController::class, 'caripasien']);
     route::get('/cari-rekam-medis', [RekamMedisController::class, 'carirekammedis']);
     route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
+    Route::post('/upload-foto', [ ProfileController::class, 'updateprofilepicture' ]);
 });
 
 Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
@@ -101,6 +103,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/cari-reservasi-pasien', [ReservasiController::class, 'carireservasipasien']);
     Route::get('/cari-rekam-pasien', [RekamMedisController::class, 'carirekampasien']);
     route::get('/cari-jadwal-pasien', [JadwalController::class, 'carijadwalpasien']);
+    Route::post('/upload-foto-pasien', [ ProfileController::class, 'updateprofilepicture' ]);
 });
 
 // Route::post('/login-staff', [LoginController::class, "login"])->name('login');
