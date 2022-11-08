@@ -29,6 +29,6 @@ class Register extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pesan Baru dari dr Reynaldi')->view('mail.register');
+        return $this->subject('Selamat datang di dr Reynaldi')->view('mail.register');
     }
 }

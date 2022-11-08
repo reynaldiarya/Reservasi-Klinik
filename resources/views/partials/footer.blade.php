@@ -40,7 +40,7 @@
 
           <div class="col-md-3 col-lg-4 col-xl-1 mx-0 mb-4">
           <a class="navbar-brand" href="#">
-            <img src="img/logo.png" alt="" width="100">
+            <img src="/img/logo.png" alt="" width="100">
           </a>
           </div>
 
@@ -92,7 +92,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2022 Copyright:
+      Kelompok 12 SI UA | Template by
       <a class="text-reset" href="https://mdbootstrap.com/">MDBootstrap.com</a>
     </div>
     <!-- Copyright -->

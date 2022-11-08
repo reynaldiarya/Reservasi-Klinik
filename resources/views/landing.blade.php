@@ -1,7 +1,7 @@
 @extends('maintemplate')
 @section('content')
 <div class="container mt-auto d-flex align-items-center" style="height: 570px">
-  <div class="row row-cols-1 row-cols-md-2 d-flex align-items-center">
+  <div class="row row-cols-1 row-cols-md-2 space-top d-flex align-items-center">
     <div class="col-12 col-md-6 col-xl-6 mx-auto my-4">
       <h1 class="fontcusblue">
         dr Reynaldi siap melayani kebutuhan percintaan anda 24/7

@@ -29,6 +29,6 @@ class Hubungi extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pesan Baru dari dr Reynaldi')->view('mail.hubungi');
+        return $this->subject('Ada Pesan Baru dari dr Reynaldi')->view('mail.hubungi');
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\LupaPasswordController;
 use App\Models\rekam_medis;
 
 /*
@@ -38,6 +39,10 @@ Route::post('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::get('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::post('/registrasi-mail', [EmailController::class, "registrasi"]);
 Route::get('/registrasi-mail', [EmailController::class, "registrasi"]);
+Route::get('/lupa-password', [LupaPasswordController::class, 'lupapassword']);
+Route::post('/lupa-password', [LupaPasswordController::class, 'createtokenpassword']);
+Route::get('/reset-password/{token}', [LupaPasswordController::class, 'resetpassword'])->name('reset-password');
+Route::post('/reset-password', [LupaPasswordController::class, 'kirimresetpassword']);
 
 Route::group(['middleware'=>['auth','ceklevel:2']],function ()
 {

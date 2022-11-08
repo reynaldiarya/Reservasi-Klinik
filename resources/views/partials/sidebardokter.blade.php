@@ -8,7 +8,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon">
-                    <img src="img/logo.png" alt="" width="40">
+                    <img src="/img/logo.png" alt="" width="40">
                 </div>
                 <div class="sidebar-brand-text mx-3">dr Reynaldi</div>
             </a>

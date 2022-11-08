@@ -10,6 +10,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endisset
+      @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+        </div>
+      @endif
       @if(session()->has('salah'))
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ session('salah')}}
@@ -26,7 +31,7 @@
           </ul>
       </div>
       @endif --}}
-      
+
       <form method="POST" action="/login" class="user">
         @csrf
         <div class="form-group mb-4">
@@ -62,6 +67,7 @@
             <button type="submit" class="btn btn-primary btn-user btn-block">
                 <i class="bi bi-box-arrow-right"></i> Login
             </button>
+            <a href="/lupa-password">Lupa Password</a>
         </div>
 
     </form>
