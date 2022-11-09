@@ -166,10 +166,10 @@
                             <td class="text-center">{{ $item->jam_masuk }}</td>
                             <td class="text-center">{{ $item->jam_pulang }}</td>
                             @if ($item->status_masuk == 0 )
-                            <td class="text-center">Tidak Hadir</td>
+                            <td class="text-center">Hadir</td>
                             @endif
                             @if ($item->status_masuk == 1)
-                            <td class="text-center">Hadir</td>
+                            <td class="text-center">Tidak Hadir</td>
                             @endif
                             <td class="text-center">{{ $item->jumlah_pasien_hari_ini }}</td>
                             <td class="text-center">
