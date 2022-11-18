@@ -34,7 +34,6 @@ Route::post('/login', [LoginController::class, "login"])->name('login');
 Route::post('/logout', [LoginController::class, "logout"])->middleware('auth');
 Route::post('/register', [RegisterController::class, "register"]);
 Route::get('/register', [RegisterController::class, "index"])->middleware('guest');
-Route::get('/logout', [LoginController::class, "logout"]);
 Route::post('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::get('/hubungi-mail', [EmailController::class, "hubungi"]);
 Route::post('/registrasi-mail', [EmailController::class, "registrasi"]);
@@ -90,6 +89,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
     Route::post('/upload-foto', [ ProfileController::class, 'updateprofilepicture' ]);
 });
+
+Route::post('/hapus-foto', [ ProfileController::class, 'hapusfoto' ])->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');

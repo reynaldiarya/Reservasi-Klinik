@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,6 +63,19 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->back()->withSuccess('Profil berhasil diperbarui');
+    }
+
+    public function hapusfoto()
+    {
+        if(!is_null(Auth::user()->image)){
+            unlink(public_path('images/'.Auth::user()->image));
+            }else{
+            return back()->withFail('Maaf foto sudah terhapus');
+            }
+        $image = User::where('id',Auth::user()->id);
+        $image->update(['image' => null]);
+
+        return back()->withSuccess('Foto berhasil di hapus');
     }
 
     public function updatedokter(Request $request)

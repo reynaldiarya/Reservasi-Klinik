@@ -11,7 +11,8 @@
             <div class="card shadow mb-4">
                 <div class="card-profile-image mt-4">
                     @if(Auth::user()->image != null)
-                    <img class="rounded-circle avatar avatar" style="height: 150px; width: 150px;" src="{{asset('/images/'.Auth::user()->image)}}">
+                    <div class="text" id="buttonHapus" style="margin-left:60%;"><i class="fa-solid fa-circle-xmark fa-3x"></i></div>
+                    <img class="rounded-circle avatar avatar image" style="height: 150px; width: 150px; margin-top:-20px;" src="{{asset('/images/'.Auth::user()->image)}}">
                     @else
                     <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
                     @endif
@@ -36,6 +37,13 @@
 <div class="alert alert-success alert-dismissible fade show" role="alert">
  {{ session('benar') }}
   <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+@if(session()->has('fail'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('fail')}}
+    <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
+
 </div>
 @endif
 @if ($errors->any())
@@ -160,5 +168,36 @@
 
     </div>
 </div>
+<div class="modal fade" id="hapusFoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Foto</h5>
+                <button class="closemodal close" type="button" >
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Apakah anda yakin untuk menghapus foto?.</div>
+            <div class="modal-footer">
+            <button class="btn btn-link closemodal" type="button" data-dismiss="modal">Tidak</button>
+                <form  action="/hapus-foto" method="POST">
+                    @csrf
+                <button class="btn btn-danger" type="submit" >Iya, Saya yakin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$('#buttonHapus').click(function (e) { 
+    $('#hapusFoto').modal('show');
+    
+});
+$('.closemodal').click(function (e) { 
+    $('#hapusFoto').modal('hide');
+    
+});
+</script>
 
 @endsection
