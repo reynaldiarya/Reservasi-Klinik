@@ -11,10 +11,10 @@
             <div class="card shadow mb-4">
                 <div class="card-profile-image mt-4">
                     @if(Auth::user()->image != null)
-                    <div class="text" id="buttonHapus" style="margin-left:60%;"><i class="fa-solid fa-circle-xmark fa-3x"></i></div>
-                    <img class="rounded-circle avatar avatar image" style="height: 150px; width: 150px; margin-top:-20px;" src="{{asset('/images/'.Auth::user()->image)}}">
+                    <img class="rounded-circle avatar image" style="height: 150px; width: 150px;" src="{{asset('/images/'.Auth::user()->image)}}">
+                    <div class="float-start position-relative" id="buttonHapus" style="margin-left:62%; margin-top:-40%; font-size:25px; cursor:pointer;"><i class="fa-solid fa-circle-xmark bg-white rounded-circle"></i></div>
                     @else
-                    <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
+                    <figure class="rounded-circle avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
                     @endif
                 </div>
                 <div class="card-body">
@@ -53,7 +53,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('fail')}}
                     <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
-    
+
                 </div>
                 @endif
                 @if ($errors->any())
@@ -195,13 +195,13 @@
 </div>
 
 <script type="text/javascript">
-$('#buttonHapus').click(function (e) { 
+$('#buttonHapus').click(function (e) {
     $('#hapusFoto').modal('show');
-    
+
 });
-$('.closemodal').click(function (e) { 
+$('.closemodal').click(function (e) {
     $('#hapusFoto').modal('hide');
-    
+
 });
 </script>
 

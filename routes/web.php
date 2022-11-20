@@ -43,6 +43,8 @@ Route::post('/lupa-password', [LupaPasswordController::class, 'createtokenpasswo
 Route::get('/reset-password/{token}', [LupaPasswordController::class, 'resetpassword'])->name('reset-password');
 Route::post('/reset-password', [LupaPasswordController::class, 'kirimresetpassword']);
 
+Route::post('/hapus-foto', [ ProfileController::class, 'hapusfoto' ])->middleware('auth');
+
 Route::group(['middleware'=>['auth','ceklevel:2']],function ()
 {
     Route::any('/tambah-rekam-medis-dokter',[RekamMedisController::class,'tambahrekammedisdokter']);
@@ -89,8 +91,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:1']], function () {
     route::get('/cari-jadwal', [JadwalController::class, 'carijadwal']);
     Route::post('/upload-foto', [ ProfileController::class, 'updateprofilepicture' ]);
 });
-
-Route::post('/hapus-foto', [ ProfileController::class, 'hapusfoto' ])->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'ceklevel:0']], function () {
     Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
