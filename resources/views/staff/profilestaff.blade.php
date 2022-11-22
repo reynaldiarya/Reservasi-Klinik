@@ -12,10 +12,23 @@
                 <div class="text-center container mt-4">
                     @if(Auth::user()->image != null)
                     <img class="rounded-circle avatar image" style="height: 150px; width: 150px;" src="{{asset('/images/'.Auth::user()->image)}}">
-                    <div class="float-start position-relative" id="buttonHapus" style="margin-left:62%; margin-top:-40%; font-size:25px; cursor:pointer;"><i class="fa-solid fa-circle-xmark bg-white rounded-circle"></i></div>
                     @else
                     <figure class="rounded-circle avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
                     @endif
+                </div>
+                <div class="row text-center mx-4 mt-3">
+                    <div class="col-lg-6">
+                        <form action="/upload-foto" method="POST" enctype="multipart/form-data">
+                            @csrf
+                                <input type="file" name="image" id="image" class="form-control" style="display:none;" onchange="form.submit()">
+                                <button type="button" class="btn btn-primary">
+                                    <label class="mb-0" for="image">Perbarui Profile</label>
+                                </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                    <button type="button" class="btn btn-danger" id="buttonHapus">Hapus Profile</button>
+                    </div>
                 </div>
                 <div class="card-body">
 
@@ -148,20 +161,6 @@
                         </div>
                     </form>
 
-                    <h6 class="heading-small text-muted mt-5 mb-4">Foto Profil</h6>
-                    <form action="/upload-foto" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-lg-12">
-                            <div class="form-group focused">
-                                <input type="file" name="image" id="image" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">Upload</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
 
 

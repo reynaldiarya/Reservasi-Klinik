@@ -9,13 +9,26 @@
         <div class="col-lg-4 order-lg-2">
 
             <div class="card shadow mb-4">
-                <div class="card-profile-image mt-4">
+                <div class="text-center container mt-4">
                     @if(Auth::user()->image != null)
                     <img class="rounded-circle avatar image" style="height: 150px; width: 150px;" src="{{asset('/images/'.Auth::user()->image)}}">
-                    <div class="float-start position-relative" id="buttonHapus" style="margin-left:62%; margin-top:-40%; font-size:25px; cursor:pointer;"><i class="fa-solid fa-circle-xmark bg-white rounded-circle"></i></div>
                     @else
                     <figure class="rounded-circle avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
                     @endif
+                </div>
+                <div class="row text-center mx-4 mt-3">
+                    <div class="col-lg-6">
+                        <form action="/upload-foto-pasien" method="POST" enctype="multipart/form-data">
+                            @csrf
+                                <input type="file" name="image" id="image" class="form-control" style="display:none;" onchange="form.submit()">
+                                <button type="button" class="btn btn-primary">
+                                    <label class="mb-0" for="image">Perbarui Profile</label>
+                                </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                    <button type="button" class="btn btn-danger" id="buttonHapus">Hapus Profile</button>
+                    </div>
                 </div>
                 <div class="card-body">
 
@@ -33,40 +46,37 @@
         </div>
 
         <div class="col-lg-8 order-lg-1">
-@if (session()->has('benar'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
- {{ session('benar') }}
- <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
-            <div class="card shadow mb-4">
+            @if(session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success')}}
+                <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div>
+            @endif
+            @if(session()->has('fail'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('fail')}}
+                <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div>
+            @endif
+            @if ($errors->any())
+            <div class="alert  alert-danger border-left-danger alert-dismissible fade show" role="alert">
+                <ul class="pl-4 my-2">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div>
+            @endif
+        <div class="card shadow mb-4">
 
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Akun Saya</h6>
                 </div>
-                @if(session()->has('success'))
-                <div class="mt-3 ms-5 col-9 col-sm-10 col-xl-10 alert alert-success fade show" role="alert">
-                    {{ session('success')}}
-                </div>
-                @endif
-                @if(session()->has('fail'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('fail')}}
-                    <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
 
-                </div>
-                @endif
-                @if ($errors->any())
-      <div class="alert  alert-danger border-left-danger alert-dismissible fade show" role="alert">
-          <ul class="pl-4 my-2">
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-      </div>
-      @endif
 
                 <div class="card-body">
 
@@ -151,20 +161,7 @@
                             </div>
                         </div>
                     </form>
-                    <h6 class="heading-small text-muted mt-5 mb-4">Foto Profil</h6>
-                    <form action="/upload-foto-pasien" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-lg-12">
-                            <div class="form-group focused">
-                                <input type="file" name="image" id="image" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">Upload</button>
-                            </div>
-                        </div>
-                    </form>
+
                 </div>
 
             </div>
