@@ -109,7 +109,7 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return back()->with('benar', 'Profil berhasil diperbarui');
+        return back()->withSuccess('Profil berhasil diperbarui');
     }
     public function update(Request $request)
     {

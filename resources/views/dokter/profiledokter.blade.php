@@ -33,9 +33,9 @@
         </div>
 
         <div class="col-lg-8 order-lg-1">
-@if (session()->has('benar'))
+@if (session()->has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
- {{ session('benar') }}
+ {{ session('succes') }}
   <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
