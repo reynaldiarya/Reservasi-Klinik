@@ -11,11 +11,24 @@
             <div class="card shadow mb-4">
                 <div class="card-profile-image mt-4">
                     @if(Auth::user()->image != null)
-                    <div class="text" id="buttonHapus" style="margin-left:60%;"><i class="fa-solid fa-circle-xmark fa-3x"></i></div>
-                    <img class="rounded-circle avatar avatar image" style="height: 150px; width: 150px; margin-top:-20px;" src="{{asset('/images/'.Auth::user()->image)}}">
+                    <img class="rounded-circle avatar image" style="height: 150px; width: 150px;" src="{{asset('/images/'.Auth::user()->image)}}">
                     @else
-                    <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
+                    <figure class="rounded-circle avatar font-weight-bold" style="font-size: 50px; height: 150px; width: 150px;" data-initial="{{ strtoupper(Auth::user()->name[0]) }}"></figure>
                     @endif
+                </div>
+                <div class="row text-center mx-4 mt-3">
+                    <div class="col-lg-6">
+                        <form action="/upload-foto-dokter" method="POST" enctype="multipart/form-data">
+                            @csrf
+                                <input type="file" name="image" id="image" class="form-control" style="display:none;" onchange="form.submit()">
+                                <button type="button" class="btn btn-primary">
+                                    <label class="mb-0" for="image">Perbarui Profile</label>
+                                </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                    <button type="button" class="btn btn-danger" id="buttonHapus">Hapus Profile</button>
+                    </div>
                 </div>
                 <div class="card-body">
 
@@ -44,19 +57,19 @@
     {{ session('fail')}}
     <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
 
-</div>
-@endif
-@if ($errors->any())
-<div class="alert  alert-danger border-left-danger alert-dismissible fade show" role="alert">
-    <ul class="pl-4 my-2">
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            @if ($errors->any())
+            <div class="alert  alert-danger border-left-danger alert-dismissible fade show" role="alert">
+                <ul class="pl-4 my-2">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
-</div>
-@endif
+            </div>
+            @endif
             <div class="card shadow mb-4">
 
                 <div class="card-header py-3">
@@ -146,20 +159,7 @@
                             </div>
                         </div>
                     </form>
-                    <h6 class="heading-small text-muted mt-5 mb-4">Foto Profil</h6>
-                    <form action="/upload-foto-dokter" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-lg-12">
-                            <div class="form-group focused">
-                                <input type="file" name="image" id="image" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">Upload</button>
-                            </div>
-                        </div>
-                    </form>
+
                 </div>
 
             </div>
@@ -190,13 +190,13 @@
 </div>
 
 <script type="text/javascript">
-$('#buttonHapus').click(function (e) { 
+$('#buttonHapus').click(function (e) {
     $('#hapusFoto').modal('show');
-    
+
 });
-$('.closemodal').click(function (e) { 
+$('.closemodal').click(function (e) {
     $('#hapusFoto').modal('hide');
-    
+
 });
 </script>
 
