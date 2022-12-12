@@ -79,12 +79,15 @@
                         </td>
                         <td class="align-middle text-center">{{ $item->no_antrian }}</td>
                         <td class="align-middle text-center">
-                                        @if( $item->status_hadir == 0)
-                                        Tidak Hadir
-                                        @endif
-                                        @if( $item->status_hadir == 1)
-                                        Hadir
-                                        @endif
+                            @if( $item->status_hadir == 0)
+                            Belum Hadir
+                            @endif
+                            @if( $item->status_hadir == 1)
+                            Hadir
+                            @endif
+                            @if( $item->status_hadir == 2)
+                             Tidak Hadir
+                            @endif
                         </td>
 
             </tr>

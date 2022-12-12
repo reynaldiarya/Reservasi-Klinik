@@ -51,19 +51,6 @@ class ProfileController extends Controller
             ->with('success','Foto Profil Berhasil di Update');
     }
 
-    public function updatepasien(Request $request)
-    {
-        $user = User::where('id', $request['id'])->first();
-        $user->name = $request['name'];
-        $user->birthday = $request['birthday'];
-        $user->address = $request['address'];
-        $user->telp = $request['telp'];
-
-
-        $user->save();
-
-        return redirect()->back()->withSuccess('Profil berhasil diperbarui');
-    }
 
     public function hapusfoto()
     {
@@ -109,7 +96,7 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return back()->withSuccess('Profil berhasil diperbarui');
+        return redirect()->route('profile-dokter')->withSuccess('Profil berhasil diperbarui');
     }
     public function update(Request $request)
     {
@@ -142,7 +129,7 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return back()->with('benar', 'Profil berhasil diperbarui');
+        return redirect()->route('profile')->withSuccess('Profil berhasil diperbarui');
     }
     public function updatestaff(Request $request)
     {

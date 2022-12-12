@@ -29,7 +29,7 @@ class DashboardController extends Controller
 
     public function indexstaff()
     {
-        $countreservasitoday = reservasi::where('tgl_reservasi',date('Y-m-D'))->count();
+        $countreservasitoday = reservasi::where('tgl_reservasi',date('Y-m-d'))->count();
         $countjadwalmonthly = jadwal::whereMonth('tgl_jadwal',date('m'))->count();
         $countAllReservasi= [];
         for($i = 1;$i<=12;$i++){

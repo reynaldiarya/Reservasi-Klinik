@@ -46,16 +46,17 @@
         </div>
 
         <div class="col-lg-8 order-lg-1">
-@if (session()->has('success'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
- {{ session('succes') }}
-  <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
-@if(session()->has('fail'))
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{ session('fail')}}
-    <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
+            @if(session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success')}}
+                <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div>
+            @endif
+            @if(session()->has('fail'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('fail')}}
+                <button type="button" class="btn-close" style="height: 5px" data-bs-dismiss="alert" aria-label="Close"></button>
 
             </div>
             @endif
@@ -66,7 +67,7 @@
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
             </div>
             @endif

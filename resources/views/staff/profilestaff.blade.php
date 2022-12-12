@@ -79,7 +79,7 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="/profile-update-staff" autocomplete="off">
+                    <form method="POST" action="/profile-staff" autocomplete="off">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 

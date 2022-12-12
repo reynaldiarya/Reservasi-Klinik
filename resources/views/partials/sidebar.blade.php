@@ -33,7 +33,7 @@
                     <span>Reservasi</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/rekam-medis">
+                <a class="nav-link" href="/riwayat-pemeriksaan">
                     <i class="fa-solid fa-notes-medical"></i>
                     <span>Riwayat Pemeriksaan</span></a>
             </li>
