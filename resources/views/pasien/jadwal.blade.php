@@ -52,10 +52,10 @@
                         <td class="text-center align-middle">{{ $item->jam_masuk }}</td>
                         <td class="text-center align-middle">{{ $item->jam_pulang }}</td>
                         @if ($item->status_masuk ==0 )
-                        <td class="text-center align-middle">Hadir</td>
+                        <td class="text-center align-middle">Tidak Hadir</td>
                         @endif
                         @if ($item->status_masuk ==1)
-                        <td class="text-center align-middle">Tidak Hadir</td>
+                        <td class="text-center align-middle">Hadir</td>
                         @endif
                        <td class="text-center align-middle">{{ $item->jumlah_maxpasien }}</td>
                        <td class="text-center align-middle">
