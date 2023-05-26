@@ -99,7 +99,7 @@
                                         Hadir
                                         @endif
                                         @if( $item->status_hadir == 2)
-                                         Tidak Hadir
+                                        Tidak Hadir
                                         @endif
                                     </option>
                                     <option value="1">Hadir</option>
