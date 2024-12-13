@@ -47,7 +47,7 @@ Website Reservasi Klinik Doktor adalah platform berbasis web yang dirancang untu
 
 1. Clone repository ini:
    ```bash
-   git clone https://github.com/username/website-klinik.git
+   git clone https://github.com/reynaldiarya/Reservasi-Klinik.git
    ```
 2. Masuk ke folder proyek:
    ```bash
